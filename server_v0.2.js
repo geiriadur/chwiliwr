@@ -121,17 +121,33 @@ function returnHTMLArray(request_data) {
   arrayOfObjects = [];
   const $ = cheerio.load(request_data);
 
+  // OLD SECTION - ONLY CC
   // Find all div elements with a class of "example" using the class selector
-  const item = $("div.col-xs-12.result"); // returns search items
+  //const item = $("div.col-xs-12.result"); // returns search items
   //const item = $('[class="col-xs-12 result"]'); // should be equivalent to the above
-  const date = $("div.col-xs-12.result div.col-xs-2:eq(1)"); // returns just dates of search items
+  //const date = $("div.col-xs-12.result div.col-xs-2:eq(1)"); // returns just dates of search items
 
-  // Add appropriate path to result link
-  attr_val = $( "div.col-xs-12.result > h2 > a" ).attr('href');
-  $( "div.col-xs-12.result > h2 > a" ).attr('href', sourceURL+attr_val);
+  // NEW SECTION - CC & PN
+  // Find all div elements with a class of "example" using the class selector
+  const item = $(".result"); // returns search items
+  //const item = $('[class="result"]'); // should be equivalent to the above
+  const date = $(".result div.col-xs-2:eq(1), li.col-sm-2:eq(0)"); // returns just dates of search items
+
+  // OLD SECTION - ONLY CC
+  // Add appropriate path to result link (CC)
+  //attr_val = $( "div.col-xs-12.result > h2 > a" ).attr('href');
+  //$( "div.col-xs-12.result > h2 > a" ).attr('href', sourceURL+attr_val);
   // Add appropriate path to source link
-  attr_val = $( "div.col-xs-5 > a" ).attr('href');
-  $( "div.col-xs-5 > a" ).attr('href', sourceURL+attr_val);
+  //attr_val = $( "div.col-xs-5 > a" ).attr('href');
+  //$( "div.col-xs-5 > a" ).attr('href', sourceURL+attr_val);
+
+  // NEW SECTION - CC & PN
+  // Add appropriate path to result link (CC && PN)
+  attr_val = $( ".result > h2 > a" ).attr('href');
+  $( ".result a" ).attr('href', sourceURL+attr_val);
+  // Add appropriate path to source link
+  //attr_val = $( "div.col-xs-5 > a" ).attr('href');
+  //$( "div.col-xs-5 > a" ).attr('href', sourceURL+attr_val);
 
   // Iterate over each div element to get the search item
   item.each((i, item) => {
