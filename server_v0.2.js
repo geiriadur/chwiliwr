@@ -26,8 +26,9 @@ var counter = 0;
 var printOutput;
 var trigger = false;
 var delay_in_ms = 1000; // DO NOT SET LOWER THAN 1000 FOR NLW SERVERS
-//var sourceURL = 'https://cylchgronau.llyfrgell.cymru/';
-var sourceURL = 'https://papuraunewydd.llyfrgell.cymru/';
+var sourceURL = 'https://cylchgronau.llyfrgell.cymru/';
+//var sourceURL1 = 'https://cylchgronau.llyfrgell.cymru/';
+//var sourceURL2 = 'https://papuraunewydd.llyfrgell.cymru/';
 
 // HTML DOCS
 
@@ -40,6 +41,14 @@ http.createServer(function (req, res) {
   var data = q.query;
   res.writeHead(200, {'Content-Type': 'text/html'});
   //res.write(data);
+
+  // Parse 'src' parameter to see which resource we want
+  if ("src" in data && data['src'].toLowerCase() == "cc") {
+    sourceURL = 'https://cylchgronau.llyfrgell.cymru/';
+  }
+  if ("src" in data && data['src'].toLowerCase() == "pn") {
+    sourceURL = 'https://papuraunewydd.llyfrgell.cymru/';
+  }
 
   // IF THERE IS A QUERY, DO SOMETHING
   if ("query" in data && data['query'] !== "") {
