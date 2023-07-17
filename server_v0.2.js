@@ -172,7 +172,14 @@ function returnHTMLArray(request_data) {
   return arrayOfObjects;
 }
 
-function serverRequest (val, callback) {
+async function serverRequest (val, callback) {
+
+  // CRUCIAL DELAY TO PREVENT HITTING SERVER TOO HARD
+  let promise = new Promise((resolve, reject) => {
+    setTimeout(() => resolve(1), delay_in_ms)
+  });
+  let result = await promise; // wait until the promise resolves (*)
+  console.log(result); // 1 TESTING
 
   var arrayOfMultipleObjects = [];
 
@@ -234,20 +241,8 @@ function createMultipleRequests(pattern) {
 
     serverRequest(val, function(results){
       handleResults(results);
-      delay(); // CRUCIAL DELAY TO PREVENT HITTING SERVER TOO HARD
     });
   }
   //numOfRequests = 0; // NOT REQUIRED
   //combinedArrayOfMultipleObjects = []; // NOT HERE
-}
-
-async function delay() {
-
-  let promise = new Promise((resolve, reject) => {
-    setTimeout(() => resolve(1), delay_in_ms)
-  });
-
-  let result = await promise; // wait until the promise resolves (*)
-
-  console.log(result); // 1
 }
