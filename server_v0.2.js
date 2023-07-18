@@ -157,11 +157,11 @@ function returnHTMLArray(request_data) {
 
   // NEW SECTION - CC & PN
   // Add appropriate path to result link (CC && PN)
-  attr_val = $( ".result > h2 > a" ).attr('href');
-  $( ".result a" ).attr('href', sourceURL+attr_val);
-  // Add appropriate path to source link
-  //attr_val = $( "div.col-xs-5 > a" ).attr('href');
-  //$( "div.col-xs-5 > a" ).attr('href', sourceURL+attr_val);
+  attr_val = $( ".result > h2.result-title a" ).attr('href');
+  $( ".result > h2.result-title a" ).attr('href', sourceURL+attr_val);
+  // Add appropriate path to source link (N.B. no need in PN as already there: would create duplicate)
+  attr_val = $( "div.col-xs-5 > a" ).attr('href');
+  $( "div.col-xs-5 > a" ).attr('href', sourceURL+attr_val);
 
   // Iterate over each div element to get the search item
   item.each((i, item) => {
