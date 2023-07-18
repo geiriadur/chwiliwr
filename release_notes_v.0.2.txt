@@ -4,3 +4,4 @@ Version 0.2
 - Added "Dim canlyniadau / No results" for empty search response.
 - Prepended correct path to links for search results with Cheerio.
 - Enabled search of CC and PN
+- Corrected date handling for PN (removed <span> tag, tabs and newlines)

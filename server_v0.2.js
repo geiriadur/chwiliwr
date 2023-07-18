@@ -98,9 +98,14 @@ function timestamp(date) { // converts Welsh date to UNIX timestamp
     "Ionawr", "Chwefror", "Mawrth", "Ebrill", "Mai", "Mehefin", "Gorffennaf",
     "Awst", "Medi", "Hydref", "Tachwedd", "Rhagfyr"
   ];
+  //date = date.replace(/(\n?\t?\t\t\t\t)+/g,' ').trim(); // WORKS (VERY SPECIFIC)
+  //date = date.replace(/[\t\n\r]+/g,' ').trim(); // WORKS (MORE VERBOSE)
+  date = date.replace(/\s+/g,' ').trim(); // WORKS (SIMPLEST)
   var parts = date.split(" ").map(function(item) {
-    return item.trim();
+    //return item.trim(); // Unnecessary because already trimmed above.
+    return item;
   });
+  //console.log(parts); // TESTING
   var d = parts[2]+'-'+(months.indexOf(parts[1])+1).toString().padStart(2, '0')+'-'+parts[0].padStart(2, '0')+'T00:00:00.000Z';
   //return (d.getTime());
   return new Date(d).getTime();
@@ -140,7 +145,7 @@ function returnHTMLArray(request_data) {
   // Find all div elements with a class of "example" using the class selector
   const item = $(".result"); // returns search items
   //const item = $('[class="result"]'); // should be equivalent to the above
-  const date = $(".result div.col-xs-2:eq(1), li.col-sm-2:eq(0)"); // returns just dates of search items
+  const date = $(".result div.col-xs-2:eq(1), .result li.col-sm-2:eq(0) > span"); // returns just dates of search items
 
   // OLD SECTION - ONLY CC
   // Add appropriate path to result link (CC)
