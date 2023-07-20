@@ -80,9 +80,11 @@ http.createServer(function (req, res) {
     if ("regex" in data && data['regex'].toLowerCase() == "true") {
       console.log(data['query'].toString()); // outputs the regex to console.
       console.log(output); // outputs a comma separated list of search terms from the regex to console
-      res.write(output); // serves the comma separated list of search terms from the regex as http response
+      //res.write(output); // serves the comma separated list of search terms from the regex as http response
+      output = "\n\t\t\t<h2>" + output + "</h2>"; // enclose regex in tags
       //return;
     }
+    else { output = ""; }
 
     createMultipleRequests(pattern);
 
@@ -94,7 +96,8 @@ http.createServer(function (req, res) {
       } else {
         // CODE to launch until condition is met
         if (printOutput != "") {
-          res.end(html5_frag1+printOutput+html5_frag2);
+          //res.end(html5_frag1+printOutput+html5_frag2);
+          res.end(html5_frag1+output+printOutput+html5_frag2);
         }
         else {
           res.end(html5_frag1+"Dim canlyniadau / No results"+html5_frag2);
