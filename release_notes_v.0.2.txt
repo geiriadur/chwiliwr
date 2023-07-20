@@ -10,4 +10,4 @@ Version 0.2
 - Corrected links per search result with Cheerio, not same for all!
 - Moved 1s delay in script so that it actually works!
 - Added handling of 'order=asc|desc' parameters if 'sort=date' set
-- Added option of "query=regex" to expand regex as checking service
+- Added option of "regex=true" to expand regex as checking service

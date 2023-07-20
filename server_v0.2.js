@@ -1,5 +1,5 @@
 /*
-(h) 2023 Geiriadur Prifysgol Cymru, Canolfan Uwchefrydiau Cymreig a Cheltaidd, Prifysgol Cymru Y Drindod Dewi Sant
+(h) 2023 Geiriadur Prifysgol Cymru, Canolfan Uwchefrydiau Cymreig a Cheltaidd, Prifysgol Cymru y Drindod Dewi Sant
 (c) 2023 University of Wales Dictionary, Centre for Advanced Welsh and Celtic Studies, University of Wales Trinity St David
 gan / by Dr Talat Zafar Chaudhri
 
@@ -75,17 +75,13 @@ http.createServer(function (req, res) {
     //const pattern = genex(/(ffoo|bar|baz){1,2}|snafu/);
     const pattern = genex((data['query'].toString()));
 
-    //console.log(data['query'].toString()); // SIMPLY OUTPUTS THE REGEX
-
-    output = pattern.generate().toString(); // FOR TESTING OUTPUT BELOW
-    //console.log(output); // outputs a comma separated list of search terms from the regex to console
-    //res.write(output); // serves the comma separated list of search terms from the regex as http response
-
-    // Expand/print query if 'src' == "regex" and stop output
-    if ("src" in data && data['src'].toLowerCase() == "regex") {
-      console.log(data['query'].toString()); // SIMPLY OUTPUTS THE REGEX
-      res.end(output);
-      return;
+    // Expand/print query if 'regex' == "true" /* and stop output */
+    output = pattern.generate().toString();
+    if ("regex" in data && data['regex'].toLowerCase() == "true") {
+      console.log(data['query'].toString()); // outputs the regex to console.
+      console.log(output); // outputs a comma separated list of search terms from the regex to console
+      res.write(output); // serves the comma separated list of search terms from the regex as http response
+      //return;
     }
 
     createMultipleRequests(pattern);
