@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Chwiliwr Mynegiadau Rheolaidd</title>
+    <!--link rel="stylesheet" href="style.css">
+    <script src="script.js"></script-->
+  </head>
+<body>
+
+<h2>Chwiliwr Mynegiadau Rheolaidd</h2>
+
+<form action="/search">
+  <label for="query">Mynegiad rheolaidd:</label><br>
+  <input type="text" id="query" name="query" value=""><br>
+  <br>
+  Rhoddir y chwiliadau mewn dyfynodau os cynhwysant bylchau, cysylltnodau neu nodau arbennig nas defnyddir fel rhan o'r mynegiad rheolaidd.<br>
+  <br>
+  <input type="radio" id="date" name="sort" value="date" checked="checked">
+  <label for="date">Dyddiad</label><br>
+  <input type="radio" id="score" name="sort" value="score">
+  <label for="score">Perthnasedd</label><br>
+  <br>
+  <input type="radio" id="asc" name="order" value="asc" checked="checked">
+  <label for="asc">Esgynnol</label><br>
+  <input type="radio" id="desc" name="order" value="desc">
+  <label for="desc">Disgynnol</label><br>
+  <br>
+  <input type="radio" id="cc" name="src" value="cc" checked="checked">
+  <label for="cc">Cylchgronau Cymru</label><br>
+  <input type="radio" id="pn" name="src" value="pn">
+  <label for="pn">Papurau Newydd</label><br>
+  <!--input type="radio" id="all" name="src" value="all>
+  <label for="all">Cylchgronau Cymru a Phapurau Newydd</label><br-->
+  <br>
+  <input type="checkbox" id="regex" name="regex" value="true" checked="checked">
+  <label for="regex"> Dangos termau chwilio</label><br>
+  <br>
+  <input type="submit" value="Cyflwyno">
+</form>
+
+<p>(h) 2023 Geiriadur Prifysgol Cymru, Canolfan Uwchefrydiau Cymreig a Cheltaidd, Prifysgol Cymru y Drindod Dewi Sant</p>
+<!--p>(c) 2023 University of Wales Dictionary, Centre for Advanced Welsh and Celtic Studies, University of Wales Trinity St David</p-->
+<!--p>gan / by Dr Talat Zafar Chaudhri</p-->
+
+</body>
+</html>
