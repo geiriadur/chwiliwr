@@ -26,9 +26,10 @@ var counter = 0;
 var printOutput;
 var trigger = false;
 var delay_in_ms = 1000; // DO NOT SET LOWER THAN 1000 FOR NLW SERVERS
-var sourceURL = 'https://cylchgronau.llyfrgell.cymru/';
+var sourceURL = "";
 //var sourceURL1 = 'https://cylchgronau.llyfrgell.cymru/';
 //var sourceURL2 = 'https://papuraunewydd.llyfrgell.cymru/';
+var order = 0;
 
 // HTML DOCS
 
@@ -42,12 +43,26 @@ http.createServer(function (req, res) {
   res.writeHead(200, {'Content-Type': 'text/html'});
   //res.write(data);
 
+  // Set defaults if the parameters in the following section are not supplied
+  order = 0;
+  sourceURL = 'https://cylchgronau.llyfrgell.cymru/';
+
   // Parse 'src' parameter to see which resource we want
   if ("src" in data && data['src'].toLowerCase() == "cc") {
     sourceURL = 'https://cylchgronau.llyfrgell.cymru/';
   }
   if ("src" in data && data['src'].toLowerCase() == "pn") {
     sourceURL = 'https://papuraunewydd.llyfrgell.cymru/';
+  }
+
+  // Parse 'sort' and 'order' parameters
+  if ("sort" in data && data['sort'].toLowerCase() == "date") {
+    if ("order" in data && data['order'].toLowerCase() == "asc") {
+      order = 1;
+    }
+    if ("order" in data && data['order'].toLowerCase() == "desc") {
+      order = 2;
+    }
   }
 
   // IF THERE IS A QUERY, DO SOMETHING
@@ -59,11 +74,19 @@ http.createServer(function (req, res) {
     const genex = require('genex');
     //const pattern = genex(/(ffoo|bar|baz){1,2}|snafu/);
     const pattern = genex((data['query'].toString()));
+
     //console.log(data['query'].toString()); // SIMPLY OUTPUTS THE REGEX
 
-    //output = pattern.generate().toString(); // FOR TESTING OUTPUT BELOW
+    output = pattern.generate().toString(); // FOR TESTING OUTPUT BELOW
     //console.log(output); // outputs a comma separated list of search terms from the regex to console
     //res.write(output); // serves the comma separated list of search terms from the regex as http response
+
+    // Expand/print query if 'src' == "regex" and stop output
+    if ("src" in data && data['src'].toLowerCase() == "regex") {
+      console.log(data['query'].toString()); // SIMPLY OUTPUTS THE REGEX
+      res.end(output);
+      return;
+    }
 
     createMultipleRequests(pattern);
 
@@ -111,20 +134,24 @@ function timestamp(date) { // converts Welsh date to UNIX timestamp
   return new Date(d).getTime();
 }
 
-function outputArray(array, order) { // 0 = forward (desc), 1 = reverse (asc)
+function outputArray(array, order) { // 1 = forward (asc), 2 = reverse (desc)
 
   //sort by timestamp
   // use slice() to copy the array and not just make a reference
   console.log(array);
-  var byDate = array.slice(0); // copies whole array from 0 to end
-  //console.log(byDate);
-  byDate.sort(function(a,b) {
-    return a.timestamp - b.timestamp;
-  });
-  if (order == 1) { byDate.reverse(); }
-  byDate.forEach(function(n) { console.log(n['timestamp']) });  // prints each 'html' field from array to console
+  var data = array.slice(0); // copies whole array from 0 to end
+  //console.log(data);
+  if (order == 1 || order == 2) {
+    data.sort(function(a,b) {
+num = a.timestamp - b.timestamp;
+console.log(num);
+      return a.timestamp - b.timestamp;
+    });
+  }
+  if (order == 2) { data.reverse(); }
+  data.forEach(function(n) { console.log(n['timestamp']) });  // prints each 'html' field from array to console
   var localPrintOutput = "";
-  byDate.map(function(n) { localPrintOutput += n['html'] });  // prints each 'html' field from array to variable
+  data.map(function(n) { localPrintOutput += n['html'] });  // prints each 'html' field from array to variable
   
   console.log("\""+localPrintOutput+"\"");
   return localPrintOutput; // return value to be included in the server response, which is waiting for it
@@ -137,59 +164,55 @@ function returnHTMLArray(request_data) {
 
   // OLD SECTION - ONLY CC
   // Find all div elements with a class of "example" using the class selector
-  //const item = $("div.col-xs-12.result"); // returns search items
-  //const item = $('[class="col-xs-12 result"]'); // should be equivalent to the above
+  //const items = $("div.col-xs-12.result"); // returns search items
+  //const items = $('[class="col-xs-12 result"]'); // should be equivalent to the above
   //const date = $("div.col-xs-12.result div.col-xs-2:eq(1)"); // returns just dates of search items
 
   // NEW SECTION - CC & PN
   // Find all div elements with a class of "example" using the class selector
-  const item = $(".result"); // returns search items
-  //const item = $('[class="result"]'); // should be equivalent to the above
-  const date = $(".result div.col-xs-2:eq(1), .result li.col-sm-2:eq(0) > span"); // returns just dates of search items
+  const items = $(".result"); // returns search items
+  //const items = $('[class="result"]'); // should be equivalent to the above
+  //const date = $(".result div.col-xs-2:eq(1), .result li.col-sm-2:eq(0) > span"); // returns just dates of search items
 
-  // OLD SECTION - ONLY CC
-  // Add appropriate path to result link (CC)
-  //attr_val = $( "div.col-xs-12.result > h2 > a" ).attr('href');
-  //$( "div.col-xs-12.result > h2 > a" ).attr('href', sourceURL+attr_val);
-  // Add appropriate path to source link
-  //attr_val = $( "div.col-xs-5 > a" ).attr('href');
-  //$( "div.col-xs-5 > a" ).attr('href', sourceURL+attr_val);
-
-  // NEW SECTION - CC & PN
   // Add appropriate path to result link (CC && PN)
-  attr_val = $( ".result > h2.result-title a" ).attr('href');
-  $( ".result > h2.result-title a" ).attr('href', sourceURL+attr_val);
+  $('.result > h2.result-title a').attr('href', function(index, attr) {return sourceURL+attr;});
   // Add appropriate path to source link (N.B. no need in PN as already there: would create duplicate)
-  attr_val = $( "div.col-xs-5 > a" ).attr('href');
-  $( "div.col-xs-5 > a" ).attr('href', sourceURL+attr_val);
+  $('div.col-xs-5 > a').attr('href', function(index, attr) {return sourceURL+attr;});
 
-  // Iterate over each div element to get the search item
-  item.each((i, item) => {
+  // Iterate over each div element to get the html, timestamp and date, and put into array
+  items.each((i, item) => {
     if (item) {
-      // Iterate over each div element to get the date
-      // Put the result into an array
-
+      // Replaces the above variable 'date' so that the timestamp is correct per item
+      const $ = cheerio.load(item);
+      date = $(".result div.col-xs-2:eq(1), .result li.col-sm-2:eq(0) > span");
       // Be careful to add it to the array correctly like this, or else it won't be parsed properly
-      arrayOfObjects = [{'html': $(item).html(), 'timestamp': timestamp($(date).html()), 'date': $(date).html()}];
+      //arrayOfObjects = [{'html': $(item).html(), 'timestamp': timestamp($(date).html()), 'date': $(date).html()}]; // PROBLEM!
+      arrayOfObjects = arrayOfObjects.concat({'html': $(item).html(), 'timestamp': timestamp($(date).html()), 'date': $(date).html()}); // FIXED
       //arrayOfObjects = []; // NOT HERE!!
     }
   });
   return arrayOfObjects;
 }
 
-async function serverRequest (val, callback) {
 
-  // CRUCIAL DELAY TO PREVENT HITTING SERVER TOO HARD
+function serverRequest (val, callback) {
+
+  // CRUCIAL DELAY TO PREVENT HITTING SERVER TOO HARD - WRONGLY PLACED
+  /*
   let promise = new Promise((resolve, reject) => {
     setTimeout(() => resolve(1), delay_in_ms)
   });
   let result = await promise; // wait until the promise resolves (*)
   console.log(result); // 1 TESTING
 
+  await new Promise(resolve => setTimeout(resolve, delay_in_ms));
+console.log("test");
+  */
+
   var arrayOfMultipleObjects = [];
 
   // MAKES A REQUEST TO THE WEB SERVICE FOR EACH REQUEST
-  https.get(sourceURL+'search?query='+val, (resp) => {
+  https.get(sourceURL+'search?query='+val+'&rows=1000000', (resp) => {
 
     // SET UP REQUEST
     let request_data = '';
@@ -227,13 +250,14 @@ function handleResults(results){
   finalArrayOfObjects = finalArrayOfObjects.concat(results);
   counter++;
   if (numOfRequests == counter) {
-    printOutput = outputArray(finalArrayOfObjects, 0); // 0 = forward (desc), 1 = reverse (asc)
+    //printOutput = outputArray(finalArrayOfObjects, 1); // 1 = forward (asc), 2 = reverse (desc)
+    printOutput = outputArray(finalArrayOfObjects, order); // 1 = forward (asc), 2 = reverse (desc)
     counter = 0; trigger = true;
   }
   // results are returned via printOutput
 }
 
-function createMultipleRequests(pattern) {
+async function createMultipleRequests(pattern) {
 
   // CREATES ARRAY OF REQUESTS
   requests = pattern.generate();
@@ -243,6 +267,10 @@ function createMultipleRequests(pattern) {
     //console.log(val); // outputs search terms from the regex to console iteratively (TESTING)
 
     //combinedArrayOfMultipleObjects += serverRequest(val); // SEND REQUEST TO SERVER
+
+  // CRUCIAL DELAY TO PREVENT HITTING SERVER TOO HARD
+  await new Promise(resolve => setTimeout(resolve, delay_in_ms));
+  console.log("::"); // TESTING
 
     serverRequest(val, function(results){
       handleResults(results);
