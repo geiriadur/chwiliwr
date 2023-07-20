@@ -30,6 +30,7 @@ var sourceURL = "";
 //var sourceURL1 = 'https://cylchgronau.llyfrgell.cymru/';
 //var sourceURL2 = 'https://papuraunewydd.llyfrgell.cymru/';
 var order = 0;
+var requestLimit = 120; // Default 120. Most browsers will timeout before this anyway. If delay_in_ms is 1000, this will be over 2 mins.
 
 // HTML DOCS
 
@@ -118,9 +119,10 @@ console.log("test");
     }
     else { regex = ""; }
 
+    trigger = false;
     createMultipleRequests(pattern);
 
-    trigger = false;
+    //trigger = false;
     function wait(param1, param2) {
       if (!trigger) { // !condition CONDITION TO BE MET
         //set timeout(wait(param1, param2), 100); // causes stack error ;-)
@@ -293,6 +295,9 @@ async function createMultipleRequests(pattern) {
   // CREATES ARRAY OF REQUESTS
   requests = pattern.generate();
   numOfRequests = requests.length; // SET COUNTER LENGTH
+
+  if (numOfRequests > requestLimit) { printOutput = "<h2>Mynegiad rheolaidd yn rhy gymhleth.</h2>"; trigger = 1; return; }
+
   for(const val of requests) {
     // ITERATES ARRAY OF REQUESTS
     //console.log(val); // outputs search terms from the regex to console iteratively (TESTING)
