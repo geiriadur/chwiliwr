@@ -76,15 +76,15 @@ http.createServer(function (req, res) {
     const pattern = genex((data['query'].toString()));
 
     // Expand/print query if 'regex' == "true" /* and stop output */
-    output = pattern.generate().toString();
+    regex = pattern.generate().toString();
     if ("regex" in data && data['regex'].toLowerCase() == "true") {
       console.log(data['query'].toString()); // outputs the regex to console.
-      console.log(output); // outputs a comma separated list of search terms from the regex to console
-      //res.write(output); // serves the comma separated list of search terms from the regex as http response
-      output = "\n\t\t\t<h2>" + output + "</h2>"; // enclose regex in tags
+      console.log(regex); // outputs a comma separated list of search terms from the regex to console
+      //res.write(regex); // serves the comma separated list of search terms from the regex as http response
+      regex = "\n\t\t\t<h2>" + regex + "</h2>"; // enclose regex in tags
       //return;
     }
-    else { output = ""; }
+    else { regex = ""; }
 
     createMultipleRequests(pattern);
 
@@ -96,11 +96,11 @@ http.createServer(function (req, res) {
       } else {
         // CODE to launch until condition is met
         if (printOutput != "") {
-          //res.end(html5_frag1+printOutput+html5_frag2);
-          res.end(html5_frag1+output+printOutput+html5_frag2);
+          //res.end(html5_frag1+printOutput+html5_frag2); // outputs results
+          res.end(html5_frag1+regex+printOutput+html5_frag2); // adds regex expansion/checking output before results
         }
         else {
-          res.end(html5_frag1+"Dim canlyniadau / No results"+html5_frag2);
+          res.end(html5_frag1+regex+"\n\t\t\t<h2>"+"Dim canlyniadau / No results</h2>"+html5_frag2); // adds regex expansion/checking output
         }
       }
     }
