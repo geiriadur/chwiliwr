@@ -16,3 +16,4 @@ Version 0.3
 
 - Enforce surrounding quotation marks if search terms from regex include hyphen/space or special characters that are not part of the regex.
 - Added maximum complexity, default 120 (> 2 mins if delay_in_ms = 1000)
+- Added NLW CSS. Could hold these files locally except for copyright.
