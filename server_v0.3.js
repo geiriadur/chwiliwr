@@ -23,14 +23,15 @@ const cheerio = require("cheerio");
 var finalArrayOfObjects = [];
 var numOfRequests;
 var counter = 0;
-var printOutput;
+var printOutput = "";
 var trigger = false;
 var delay_in_ms = 1000; // DO NOT SET LOWER THAN 1000 FOR NLW SERVERS
 var sourceURL = "";
-//var sourceURL1 = 'https://cylchgronau.llyfrgell.cymru/';
-//var sourceURL2 = 'https://papuraunewydd.llyfrgell.cymru/';
+var sourceURL1 = 'https://cylchgronau.llyfrgell.cymru/';
+var sourceURL2 = 'https://papuraunewydd.llyfrgell.cymru/';
 var order = 0;
-var requestLimit = 120; // Default 120. Most browsers will timeout before this anyway. If delay_in_ms is 1000, this will be over 2 mins.
+var requestLimit = 120; // Default 120. Less than 2 will disable searching both CC & PN. Most browsers will timeout before this anyway. If delay_in_ms is 1000, this will be over 2 mins.
+var sources = 0;
 
 // HTML DOCS
 
@@ -75,11 +76,17 @@ console.log("test");
 
   // Parse 'src' parameter to see which resource we want
   if ("src" in data && data['src'].toLowerCase() == "cc") {
-    sourceURL = 'https://cylchgronau.llyfrgell.cymru/';
+    //sourceURL = 'https://cylchgronau.llyfrgell.cymru/';
+    sources = 1;
   }
   if ("src" in data && data['src'].toLowerCase() == "pn") {
-    sourceURL = 'https://papuraunewydd.llyfrgell.cymru/';
+    //sourceURL = 'https://papuraunewydd.llyfrgell.cymru/';
+    sources = 2;
   }
+  if ("src" in data && data['src'].toLowerCase() == "all") {
+    sources = 0;
+  }
+  //if (requestLimit < 2) { sources = 1; } // Revert to only CC if requestLimit < 2 // Disabled: user unaware of missing results
 
   // Parse 'sort' and 'order' parameters
   if ("sort" in data && data['sort'].toLowerCase() == "date") {
@@ -120,9 +127,11 @@ console.log("test");
     else { regex = ""; }
 
     trigger = false;
+
     createMultipleRequests(pattern);
 
     //trigger = false;
+
     function wait(param1, param2) {
       if (!trigger) { // !condition CONDITION TO BE MET
         //set timeout(wait(param1, param2), 100); // causes stack error ;-)
@@ -145,6 +154,7 @@ console.log("test");
     // ensures that the request ends
     res.end('');
   }
+  printOutput = "";
 
 // END OF SERVER CODE
 }).listen(8080);
@@ -284,7 +294,7 @@ function handleResults(results){
   counter++;
   if (numOfRequests == counter) {
     //printOutput = outputArray(finalArrayOfObjects, 1); // 1 = forward (asc), 2 = reverse (desc)
-    printOutput = outputArray(finalArrayOfObjects, order); // 1 = forward (asc), 2 = reverse (desc)
+    printOutput += outputArray(finalArrayOfObjects, order); // 1 = forward (asc), 2 = reverse (desc)
     counter = 0; trigger = true;
   }
   // results are returned via printOutput
@@ -295,22 +305,38 @@ async function createMultipleRequests(pattern) {
   // CREATES ARRAY OF REQUESTS
   requests = pattern.generate();
   numOfRequests = requests.length; // SET COUNTER LENGTH
-
-  if (numOfRequests > requestLimit) { printOutput = "<h2>Mynegiad rheolaidd yn rhy gymhleth.</h2>"; trigger = 1; return; }
+  if (sources == 0) { numOfRequests *= 2; } // DOUBLE COUNTER LENGTH IF SEARCHING BOTH CC & PN (EFFECTIVELY HALVING REQUESTS CEILING)
+  if (numOfRequests > requestLimit) { printOutput = "<h2>Mynegiad rheolaidd yn rhy gymhleth ("+requests.length+" * "+numOfRequests/requests.length+" = "+numOfRequests+" / "+requestLimit+") .</h2>"; trigger = true; return; }
 
   for(const val of requests) {
     // ITERATES ARRAY OF REQUESTS
     //console.log(val); // outputs search terms from the regex to console iteratively (TESTING)
 
     //combinedArrayOfMultipleObjects += serverRequest(val); // SEND REQUEST TO SERVER
-
+/*
     // CRUCIAL DELAY TO PREVENT HITTING SERVER TOO HARD
     await new Promise(resolve => setTimeout(resolve, delay_in_ms));
     console.log("::"); // TESTING
-
+*/
+if (sources == 0 || sources == 1) {
+sourceURL = sourceURL1;
     serverRequest(val, function(results){
       handleResults(results);
     });
+    // CRUCIAL DELAY TO PREVENT HITTING SERVER TOO HARD
+    await new Promise(resolve => setTimeout(resolve, delay_in_ms));
+    console.log("::"); // TESTING
+}
+if (sources == 0 || sources == 2) {
+sourceURL = sourceURL2;
+    serverRequest(val, function(results){
+      handleResults(results);
+    });
+    // CRUCIAL DELAY TO PREVENT HITTING SERVER TOO HARD
+    await new Promise(resolve => setTimeout(resolve, delay_in_ms));
+    console.log("::"); // TESTING
+}
+
   }
   //numOfRequests = 0; // NOT REQUIRED
   //combinedArrayOfMultipleObjects = []; // NOT HERE

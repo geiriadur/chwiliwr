@@ -3,7 +3,7 @@ Version 0.2
 - Added 1s delay to avoid DoS risk to NLW servers for complex searches.
 - Added "Dim canlyniadau / No results" for empty search response.
 - Prepended path to links for search results with Cheerio.
-- Enabled search of CC and PN
+- Enabled search of CC or PN
 - Corrected date handling for PN (removed <span> tag, tabs and newlines).
 - Corrected handling of array to give more than just the last result!
 - Added '&rows=1000000' to give more than just one page of 12 results.
@@ -17,3 +17,5 @@ Version 0.3
 - Enforce surrounding quotation marks if search terms from regex include hyphen/space or special characters that are not part of the regex.
 - Added maximum complexity, default 120 (> 2 mins if delay_in_ms = 1000)
 - Added NLW CSS. Could hold these files locally except for copyright.
+- Enabled search of CC and PN together
+- 
