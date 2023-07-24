@@ -19,4 +19,4 @@ Version 0.3
 - Added NLW CSS. Could hold these files locally except for copyright.
 - Enabled search of CC and PN together (with further move of 1s delay)
 - Added Javascript dynamic notes per radio button selection on search form.
-- Added invalid regex handling to avoid crash.
+- Added invalid regex error handling to avoid crash.
