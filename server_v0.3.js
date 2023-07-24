@@ -66,7 +66,6 @@ console.log(path);
     res.writeHead(404, {'Content-Type': 'text/html'});
     return res.end("404 Not Found");
   }
-console.log("test");
   res.writeHead(200, {'Content-Type': 'text/html'});
   //res.write(data);
 
@@ -186,8 +185,8 @@ function outputArray(array, order) { // 1 = forward (asc), 2 = reverse (desc)
   //console.log(data);
   if (order == 1 || order == 2) {
     data.sort(function(a,b) {
-num = a.timestamp - b.timestamp;
-console.log(num);
+    num = a.timestamp - b.timestamp;
+    //console.log(num); // TESTING
       return a.timestamp - b.timestamp;
     });
   }
@@ -205,13 +204,6 @@ function returnHTMLArray(request_data) {
   arrayOfObjects = [];
   const $ = cheerio.load(request_data);
 
-  // OLD SECTION - ONLY CC
-  // Find all div elements with a class of "example" using the class selector
-  //const items = $("div.col-xs-12.result"); // returns search items
-  //const items = $('[class="col-xs-12 result"]'); // should be equivalent to the above
-  //const date = $("div.col-xs-12.result div.col-xs-2:eq(1)"); // returns just dates of search items
-
-  // NEW SECTION - CC & PN
   // Find all div elements with a class of "example" using the class selector
   const items = $(".result"); // returns search items
   //const items = $('[class="result"]'); // should be equivalent to the above
@@ -239,18 +231,6 @@ function returnHTMLArray(request_data) {
 
 
 function serverRequest (val, callback) {
-
-  // CRUCIAL DELAY TO PREVENT HITTING SERVER TOO HARD - WRONGLY PLACED
-  /*
-  let promise = new Promise((resolve, reject) => {
-    setTimeout(() => resolve(1), delay_in_ms)
-  });
-  let result = await promise; // wait until the promise resolves (*)
-  console.log(result); // 1 TESTING
-
-  await new Promise(resolve => setTimeout(resolve, delay_in_ms));
-console.log("test");
-  */
 
   var arrayOfMultipleObjects = [];
 
@@ -313,30 +293,25 @@ async function createMultipleRequests(pattern) {
     //console.log(val); // outputs search terms from the regex to console iteratively (TESTING)
 
     //combinedArrayOfMultipleObjects += serverRequest(val); // SEND REQUEST TO SERVER
-/*
-    // CRUCIAL DELAY TO PREVENT HITTING SERVER TOO HARD
-    await new Promise(resolve => setTimeout(resolve, delay_in_ms));
-    console.log("::"); // TESTING
-*/
-if (sources == 0 || sources == 1) {
-sourceURL = sourceURL1;
-    serverRequest(val, function(results){
-      handleResults(results);
-    });
-    // CRUCIAL DELAY TO PREVENT HITTING SERVER TOO HARD
-    await new Promise(resolve => setTimeout(resolve, delay_in_ms));
-    console.log("::"); // TESTING
-}
-if (sources == 0 || sources == 2) {
-sourceURL = sourceURL2;
-    serverRequest(val, function(results){
-      handleResults(results);
-    });
-    // CRUCIAL DELAY TO PREVENT HITTING SERVER TOO HARD
-    await new Promise(resolve => setTimeout(resolve, delay_in_ms));
-    console.log("::"); // TESTING
-}
 
+    if (sources == 0 || sources == 1) {
+      sourceURL = sourceURL1;
+      serverRequest(val, function(results){
+        handleResults(results);
+      });
+      // CRUCIAL DELAY TO PREVENT HITTING SERVER TOO HARD
+      await new Promise(resolve => setTimeout(resolve, delay_in_ms));
+      console.log("::"); // TESTING
+    }
+    if (sources == 0 || sources == 2) {
+      sourceURL = sourceURL2;
+      serverRequest(val, function(results){
+        handleResults(results);
+      });
+      // CRUCIAL DELAY TO PREVENT HITTING SERVER TOO HARD
+      await new Promise(resolve => setTimeout(resolve, delay_in_ms));
+      console.log("::"); // TESTING
+    }
   }
   //numOfRequests = 0; // NOT REQUIRED
   //combinedArrayOfMultipleObjects = []; // NOT HERE
