@@ -105,7 +105,12 @@ console.log(path);
     // CREATES LIST OF QUERIES
     const genex = require('genex');
     //const pattern = genex(/(ffoo|bar|baz){1,2}|snafu/);
-    var pattern = genex((data['query'].toString()));
+    //var pattern = genex((data['query'].toString())); // Crashes on invalid regex
+    // Handle invalid regex and return error
+    var pattern;
+    try {
+      pattern = genex((data['query'].toString()));
+    } catch(err) {res.end("<h2>"+"Mynegiad rheolaidd annilys / Invalid regular expression</h2>"); return;}
 
     regex = pattern.generate().toString();
     // Enforce quotation marks if any of the expanded search terms contains
