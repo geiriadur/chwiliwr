@@ -71,7 +71,7 @@ console.log(path);
 
   // Set defaults if the parameters in the following section are not supplied
   order = 0;
-  sourceURL = 'https://cylchgronau.llyfrgell.cymru/';
+  //sourceURL = 'https://cylchgronau.llyfrgell.cymru/';
 
   // Parse 'src' parameter to see which resource we want
   if ("src" in data && data['src'].toLowerCase() == "cc") {
@@ -85,6 +85,7 @@ console.log(path);
   if ("src" in data && data['src'].toLowerCase() == "all") {
     sources = 0;
   }
+  else { sources = 0;} // defaults to searching both sites
   //if (requestLimit < 2) { sources = 1; } // Revert to only CC if requestLimit < 2 // Disabled: user unaware of missing results
 
   // Parse 'sort' and 'order' parameters
@@ -110,7 +111,7 @@ console.log(path);
     var pattern;
     try {
       pattern = genex((data['query'].toString()));
-    } catch(err) {res.end("<h2>"+"Mynegiad rheolaidd annilys / Invalid regular expression</h2>"); return;}
+    } catch(err) {res.end(html5_frag1+"<h2>"+"Mynegiad rheolaidd annilys / Invalid regular expression</h2>"+html5_frag2); return;}
 
     regex = pattern.generate().toString();
     // Enforce quotation marks if any of the expanded search terms contains
@@ -156,7 +157,7 @@ console.log(path);
   // THERE IS NO QUERY
   else {
     // ensures that the request ends
-    res.end('');
+    res.end(html5_frag1+"Dim termau chwilio / No search terms</h2>"+html5_frag2);
   }
   printOutput = "";
 
