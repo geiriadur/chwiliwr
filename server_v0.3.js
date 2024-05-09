@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 /*
 (h) 2023 Geiriadur Prifysgol Cymru, Canolfan Uwchefrydiau Cymreig a Cheltaidd, Prifysgol Cymru y Drindod Dewi Sant
 (c) 2023 University of Wales Dictionary, Centre for Advanced Welsh and Celtic Studies, University of Wales Trinity St David
@@ -113,13 +115,15 @@ console.log(path);
       pattern = genex((data['query'].toString()));
     } catch(err) {res.end(html5_frag1+"<h2>"+"Mynegiad rheolaidd annilys / Invalid regular expression</h2>"+html5_frag2); return;}
 
-    regex = pattern.generate().toString();
+    //regex = pattern.generate().toString(); // does not add space after comma
+    regex = pattern.generate().join(', '); // adds space after comma
     // Enforce quotation marks if any of the expanded search terms contains
     //if (regex.includes(' ') || regex.includes('-')) {
     if (containsSpecialChars(regex)) {
       // re-formulate the expansion with quotation marks
       pattern = genex(("\""+data['query']+"\"".toString()));
-      regex = pattern.generate().toString();
+      //regex = pattern.generate().toString(); // does not add space after comma
+      regex = pattern.generate().join(', '); // adds space after comma
     }
     // Expand/print query if 'regex' == "true" /* and stop output */
     if ("regex" in data && data['regex'].toLowerCase() == "true") {
@@ -145,7 +149,7 @@ console.log(path);
         // CODE to launch until condition is met
         if (printOutput != "") {
           //res.end(html5_frag1+printOutput+html5_frag2); // outputs results
-          res.end(html5_frag1+regex+printOutput+html5_frag2); // adds regex expansion/checking output before results
+          res.end(html5_frag1+regex+'<h2>Nifer o ganlyniadau: '+finalArrayOfObjects.length+'</h2>'+printOutput+html5_frag2); // adds regex expansion/checking output before results
         }
         else {
           res.end(html5_frag1+regex+"\n\t\t\t<h2>"+"Dim canlyniadau / No results</h2>"+html5_frag2); // adds regex expansion/checking output
@@ -187,6 +191,7 @@ function outputArray(array, order) { // 1 = forward (asc), 2 = reverse (desc)
   //sort by timestamp
   // use slice() to copy the array and not just make a reference
   console.log(array);
+  var arrayLength = array.length; // get number of items
   var data = array.slice(0); // copies whole array from 0 to end
   //console.log(data);
   if (order == 1 || order == 2) {
@@ -202,6 +207,7 @@ function outputArray(array, order) { // 1 = forward (asc), 2 = reverse (desc)
   data.map(function(n) { localPrintOutput += n['html'] });  // prints each 'html' field from array to variable
   
   console.log("\""+localPrintOutput+"\"");
+  console.log("Number of items: "+arrayLength);
   return localPrintOutput; // return value to be included in the server response, which is waiting for it
 }
 
