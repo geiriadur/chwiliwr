@@ -1,8 +1,8 @@
 # chwiliwr
 Chwiliwr mynegiadau rheolaidd i adnoddau LlGC
 
-(h) 2023 Geiriadur Prifysgol Cymru, Canolfan Uwchefrydiau Cymreig a Cheltaidd, Prifysgol Cymru y Drindod Dewi Sant
-(c) 2023 University of Wales Dictionary, Centre for Advanced Welsh and Celtic Studies, University of Wales Trinity St David
+(h) 2023-4 Geiriadur Prifysgol Cymru, Canolfan Uwchefrydiau Cymreig a Cheltaidd, Prifysgol Cymru y Drindod Dewi Sant
+(c) 2023-4 University of Wales Dictionary, Centre for Advanced Welsh and Celtic Studies, University of Wales Trinity St David
 gan / by Dr Talat Zafar Chaudhri
 
 Fersiwn / Version 0.3
