@@ -21,3 +21,6 @@ Version 0.3
 - Added Javascript dynamic notes per radio button selection on search form.
 - Added invalid regex error handling to avoid crash.
 - Added spaces after commas in expansion of regex.
+- Added usage tips
+- Fixed bug in links where only CC or PN were applied, breaking the others
+- Added number of results for CC and PN separately
