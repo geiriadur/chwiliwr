@@ -1,4 +1,4 @@
-# Chwim-aidd
+# ChwiM-aidd
 (Chwiliwr Mynegiadau Rheolaidd i adnoddau LlGC)
 
 (h) 2023-4 Geiriadur Prifysgol Cymru, Canolfan Uwchefrydiau Cymreig a Cheltaidd, Prifysgol Cymru y Drindod Dewi Sant
