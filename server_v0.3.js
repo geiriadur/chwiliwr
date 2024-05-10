@@ -221,10 +221,12 @@ function returnHTMLArray(request_data) {
   //const items = $('[class="result"]'); // should be equivalent to the above
   //const date = $(".result div.col-xs-2:eq(1), .result li.col-sm-2:eq(0) > span"); // returns just dates of search items
 
-  // Add appropriate path to result link (CC && PN)
-  $('.result > h2.result-title a').attr('href', function(index, attr) {return sourceURL+attr;});
-  // Add appropriate path to source link (N.B. no need in PN as already there: would create duplicate)
-  $('div.col-xs-5 > a').attr('href', function(index, attr) {return sourceURL+attr;});
+  // Add appropriate path to result link (CC)
+  $('.col-xs-12.result > h2.result-title a').attr('href', function(index, attr) {return sourceURL1+attr;});
+  // Add appropriate path to result link (PN)
+  $('.col-md-12.result > h2.result-title a').attr('href', function(index, attr) {return sourceURL2+attr;});
+  // Add appropriate path to source link in CC (N.B. no need in PN as already there: would create duplicate)
+  $('div.col-xs-5 > a').attr('href', function(index, attr) {return sourceURL1+attr;});
 
   // Iterate over each div element to get the html, timestamp and date, and put into array
   items.each((i, item) => {
