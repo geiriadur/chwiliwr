@@ -20,3 +20,4 @@ Version 0.3
 - Enabled search of CC and PN together (with further move of 1s delay)
 - Added Javascript dynamic notes per radio button selection on search form.
 - Added invalid regex error handling to avoid crash.
+- Added spaces after commas in expansion of regex.

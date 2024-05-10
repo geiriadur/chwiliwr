@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
 /*
-(h) 2023 Geiriadur Prifysgol Cymru, Canolfan Uwchefrydiau Cymreig a Cheltaidd, Prifysgol Cymru y Drindod Dewi Sant
-(c) 2023 University of Wales Dictionary, Centre for Advanced Welsh and Celtic Studies, University of Wales Trinity St David
+(h) 2023-4 Geiriadur Prifysgol Cymru, Canolfan Uwchefrydiau Cymreig a Cheltaidd, Prifysgol Cymru y Drindod Dewi Sant
+(c) 2023-4 University of Wales Dictionary, Centre for Advanced Welsh and Celtic Studies, University of Wales Trinity St David
 gan / by Dr Talat Zafar Chaudhri
 
 Fersiwn / Version 0.3
@@ -80,11 +80,11 @@ console.log(path);
     //sourceURL = 'https://cylchgronau.llyfrgell.cymru/';
     sources = 1;
   }
-  if ("src" in data && data['src'].toLowerCase() == "pn") {
+  else if ("src" in data && data['src'].toLowerCase() == "pn") {
     //sourceURL = 'https://papuraunewydd.llyfrgell.cymru/';
     sources = 2;
   }
-  if ("src" in data && data['src'].toLowerCase() == "all") {
+  else if ("src" in data && data['src'].toLowerCase() == "all") {
     sources = 0;
   }
   else { sources = 0;} // defaults to searching both sites
@@ -150,11 +150,24 @@ console.log(path);
         // CODE to launch until condition is met
         if (printOutput != "") {
           //res.end(html5_frag1+printOutput+html5_frag2); // outputs results
-          res.end(html5_frag1+regex+'<h2>Nifer o ganlyniadau: '+finalArrayOfObjects.length+'</h2>'+printOutput+html5_frag2); // adds regex expansion/checking output before results
+          // GET NUMBER OF CC and PN results
+          var numOfCC = finalArrayOfObjects.filter((item) => item.html.includes("cylchgronau")).length;
+          var numOfPN = finalArrayOfObjects.filter((item) => item.html.includes("papuraunewydd")).length;
+          //var numTotal = finalArrayOfObjects.length;
+          var numTotal = numOfCC + numOfPN;
+          if (sources == 1 || sources == 0) console.log('CC: '+numOfCC);
+          if (sources == 2 || sources == 0) console.log('PN: '+numOfPN);
+          if (sources == 0) {
+            res.end(html5_frag1+regex+'<h2>Nifer o ganlyniadau: '+numTotal+' (CC: '+numOfCC+'\, PN: '+numOfPN+')'+'</h2>'+printOutput+html5_frag2); // adds regex expansion/checking output before results
+          } else if (sources == 1) {
+            res.end(html5_frag1+regex+'<h2>Nifer o ganlyniadau (CC): '+numTotal+'</h2>'+printOutput+html5_frag2); // adds regex expansion/checking output before results
+          } else if (sources == 2) {
+            res.end(html5_frag1+regex+'<h2>Nifer o ganlyniadau (PN): '+numTotal+'</h2>'+printOutput+html5_frag2); // adds regex expansion/checking output before results
+          }
         }
         else {
           //res.end(html5_frag1+regex+"\n\t\t\t<h2>"+"Dim canlyniadau / No results</h2>"+html5_frag2); // adds regex expansion/checking output
-		  res.end(html5_frag1+regex+"\n\t\t\t<h2>"+"Dim canlyniadau</h2>"+html5_frag2); // adds regex expansion/checking output
+          res.end(html5_frag1+regex+"\n\t\t\t<h2>"+"Dim canlyniadau</h2>"+html5_frag2); // adds regex expansion/checking output
         }
       }
     }
