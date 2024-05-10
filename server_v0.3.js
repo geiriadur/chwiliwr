@@ -51,12 +51,12 @@ console.log(path);
   if (path == "/" || path == "") {
     fs.readFile("./form.html", "utf8", function(err, data) {
       if (data.length == 0) {
-        return res.status(422).json({message : "File is empty!"});
+        return res.status(422).json({message : "Ffeil yn wag / File is empty!"});
       }
       //else { console.log("File isn't empty");} // TESTING
       if (err) {
         res.writeHead(404, {'Content-Type': 'text/html'});
-        return res.end("404 Not Found");
+        return res.end("404 Nis Cyrchwyd / Not Found");
       } 
       res.writeHead(200, {'Content-Type': 'text/html'});
       res.write(data);
@@ -66,7 +66,7 @@ console.log(path);
   }
   else if (path != "/search" && path != "/search/" ) {
     res.writeHead(404, {'Content-Type': 'text/html'});
-    return res.end("404 Not Found");
+    return res.end("404 Nis Cyrchwyd / Not Found");
   }
   res.writeHead(200, {'Content-Type': 'text/html'});
   //res.write(data);
@@ -113,7 +113,8 @@ console.log(path);
     var pattern;
     try {
       pattern = genex((data['query'].toString()));
-    } catch(err) {res.end(html5_frag1+"<h2>"+"Mynegiad rheolaidd annilys / Invalid regular expression</h2>"+html5_frag2); return;}
+    //} catch(err) {res.end(html5_frag1+"<h2>"+"Mynegiad rheolaidd annilys / Invalid regular expression</h2>"+html5_frag2); return;}
+	} catch(err) {res.end(html5_frag1+"<h2>"+"Mynegiad rheolaidd annilys</h2>"+html5_frag2); return;}
 
     //regex = pattern.generate().toString(); // does not add space after comma
     regex = pattern.generate().join(', '); // adds space after comma
@@ -152,7 +153,8 @@ console.log(path);
           res.end(html5_frag1+regex+'<h2>Nifer o ganlyniadau: '+finalArrayOfObjects.length+'</h2>'+printOutput+html5_frag2); // adds regex expansion/checking output before results
         }
         else {
-          res.end(html5_frag1+regex+"\n\t\t\t<h2>"+"Dim canlyniadau / No results</h2>"+html5_frag2); // adds regex expansion/checking output
+          //res.end(html5_frag1+regex+"\n\t\t\t<h2>"+"Dim canlyniadau / No results</h2>"+html5_frag2); // adds regex expansion/checking output
+		  res.end(html5_frag1+regex+"\n\t\t\t<h2>"+"Dim canlyniadau</h2>"+html5_frag2); // adds regex expansion/checking output
         }
       }
     }
@@ -161,7 +163,8 @@ console.log(path);
   // THERE IS NO QUERY
   else {
     // ensures that the request ends
-    res.end(html5_frag1+"Dim termau chwilio / No search terms</h2>"+html5_frag2);
+    //res.end(html5_frag1+"Dim termau chwilio / No search terms</h2>"+html5_frag2);
+	res.end(html5_frag1+"Dim termau chwilio</h2>"+html5_frag2);
   }
   printOutput = "";
 
