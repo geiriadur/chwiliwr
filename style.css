@@ -1,7 +1,7 @@
-body > div.cc {
+div.cc {
   background-color: #ffbb78 !important; /* light orange */
 }
 
-body > div.pn {
+div.pn {
   background-color: #a1c8ea !important; /* light blue */
 }
