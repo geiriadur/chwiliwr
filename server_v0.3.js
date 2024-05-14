@@ -282,7 +282,13 @@ function returnHTMLArray(request_data) {
       date = $(".result div.col-xs-2:eq(1), .result li.col-sm-2:eq(0) > span");
       // Be careful to add it to the array correctly like this, or else it won't be parsed properly
       //arrayOfObjects = [{'html': $(item).html(), 'timestamp': timestamp($(date).html()), 'date': $(date).html()}]; // PROBLEM!
-      arrayOfObjects = arrayOfObjects.concat({'html': $(item).html(), 'timestamp': timestamp($(date).html()), 'date': $(date).html()}); // FIXED
+      //arrayOfObjects = arrayOfObjects.concat({'html': $(item).html(), 'timestamp': timestamp($(date).html()), 'date': $(date).html()}); // FIXED
+	  var classLabel;
+	  if ($(".result-title > a") ) {
+	    if ($(".result-title > a").attr('href').includes("cylchgronau") ) { classLabel = "cc" }
+	    if ($(".result-title > a").attr('href').includes("papuraunewydd") ) { classLabel = "pn" }
+	  }
+	  arrayOfObjects = arrayOfObjects.concat({'html': "<div class='" + classLabel + "'>" + $(item).html() + "</div>", 'timestamp': timestamp($(date).html()), 'date': $(date).html()}); // AS ABOVE BUT ADD DIV ID FOR CSS
       //arrayOfObjects = []; // NOT HERE!!
     }
   });

@@ -1,8 +1,7 @@
-
-div#pale_red {
-  background-color: #ecc6b2; // pale brownish pink
+body > div.cc {
+  background-color: #ffbb78 !important; /* light orange */
 }
 
-div#pale_green {
-  background-color: #b0d6cd; // pastel teal
+body > div.pn {
+  background-color: #a1c8ea !important; /* light blue */
 }
