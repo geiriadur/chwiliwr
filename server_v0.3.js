@@ -47,25 +47,54 @@ http.createServer(function (req, res) {
   var data = q.query;
 
   var path = q.pathname; // sets the path
-console.log(path);
+  console.log(path); // Show path on console
 
-  if (path == "/" || path == "") {
-    fs.readFile("./form.html", "utf8", function(err, data) {
+  var allowedFiles = ["style.css", "form.html"];
+  if (path.endsWith("/search") || path.endsWith("/search/")) {
+    // DO NOTHING UNLESS:
+  }
+  else if (allowedFiles.some(allowedFile => path.endsWith(allowedFile))) {
+  //else if (path.endsWith("style.css")) { // Allow style.css
+    fs.readFile(path.substring(path.lastIndexOf("/") + 1), "utf8", function(err, data) {
+    //fs.readFile("./style.css", "utf8", function(err, data) {
+      if (err) {
+        res.writeHead(404, {'Content-Type': 'text/html'});
+        //console.log(allowedFile); // testing only
+        return res.end("404 Nis Cyrchwyd y ffurflen / Not Found");
+      }
+      // Check file is not empty (general check)
       if (data.length == 0) {
         return res.status(422).json({message : "Ffeil yn wag / File is empty!"});
       }
       //else { console.log("File isn't empty");} // TESTING
-      if (err) {
-        res.writeHead(404, {'Content-Type': 'text/html'});
-        return res.end("404 Nis Cyrchwyd / Not Found");
-      } 
       res.writeHead(200, {'Content-Type': 'text/html'});
       res.write(data);
       return res.end();
     });
     return;
   }
-  else if (path != "/search" && path != "/search/" ) {
+  else if (!path.includes(".")) { // Disallow folders with dots in them or file extensions, then proceed
+    // Add a trailing slash
+    //if (!path.endsWith("/")) { path += "/"; } // no longer required?
+    // Check for error BEFORE checking if file is empty (bug fix to avoid crash if file missing)
+    fs.readFile("./form.html", "utf8", function(err, data) {
+      if (err) {
+        res.writeHead(404, {'Content-Type': 'text/html'});
+        return res.end("404 Nis Cyrchwyd / Not Found");
+      }
+      // Check file is not empty (general check)
+      if (data.length == 0) {
+        return res.status(422).json({message : "Ffeil yn wag / File is empty!"});
+      }
+      //else { console.log("File isn't empty");} // TESTING
+      res.writeHead(200, {'Content-Type': 'text/html'});
+      res.write(data);
+      return res.end();
+    });
+    return;
+  }
+  else {
+    // Anything else, i.e. it does contain a dot
     res.writeHead(404, {'Content-Type': 'text/html'});
     return res.end("404 Nis Cyrchwyd / Not Found");
   }
