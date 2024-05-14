@@ -67,7 +67,9 @@ http.createServer(function (req, res) {
         return res.status(422).json({message : "Ffeil yn wag / File is empty!"});
       }
       //else { console.log("File isn't empty");} // TESTING
-      res.writeHead(200, {'Content-Type': 'text/html'});
+      if (filename.endsWith(".css")){ res.writeHead(200, {'Content-Type': 'text/css'}); }
+      else if (filename.endsWith(".js")){ res.writeHead(200, {'Content-Type': 'text/javascript'}); }
+      else { res.writeHead(200, {'Content-Type': 'text/html'}); }
       res.write(data);
       return res.end();
     });
