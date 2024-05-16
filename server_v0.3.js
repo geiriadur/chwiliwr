@@ -55,6 +55,7 @@ http.createServer(function (req, res) {
   }
   else if (allowedFiles.some(allowedFile => path.endsWith(allowedFile))) {
   //else if (path.endsWith("style.css")) { // Allow style.css
+    filename = path.substring(path.lastIndexOf("/") + 1);
     fs.readFile(path.substring(path.lastIndexOf("/") + 1), "utf8", function(err, data) {
     //fs.readFile("./style.css", "utf8", function(err, data) {
       if (err) {
