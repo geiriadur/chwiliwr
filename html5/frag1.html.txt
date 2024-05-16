@@ -14,51 +14,17 @@
     <!-- XL Bootstrap css addition-->
     <link rel="stylesheet" type="text/css" href="https://brandedframe.library.wales/templates/bootstrap3-nui/css/BootstrapXL.css" media="all">
 
-    <!-- XS/SM main slid-in menu css -->
-    <link rel="stylesheet" type="text/css" href="https://brandedframe.library.wales/templates/bootstrap3-nui/css/llgc_slide-in_menu.css">
-
     <!-- Branded frame stylesheets -->
     <link rel="stylesheet" type="text/css" href="https://brandedframe.library.wales/templates/bootstrap3-nui/css/llgc_branded_frame.css">
-
-    <!-- fontawesome -->
-    <link rel="stylesheet" type="text/css" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" media="all">
 
     <!-- lato and roboto fonts-->
     <link href="https://fonts.googleapis.com/css?family=Lato:400,550,700|Roboto:400,500" rel="stylesheet">
 
-    <!-- XL Bootstrap css addition-->
-    <link rel="stylesheet" type="text/css" href="https://brandedframe.library.wales/templates/bootstrap3-nui/css/BootstrapXL.css" media="all">
-
-    <!-- XS/SM main slid-in menu css -->
-    <link rel="stylesheet" type="text/css" href="https://brandedframe.library.wales/templates/bootstrap3-nui/css/llgc_slide-in_menu.css">
-
     <!-- SITE SPECIFIC stylesheets -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.4/css/selectize.min.css" />
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highcharts/5.0.7/css/highcharts.css" />
-
     <link rel="stylesheet" href="https://journals.library.wales/assets/css/NLW-application.css" />
-
-    <link  rel="stylesheet"href="https://newspapers.library.wales/assets/css/ion.rangeSlider.css" />
-    <link rel="stylesheet" href="https://journals.library.wales/assets/css/ion.rangeSlider.skinFlat.css" />
-    <link rel="stylesheet" href="https://journals.library.wales/assets/css/chosen-1.8.7.css" />
-    <link rel="stylesheet" href="https://journals.library.wales/assets/css/BootstrapXL.css" />
-    <link rel="stylesheet" type="text/css" href="https://brandedframe.library.wales/templates/bootstrap3-nui/css/journals.css" />
-    <link rel="stylesheet" type="text/css" href="https://brandedframe.library.wales/templates/bootstrap3-nui/css/viewer.css" />
-
-    <!-- SITE SPECIFIC js files -->
-    <!-- UV files -->
-    <link href="https://cylchgronau.llyfrgell.cymru/uv/uv.css" rel="stylesheet" />
-
-    <!-- SITE SPECIFIC stylesheets -->
-
-    <link href="https://newspapers.library.wales/assets/css/NLW-clndr.css" rel="stylesheet" />
-    <link href="https://newspapers.library.wales/assets/css/NLW-chosen.css" rel="stylesheet" />
-    <link href="https://newspapers.library.wales/assets/css/NLW-application.css" rel="stylesheet" />
-
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/css/select2.min.css" rel="stylesheet" />
-    <link rel="stylesheet" type="text/css" href="https://brandedframe.library.wales/templates/bootstrap3-nui/css/newspapers.css" />
-	<link rel="stylesheet" type="text/css" href="../style.css">
-
+    <link rel="stylesheet" href="https://newspapers.library.wales/assets/css/NLW-application.css" />
+    <!--link rel="stylesheet" type="text/css" href="https://brandedframe.library.wales/templates/bootstrap3-nui/css/newspapers.css" /-->
+    <link rel="stylesheet" type="text/css" href="../style.css">
+    <!--link rel="stylesheet" type="text/css" href="../style-results.css"-->
   </head>
   <body>
