@@ -1,0 +1,21 @@
+# ChwiM-aidd
+(Chwiliwr Mynegiadau Rheolaidd i adnoddau LlGC)
+
+(h) 2023-4 Geiriadur Prifysgol Cymru, Canolfan Uwchefrydiau Cymreig a Cheltaidd, Prifysgol Cymru y Drindod Dewi Sant
+(c) 2023-4 University of Wales Dictionary, Centre for Advanced Welsh and Celtic Studies, University of Wales Trinity St David
+gan / by Dr Talat Zafar Chaudhri
+
+Fersiwn / Version 0.3
+
+Bygiau Hysbys
+
+- Weithiau os oes mwy nag un person yn chwilio ar yr un eiliad, ceir canlyniadau'r person arall
+
+Cyfyngiadau Bwrpasol
+
+- Ond un chwiliad yr eiliad i osgoi taro'n rhy galed ar serfwyr LlGC, ar gais y staff cyfrifiadurol
+- Ond 120 o amrywiadau i osgoi cyrraedd terfyn amser y prif borwyr (neu 2 * 60 = 120 os chwilir CC & PN ar y cyd)
+
+Cyfyngiadau Anochel
+
+- Weithiau mae'r teclyn yn araf neu'n cyrraedd y terfyn amser am fod gwasanaethau CC & PN eu hunain yn araf
