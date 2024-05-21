@@ -12,14 +12,15 @@ Gweler / See release_notes_v0.3.txt
 
 // dependencies
 
-var https = require('https');
-var http = require('http');
-var url = require('url');
-var fs = require('fs');
-//var tls = require('tls');
+//const https = require('https');
+const http = require('http');
+const url = require('url');
+const fs = require('fs');
+//const tls = require('tls');
 
 const cheerio = require("cheerio");
 //const pretty = require("pretty"); // not required: merely tidies html output
+const genex = require('genex');
 
 //variables
 
@@ -139,7 +140,6 @@ http.createServer(function (req, res) {
     finalArrayOfObjects = [];
 
     // CREATES LIST OF QUERIES
-    const genex = require('genex');
     //const pattern = genex(/(ffoo|bar|baz){1,2}|snafu/);
     //var pattern = genex((data['query'].toString())); // Crashes on invalid regex
     // Handle invalid regex and return error

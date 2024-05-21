@@ -13,7 +13,11 @@ Dibyniaethau / Dependencies:
 npm
 Node.js
 Cheerio
-(Pretty - dim angen / not required)
+genex
+
+http
+url
+fs
 
 Mae'r rhaglen hon yn galluogi chwilio gwefannau Cylchgronau Cymru a'r Papurau Newydd Ar-Lein o'r 19eg ganrif yng nghasgliadau Llyfrgell Genedlaethol Cymru drwy ddefnydd mynegiadau rheoliadd, ac yn rhoi'r canlyniadau at ei gilydd (gyda threfn yn ôl dyddiad os dymunir) yn un rhestr.
 This program enables searching the Welsh Periodicals and the 19th century Newspapers Online in the collections of the National Library of Wales by using regular expressions, and returns the results together (optionally in date order) in a single list.
