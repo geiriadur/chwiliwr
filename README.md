@@ -16,6 +16,7 @@ Cheerio
 genex
 
 http
+https
 url
 fs
 

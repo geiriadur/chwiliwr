@@ -12,8 +12,8 @@ Gweler / See release_notes_v0.3.txt
 
 // dependencies
 
-//const https = require('https');
 const http = require('http');
+const https = require('https');
 const url = require('url');
 const fs = require('fs');
 //const tls = require('tls');
