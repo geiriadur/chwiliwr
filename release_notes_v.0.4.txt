@@ -1,0 +1,31 @@
+Version 0.2
+
+- Added 1s delay to avoid DoS risk to NLW servers for complex searches.
+- Added "Dim canlyniadau / No results" for empty search response.
+- Prepended path to links for search results with Cheerio.
+- Enabled search of CC or PN
+- Corrected date handling for PN (removed <span> tag, tabs and newlines).
+- Corrected handling of array to give more than just the last result!
+- Added '&rows=1000000' to give more than just one page of 12 results.
+- Corrected links per search result with Cheerio, not same for all!
+- Moved 1s delay in script so that it actually works!
+- Added handling of 'order=asc|desc' parameters if 'sort=date' set.
+- Added option of "regex=true" to expand regex as checking service.
+
+Version 0.3
+
+- Enforce surrounding quotation marks if search terms from regex include hyphen/space or special characters that are not part of the regex.
+- Added maximum complexity, default 120 (> 2 mins if delay_in_ms = 1000)
+- Added NLW CSS. Could hold these files locally except for copyright.
+- Enabled search of CC and PN together (with further move of 1s delay)
+- Added Javascript dynamic notes per radio button selection on search form.
+- Added invalid regex error handling to avoid crash.
+- Added spaces after commas in expansion of regex.
+- Added usage tips
+- Fixed bug in links where only CC or PN were applied, breaking the others
+- Added number of results for CC and PN separately
+
+Version 0.4
+
+- Refactored the code to use async await instead of trigger hack and packaged variables better rather than having global ones
+- Fixed bug where two requests get confused so the second one to complete gets the first one's results if they are too close in time

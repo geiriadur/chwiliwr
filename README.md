@@ -5,8 +5,8 @@
 (c) 2023-4 University of Wales Dictionary, Centre for Advanced Welsh and Celtic Studies, University of Wales Trinity St David
 gan / by Dr Talat Zafar Chaudhri
 
-Fersiwn / Version 0.3
-Gweler / See release_notes_v0.3.txt
+Fersiwn / Version 0.4
+Gweler / See release_notes_v0.4.txt
 
 Dibyniaethau / Dependencies:
 
