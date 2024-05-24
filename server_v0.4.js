@@ -10,6 +10,10 @@
 	Gweler / See release_notes_v0.4.txt
 */
 
+// port
+
+const port = process.env.PORT || 8080; // configurable with fallback to 8080
+
 // dependencies
 
 const https = require('https');
@@ -376,4 +380,4 @@ http.createServer(async function (req, res) {
 	}
 	
 	// END OF SERVER CODE
-}).listen(8080);
+}).listen(port);
