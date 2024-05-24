@@ -9,7 +9,7 @@ Fersiwn / Version 0.4
 
 Bygiau Hysbys
 
-- Weithiau os oes mwy nag un person yn chwilio ar yr un eiliad, ceir canlyniadau'r person arall
+DIM
 
 Cyfyngiadau Bwrpasol
 
