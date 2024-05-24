@@ -27,5 +27,6 @@ Version 0.3
 
 Version 0.4
 
-- Refactored the code to use async await instead of trigger hack and packaged variables better rather than having global ones
+- Refactored the code to use async await instead of trigger hack (faster without setTimeout of 100ms)
+- Packaged variables in scope of functions rather than having global ones
 - Fixed bug where two requests get confused so the second one to complete gets the first one's results if they are too close in time
