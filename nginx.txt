@@ -30,6 +30,11 @@ location ~ /lleoliad {
   send_timeout                300;
 }
 
+wedyn cychwyn y gweinydd(ion) fel a ganlyn, e.e. yn Linux:
+
+node server_v0.4.js
+PORT=8080 node server_v0.4.js && PORT=8081 node server_v0.4.js && PORT=8082 node server_v0.4.js
+
 Hefyd, os nad ydych chi'n defnyddion HTTP 1.1 am unrhyw reswm, gellid ychwanegu'r rhain:
 
 proxy_set_header X-Real-IP $remote_addr;
