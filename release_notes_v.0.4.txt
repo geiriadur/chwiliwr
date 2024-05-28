@@ -30,3 +30,4 @@ Version 0.4
 - Refactored the code to use async await instead of trigger hack (faster without setTimeout of 100ms)
 - Packaged variables in scope of functions rather than having global ones
 - Fixed bug where two requests get confused so the second one to complete gets the first one's results if they are too close in time
+- Added optional XML view so that the data can be saved, for instance for import into a spreadsheet or a database

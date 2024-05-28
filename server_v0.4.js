@@ -41,6 +41,7 @@ const html5_frag2 = fs.readFileSync("./html5/frag2.html.txt");
 // CREATE SERVER
 http.createServer(async function (req, res) {
 	var order;
+	var outputFormat;
 	var sources; // 0 = both; 1 = PN; 2 = CC
 	var q = url.parse(req.url, true);
 	var data = q.query;
@@ -100,7 +101,17 @@ http.createServer(async function (req, res) {
 		res.writeHead(404, {'Content-Type': 'text/html'});
 		return res.end("404 Nis Cyrchwyd / Not Found");
 	}
-	res.writeHead(200, {'Content-Type': 'text/html'});
+	outputFormat = "html"; // default
+	// Parse 'output' parameter - how do we want to return the results?
+	if ("output" in data && data['output'].toLowerCase() == "xml") {
+		outputFormat = "xml"; // XML
+		res.writeHead(200, {'Content-Type': 'text/xml'});
+	}
+	else {
+		outputFormat = "html"; // Default to HTML for browser rendering
+		res.writeHead(200, {'Content-Type': 'text/html'});
+	}
+	//res.writeHead(200, {'Content-Type': 'text/html'});
 	//res.write(data);
 	
 	// Set defaults if the parameters in the following section are not supplied
@@ -130,7 +141,7 @@ http.createServer(async function (req, res) {
 		if ("order" in data && data['order'].toLowerCase() == "desc") {
 			order = 2;
 		}
-	}
+	}	
 	
 	// IF THERE IS A QUERY, DO SOMETHING
 	if ("query" in data && data['query'] !== "") {
@@ -165,7 +176,7 @@ http.createServer(async function (req, res) {
 		}
 		else { regex = ""; }
 		
-		await createMultipleRequests(regex, pattern, order, sources);
+		await createMultipleRequests(regex, pattern, order, outputFormat, sources); // send all the requests
 
 	}
 	// THERE IS NO QUERY
@@ -244,13 +255,28 @@ http.createServer(async function (req, res) {
 				// Be careful to add it to the array correctly like this, or else it won't be parsed properly
 				//arrayOfObjects = [{'html': $(item).html(), 'timestamp': timestamp($(date).html()), 'date': $(date).html()}]; // PROBLEM!
 				//arrayOfObjects = arrayOfObjects.concat({'html': $(item).html(), 'timestamp': timestamp($(date).html()), 'date': $(date).html()}); // FIXED
-				var classLabel;
-				if ($(".result-title > a") ) {
-					if ($(".result-title > a").attr('href').includes("cylchgronau") ) { classLabel = "cc" }
-					if ($(".result-title > a").attr('href').includes("papuraunewydd") ) { classLabel = "pn" }
+				if (outputFormat == "xml") {
+					resource = $(".result-title > a").attr("href"); resource = escape(resource);
+					text = $(".result-summary > span.hidden-xs").text(); text = escape(text);
+					source = $(".result-meta > .col-xs-6 > a, .result-metadata > .col-xs-5 > a").attr("href"); source = escape(source);
+					dateXML = $(".result div.col-xs-2:eq(1), .result li.col-sm-2:eq(0) > span").text(); dateXML = escape(dateXML);
+					dateXML = timestamp(dateXML);
+					const myDate = new Date(dateXML);
+					//dateXML = myDate.toLocaleDateString("en-UK"); // DD/MM/YYYY
+					dateXML = myDate.toISOString().split('T')[0]; // YYYY-MM-DD
+					//dateXML = "<date>" + date + "</date>";
+					//arrayOfObjects = arrayOfObjects.concat({'html': $(item).html(), 'timestamp': timestamp($(date).html()), 'date': $(date).html()});
+					arrayOfObjects = arrayOfObjects.concat({'html': "<item><resource>"+resource+"</resource><text-summary>"+text+"</text-summary><source>"+source+"</source><date>"+dateXML+"</date></item>", 'timestamp': timestamp($(date).html()), 'date': $(date).html()});
 				}
-				arrayOfObjects = arrayOfObjects.concat({'html': "<div class='" + classLabel + "'>" + $(item).html() + "</div>", 'timestamp': timestamp($(date).html()), 'date': $(date).html()}); // AS ABOVE BUT ADD DIV ID FOR CSS
-				//arrayOfObjects = []; // NOT HERE!!
+				else {
+					var classLabel;
+					if ($(".result-title > a") ) {
+						if ($(".result-title > a").attr('href').includes("cylchgronau") ) { classLabel = "cc" }
+						if ($(".result-title > a").attr('href').includes("papuraunewydd") ) { classLabel = "pn" }
+					}
+					arrayOfObjects = arrayOfObjects.concat({'html': "<div class='" + classLabel + "'>" + $(item).html() + "</div>", 'timestamp': timestamp($(date).html()), 'date': $(date).html()}); // AS ABOVE BUT ADD DIV ID FOR CSS
+					//arrayOfObjects = []; // NOT HERE!!
+				}
 			}
 		});
 		return arrayOfObjects;
@@ -294,7 +320,7 @@ http.createServer(async function (req, res) {
 		});
 	}
 	
-	async function createMultipleRequests(regex, pattern, order, sources) {
+	async function createMultipleRequests(regex, pattern, order, outputFormat, sources) {
 		
 		var output = "";
 		var finalArrayOfObjects = [];
@@ -359,12 +385,17 @@ http.createServer(async function (req, res) {
 				var numTotal = numOfCC + numOfPN;
 				if (sources == 1 || sources == 0) console.log('CC: '+numOfCC);
 				if (sources == 2 || sources == 0) console.log('PN: '+numOfPN);
-				if (sources == 0) {
-					res.end(html5_frag1+regex+'<h2>Nifer o ganlyniadau: '+numTotal+' (CC: '+numOfCC+'\, PN: '+numOfPN+')'+'</h2>'+output+html5_frag2); // adds regex expansion/checking output before results
+				if (outputFormat == "xml") {
+					res.end('<?xml version="1.0" encoding="UTF-8"?><results>'+output+'</results>'); // output as XML
+				}
+				else { // HTML
+					if (sources == 0) {
+						res.end(html5_frag1+regex+'<h2>Nifer o ganlyniadau: '+numTotal+' (CC: '+numOfCC+'\, PN: '+numOfPN+')'+'</h2>'+output+html5_frag2); // adds regex expansion/checking output before results
 					} else if (sources == 1) {
-					res.end(html5_frag1+regex+'<h2>Nifer o ganlyniadau (CC): '+numTotal+'</h2>'+output+html5_frag2); // adds regex expansion/checking output before results
+						res.end(html5_frag1+regex+'<h2>Nifer o ganlyniadau (CC): '+numTotal+'</h2>'+output+html5_frag2); // adds regex expansion/checking output before results
 					} else if (sources == 2) {
-					res.end(html5_frag1+regex+'<h2>Nifer o ganlyniadau (PN): '+numTotal+'</h2>'+output+html5_frag2); // adds regex expansion/checking output before results
+						res.end(html5_frag1+regex+'<h2>Nifer o ganlyniadau (PN): '+numTotal+'</h2>'+output+html5_frag2); // adds regex expansion/checking output before results
+					}
 				}
 			}
 			else {
@@ -378,6 +409,16 @@ http.createServer(async function (req, res) {
 		const specialChars = /[`!@#$%^&*()_+\-=\[\]{};':"\\|.<>\/?~]/; // special characters other than comma (delimiter)
 		return specialChars.test(str);
 	}
+	function escape(htmlStr) {
+		if (htmlStr) {
+			return htmlStr.replace(/&/g, "&amp;")
+				.replace(/</g, "&lt;")
+				.replace(/>/g, "&gt;")
+				.replace(/"/g, "&quot;")
+				.replace(/'/g, "&#39;");
+		}
+
+	}
 	
-	// END OF SERVER CODE
+// END OF SERVER CODE
 }).listen(port);
