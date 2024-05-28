@@ -44,12 +44,22 @@ http.createServer(async function (req, res) {
 	var outputFormat;
 	var sources; // 0 = both; 1 = PN; 2 = CC
 	var q = url.parse(req.url, true);
+	var GETData = req.url.split('?')[1]; // to pass GET data to NLW services
 	var data = q.query;
 	
 	var path = q.pathname; // sets the path
 	console.log(path); // Show path on console
 	
-	var allowedFiles = ["style.css", "form.html"];
+	var advanced = 0; // default
+	// Parse 'advanced' parameter
+	if ("advanced" in data && data['advanced'].toLowerCase() == "true") {
+		advanced = 1; // advanced search
+	}
+	else {
+		advanced = 0; // Default to 0 = normal search
+	}
+	
+	var allowedFiles = ["style.css", "form.html", "form-advanced.html"];
 	if (path.endsWith("/search") || path.endsWith("/search/")) {
 		// DO NOTHING UNLESS:
 	}
@@ -79,8 +89,10 @@ http.createServer(async function (req, res) {
 	else if (!path.includes(".")) { // Disallow folders with dots in them or file extensions, then proceed
 		// Add a trailing slash
 		//if (!path.endsWith("/")) { path += "/"; } // no longer required?
+		function checkAdvanced(advanced) { if (advanced == 1) { return "-advanced"; } else { return ""; }
+		}
 		// Check for error BEFORE checking if file is empty (bug fix to avoid crash if file missing)
-		fs.readFile("./form.html", "utf8", function(err, data) {
+		fs.readFile("./form"+checkAdvanced(advanced)+".html", "utf8", function(err, data) {
 			if (err) {
 				res.writeHead(404, {'Content-Type': 'text/html'});
 				return res.end("404 Nis Cyrchwyd / Not Found");
@@ -175,8 +187,8 @@ http.createServer(async function (req, res) {
 			//return;
 		}
 		else { regex = ""; }
-		
-		await createMultipleRequests(regex, pattern, order, outputFormat, sources); // send all the requests
+
+		await createMultipleRequests(regex, pattern, order, outputFormat, sources, GETData); // send all the requests
 
 	}
 	// THERE IS NO QUERY
@@ -282,12 +294,13 @@ http.createServer(async function (req, res) {
 		return arrayOfObjects;
 	}
 	
-	function serverRequest (val, sourceURL, callback) {
+	function serverRequest (val, sourceURL, GETData, callback) {
 		
 		var arrayOfMultipleObjects = [];
 		
 		// MAKES A REQUEST TO THE WEB SERVICE FOR EACH REQUEST
-		https.get(sourceURL+'search?query='+val+'&rows=1000000', (resp) => {
+		// Added pass-through of GET data
+		https.get(sourceURL+'search?query='+val+'&rows=1000000'+'&'+GETData, (resp) => {
 			
 			// SET UP REQUEST
 			let request_data = '';
@@ -320,7 +333,7 @@ http.createServer(async function (req, res) {
 		});
 	}
 	
-	async function createMultipleRequests(regex, pattern, order, outputFormat, sources) {
+	async function createMultipleRequests(regex, pattern, order, outputFormat, sources, GETData) {
 		
 		var output = "";
 		var finalArrayOfObjects = [];
@@ -339,7 +352,7 @@ http.createServer(async function (req, res) {
 			
 			if (sources == 0 || sources == 1) {
 				//sourceURL = sourceURL1;
-				serverRequest(val, sourceURL1, function(results){
+				serverRequest(val, sourceURL1, GETData, function(results){
 					counter++; handleResults(results);
 				});
 				// CRUCIAL DELAY TO PREVENT HITTING SERVER TOO HARD
@@ -348,7 +361,7 @@ http.createServer(async function (req, res) {
 			}
 			if (sources == 0 || sources == 2) {
 				//sourceURL = sourceURL2;
-				serverRequest(val, sourceURL2, function(results){
+				serverRequest(val, sourceURL2, GETData, function(results){
 					counter++; handleResults(results);
 				});
 				// CRUCIAL DELAY TO PREVENT HITTING SERVER TOO HARD
