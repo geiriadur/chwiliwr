@@ -57,7 +57,7 @@ http.createServer(async function (req, res) {
 		// result removes query=[whatever] from other parameters
 	}
 	var path = q.pathname; // sets the path
-	console.log("PATH: "+path); // Show path on console
+	console.log(path); // Show path on console
 	
 	var advanced = 0; // default
 	// Parse 'advanced' parameter
@@ -90,25 +90,20 @@ http.createServer(async function (req, res) {
 		}
 	});
 	
-	var filename;
 	if (path.endsWith("/search") || path.endsWith("/search/")) {
 		// DO NOTHING UNLESS:
 	}
-	//else {
+	//else if (path.endsWith("style.css")) { // Allow style.css
 	else if (allowedFiles.some(allowedFile => path.endsWith(allowedFile))) {
+		//filename = path.substring(path.lastIndexOf("/") + 1); // did not allow sub-folders
+		//filename = path.substring(path.indexOf("/") + 1); // only allowed one sub-folder
+		var filename;
 		allowedFiles.some((allowedFile) => {
 			if (path.endsWith(allowedFile)) {
 				console.log("YES: "+allowedFile);
 				filename = allowedFile;
 			}
 		});
-	/* }
-	else if (allowedFiles.some(allowedFile => path.endsWith(allowedFile))) {
-		//else if (path.endsWith("style.css")) { // Allow style.css
-		//filename = path.substring(path.lastIndexOf("/") + 1); // did not allow sub-folders
-		filename = path.substring(path.indexOf("/") + 1); // allows sub-folders
-console.log("FN: "+filename);
-	//console.log("AF: "+allowedFile); */
 		fs.readFile(filename, "utf8", function(err, data) {
 			//fs.readFile("./style.css", "utf8", function(err, data) {
 			if (err) {
