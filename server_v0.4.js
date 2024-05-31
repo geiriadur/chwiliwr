@@ -85,12 +85,6 @@ http.createServer(async function (req, res) {
 		"vendor/jquery/jquery-3.7.1.min.js",
 		"assets/js/form-cy.js", "assets/js/form-en.js"
 		];
-		
-	allowedFiles.some((allowedFile) => {
-		if (path.endsWith(allowedFile)) {
-		if (path.endsWith(allowedFile)) {
-		}
-	});
 	
 	if (path.endsWith("/search") || path.endsWith("/search/")) {
 		// DO NOTHING UNLESS:
