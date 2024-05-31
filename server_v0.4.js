@@ -325,7 +325,6 @@ http.createServer(async function (req, res) {
 		
 		// MAKES A REQUEST TO THE WEB SERVICE FOR EACH REQUEST
 		// Added pass-through of GET data
-console.log(sourceURL+'search?query='+val+'&rows=1000000'+'&'+GETData); // TESTING BUG
 		//GETdata
 		https.get(sourceURL+'search?query='+val+'&rows=1000000'+'&'+GETData, (resp) => {
 			
