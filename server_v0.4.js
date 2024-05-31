@@ -50,12 +50,12 @@ http.createServer(async function (req, res) {
 	if (GETData && GETData.indexOf("&") != -1) { // make sure that GETData contains & before altering parameters
 		//console.log("TEST1: "+GETData);
 		var GETDataArray = GETData.split("query="); // split query= as GETData[0] from remainder as GETData[1]
-		if (GETDataArray[0] == "") {
+		if (GETDataArray[0] == "") { // this checks that we are in fact removing query= because otherwise we should stop
 			GETData = GETDataArray[1]; // remainder as string }
 			GETDataArray = GETData.split("&"); // split array by &
 			GETDataArray.shift(); // remove first item (after query=) from rest of query string
 			GETData = GETDataArray.join("&"); // join the remainder between & characters again
-		// result removes query=[whatever] from other parameters
+			// result removes query=[whatever] from other parameters
 		} //else { GETData = GETDataArray[0] } // unnecessary
 	}
 	var path = q.pathname; // sets the path
