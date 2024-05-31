@@ -1,0 +1,191 @@
+<html>
+<head>
+	<title>ChwiM-aidd</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="assets/css/style.css" type="text/css" rel="stylesheet" />
+	<script type="text/javascript"
+		src="vendor/jquery/jquery-3.7.1.min.js"
+		sourceMappingURL="vendor/jquery/jquery-3.6.0.min.map"></script>
+	<script src="assets/js/form-en.js" type="text/javascript"></script>
+</head>
+<body>
+    <div class="form-container">
+	<h4 class="lang-button-right"><a href="?interface=cy">Cymraeg</a></h4>
+        <h1 class="text-center">ChwiM-aidd</h1>
+        <h2 class="text-center">Regular Expressions <br>Search for NLW resources</h2>
+        <form name="formSearch" id="formSearch" method="get"
+            action="./search" enctype="multipart/form-data"
+            onsubmit="return validateForm()">
+            <div class="row">
+                <div class="inline-block right-margin">
+                    <div class="label">
+                        Regular Expression: <span id="query-info"
+                            class="info"></span>
+                    </div>
+                    <input type="text"
+						class="input-field"
+                        name="query"
+                        id="query" />
+						<p class="label">Searches are automatically put within quotation marks if there are spaces, 
+							hyphens or special characters in them that are not part of the regular expression</p>
+						<p class="label">WJ and WNO treat hyphens and spaces identically, unlike FileLocatorPro, 
+							so you don't need both. They don't accept \b ^ $ etc.</p>
+                </div>
+                <div class="inline-block responsive">
+                    <div class="label">
+                        Warning: <span id="complexity-info"
+                            class="info"></span>
+                    </div>
+                    <textarea type="textarea"
+						class="input-field" 
+						name="complexity"
+						id="complexity"
+                        style="resize: none; overflow: hidden;"
+                        readonly disabled
+                        cols="60" rows="5">
+						The largest number of variations allowed in the regular expression is 60 * 2 = 120.
+						</textarea>
+					<br><br><div class="input-field-radio">
+                        <div>
+                            <input type="checkbox"
+                                class="regex-option"
+								name="regex"
+								id="regex"
+                                value="true"
+								checked="checked" />Show Search Terms
+                        </div>
+                    </div>
+                </div>
+		    </div>
+            <div class="row">
+                <div class="inline-block right-margin">
+                    <div class="label">
+                        Order by <span id="order-info" class="info"></span>
+                    </div>
+                    <div class="input-field-radio">
+                        <div>
+                            <input type="radio"
+								class="sort-option"
+								name="sort"
+								id="date"
+								onclick="changeSearchRadioButton(this)"
+                                checked="checked"
+                                value="date" />Date
+                        </div>
+                        <div>
+                            <input type="radio"
+								class="sort-option"
+								name="sort"
+								id="score"
+								onclick="changeSearchRadioButton(this)"
+                                value="score" />Relevance (<span id="search">by variation: WJ, WNO</span>)
+                        </div>
+                    </div>
+                </div>
+                <div class="inline-block responsive">
+                    <div class="label">
+                        <span id="order-info" class="info"></span>
+                    </div>
+                    <div class="input-field-radio">
+                        <div>
+                            <input type="radio"
+								class="order-option"
+								name="order"
+                                id="asc"
+                                checked="checked"
+                                value="asc" />Ascending
+                        </div>
+                        <div>
+                            <input type="radio"
+								class="order-option" 
+								name="order"
+                                id="desc"
+                                value="desc" />Descending
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="inline-block right-margin">
+                    <div class="label">
+                        Search <span id="src-info" class="info"></span>
+                    </div>
+                    <div class="input-field-radio">
+                        <div>
+                            <input type="radio"
+								class="src-option"
+								name="src"
+								id="cc"
+								onclick="changeSourceRadioButton(this)"
+                                value="cc" />Welsh Journals
+                        </div>
+                        <div>
+                            <input type="radio"
+								class="src-option"
+								name="src"
+								id="pn"
+								onclick="changeSourceRadioButton(this)"
+                                value="pn" />Newspapers
+                        </div>
+                        <div>
+                            <input type="radio"
+								class="src-option"
+								name="src"
+								id="all"
+								onclick="changeSourceRadioButton(this)"
+                                checked="checked"
+                                value="all" />Welsh Journals and Newspapers
+                        </div>
+                    </div>
+                </div>
+                <div class="inline-block responsive">
+                    <div class="label">
+                        Format <span id="output-info" class="info"></span>
+                    </div>
+                    <div class="input-field-radio">
+                        <div>
+                            <input type="radio"
+								class="output-option"
+								name="output"
+                                id="html"
+                                checked="checked"
+                                value="html" />HTML
+                        </div>
+                        <div>
+                            <input type="radio"
+								class="output-option" 
+								name="output"
+                                id="xml"
+                                value="xml" />XML
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <!--input type="submit" name="send" class="button"
+                    value="Submit" /-->
+                <div class="inline-block right-margin">
+					<input type="submit"
+						class="btn"
+						value="Submit" />
+				</div>
+				<!--div class="inline-block responsive">
+					<a href="?advanced=true&interface=en">
+					<input type="button"
+						class="btn"
+						value="Advanced Search" /></a>
+				</div-->
+            </div>
+            <div class="row">
+					<div id="statusMessage">
+                    </div>
+            </div>
+        </form>
+    </div>
+	<div id="copyright" class="text-center label">
+					<!--h5>(h) 2023-4 Geiriadur Prifysgol Cymru, Canolfan Uwchefrydiau Cymreig a Cheltaidd, Prifysgol Cymru y Drindod Dewi Sant</h5-->
+					<h5>(c) 2023-4 University of Wales Dictionary, Centre for Advanced Welsh and Celtic Studies, University of Wales Trinity St David</h5>
+					<!--h5>gan / by Dr Talat Zafar Chaudhri</h5-->
+	</div>
+</body>
+</html>

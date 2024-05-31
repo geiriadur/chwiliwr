@@ -46,7 +46,16 @@ http.createServer(async function (req, res) {
 	var q = url.parse(req.url, true);
 	var GETData = req.url.split('?')[1]; // to pass GET data to NLW services
 	var data = q.query;
-	
+	// Remove bug with second instance of query= taking precedence (which could be an unexpanded regex)
+	if (GETData && GETData.indexOf("&") != -1) { // make sure that GETData contains & before altering parameters
+		//console.log("TEST1: "+GETData);
+		var GETDataArray = GETData.split("query="); // split query= as GETData[0] from remainder as GETData[1]
+		GETData = GETDataArray[1]; // remainder as string
+		GETDataArray = GETData.split("&"); // split array by &
+		GETDataArray.shift(); // remove first item (after query=) from rest of query string
+		GETData = GETDataArray.join("&"); // join the remainder between & characters again
+		// result removes query=[whatever] from other parameters
+	}
 	var path = q.pathname; // sets the path
 	console.log(path); // Show path on console
 	
@@ -59,13 +68,28 @@ http.createServer(async function (req, res) {
 		advanced = 0; // Default to 0 = normal search
 	}
 	
-	var allowedFiles = ["style.css", "form.html", "form-advanced.html"];
+	var interface = "cy"; // default
+	// Parse 'interface' parameter
+	if ("interface" in data && data['interface'].toLowerCase() == "en") {
+		interface = "en"; // interface search
+	}
+	else {
+		interface = "cy"; // Default to 0 = normal search
+	}
+	
+	var allowedFiles = ["style.css", "form-cy.html", "form-en.html", 
+		"form-advanced-cy.html", "form-advanced-en.html",
+		"assets/css/style.css",
+		"vendor/jquery/jquery-3.7.1.min.js",
+		"assets/js/form-cy.js", "assets/js/form-en.js"
+		];
 	if (path.endsWith("/search") || path.endsWith("/search/")) {
 		// DO NOTHING UNLESS:
 	}
 	else if (allowedFiles.some(allowedFile => path.endsWith(allowedFile))) {
 		//else if (path.endsWith("style.css")) { // Allow style.css
-		filename = path.substring(path.lastIndexOf("/") + 1);
+		//filename = path.substring(path.lastIndexOf("/") + 1); // did not allow sub-folders
+		filename = path.substring(path.indexOf("/") + 1); // allows sub-folders
 		fs.readFile(filename, "utf8", function(err, data) {
 			//fs.readFile("./style.css", "utf8", function(err, data) {
 			if (err) {
@@ -90,9 +114,10 @@ http.createServer(async function (req, res) {
 		// Add a trailing slash
 		//if (!path.endsWith("/")) { path += "/"; } // no longer required?
 		function checkAdvanced(advanced) { if (advanced == 1) { return "-advanced"; } else { return ""; }
+		//function checkInterface(interface) { if (interface == "cy") { return "-cy"; } else if (interface == "en") { return "-en"; } else { return "-cy"; }
 		}
 		// Check for error BEFORE checking if file is empty (bug fix to avoid crash if file missing)
-		fs.readFile("./form"+checkAdvanced(advanced)+".html", "utf8", function(err, data) {
+		fs.readFile("./form"+checkAdvanced(advanced)+"-"+interface+".html", "utf8", function(err, data) {
 			if (err) {
 				res.writeHead(404, {'Content-Type': 'text/html'});
 				return res.end("404 Nis Cyrchwyd / Not Found");
@@ -300,6 +325,8 @@ http.createServer(async function (req, res) {
 		
 		// MAKES A REQUEST TO THE WEB SERVICE FOR EACH REQUEST
 		// Added pass-through of GET data
+console.log(sourceURL+'search?query='+val+'&rows=1000000'+'&'+GETData); // TESTING BUG
+		//GETdata
 		https.get(sourceURL+'search?query='+val+'&rows=1000000'+'&'+GETData, (resp) => {
 			
 			// SET UP REQUEST
