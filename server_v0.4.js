@@ -100,7 +100,6 @@ http.createServer(async function (req, res) {
 		var filename;
 		allowedFiles.some((allowedFile) => {
 			if (path.endsWith(allowedFile)) {
-				console.log("YES: "+allowedFile);
 				filename = allowedFile;
 			}
 		});
