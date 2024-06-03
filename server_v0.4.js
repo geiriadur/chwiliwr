@@ -29,8 +29,8 @@ const genex = require('genex');
 //constants
 
 const delay_in_ms = 1000; // DO NOT SET LOWER THAN 1000 FOR NLW SERVERS
-const sourceURL1 = 'https://cylchgronau.llyfrgell.cymru/';
-const sourceURL2 = 'https://papuraunewydd.llyfrgell.cymru/';
+//const sourceURL1 = 'https://cylchgronau.llyfrgell.cymru/';
+//const sourceURL2 = 'https://papuraunewydd.llyfrgell.cymru/';
 const requestLimit = 120; // Default 120. Less than 2 will disable searching both CC & PN. Most browsers will timeout before this anyway. If delay_in_ms is 1000, this will be over 2 mins.
 
 // HTML DOCS
@@ -40,6 +40,8 @@ const html5_frag2 = fs.readFileSync("./html5/frag2.html.txt");
 
 // CREATE SERVER
 http.createServer(async function (req, res) {
+	var sourceURL1;
+	var sourceURL2;
 	var order;
 	var outputFormat;
 	var sources; // 0 = both; 1 = PN; 2 = CC
@@ -77,6 +79,15 @@ http.createServer(async function (req, res) {
 	}
 	else {
 		interface = "cy"; // Default to 0 = normal search
+	}
+	
+	if (interface == "en") {
+		sourceURL1 = 'https://journals.library.wales/';
+		sourceURL2 = 'https://newspapers.library.wales/';
+	}
+	else { // cy
+		sourceURL1 = 'https://cylchgronau.llyfrgell.cymru/';
+		sourceURL2 = 'https://papuraunewydd.llyfrgell.cymru/';
 	}
 	
 	var allowedFiles = ["style.css", "form-cy.html", "form-en.html", 
@@ -232,22 +243,38 @@ http.createServer(async function (req, res) {
 		res.end(html5_frag1+"Dim termau chwilio</h2>"+html5_frag2);
 	}
 	
-	function timestamp(date) { // converts Welsh date to UNIX timestamp
-		const months = [
+	function timestamp(date, lang) { // converts Welsh date to UNIX timestamp
+		const months_cy = [
 			"Ionawr", "Chwefror", "Mawrth", "Ebrill", "Mai", "Mehefin", "Gorffennaf",
 			"Awst", "Medi", "Hydref", "Tachwedd", "Rhagfyr"
+		];
+		const months_en = [
+			"January", "February", "March", "April", "May", "June", "July",
+			"August", "September", "October", "November", "December"
 		];
 		//date = date.replace(/(\n?\t?\t\t\t\t)+/g,' ').trim(); // WORKS (VERY SPECIFIC)
 		//date = date.replace(/[\t\n\r]+/g,' ').trim(); // WORKS (MORE VERBOSE)
 		date = date.replace(/\s+/g,' ').trim(); // WORKS (SIMPLEST)
+		if (lang == "en") { // If lang = en adjust the date to remove ordinal parts
+			dateArray = date.split(' '); // split the string after each space
+			dateArray[0] = dateArray[0].replace(/(st|nd|rd|th)/g, ''); // remove st, nd, rd, th
+			date = dateArray.join(' '); // Convert the array back into a string with spaces reinserted
+		}
 		var parts = date.split(" ").map(function(item) {
 			//return item.trim(); // Unnecessary because already trimmed above.
 			return item;
 		});
 		//console.log(parts); // TESTING
-		var d = parts[2]+'-'+(months.indexOf(parts[1])+1).toString().padStart(2, '0')+'-'+parts[0].padStart(2, '0')+'T00:00:00.000Z';
-		//return (d.getTime());
-		return new Date(d).getTime();
+		if (lang == "en") {
+			var d = parts[2]+'-'+(months_en.indexOf(parts[1])+1).toString().padStart(2, '0')+'-'+parts[0].padStart(2, '0')+'T00:00:00.000Z';
+			//return (d.getTime());
+			return new Date(d).getTime();
+		}
+		else {
+			var d = parts[2]+'-'+(months_cy.indexOf(parts[1])+1).toString().padStart(2, '0')+'-'+parts[0].padStart(2, '0')+'T00:00:00.000Z';
+			//return (d.getTime());
+			return new Date(d).getTime();
+		}
 	}
 	
 	function outputArray(array, order) { // 1 = forward (asc), 2 = reverse (desc)
@@ -306,21 +333,23 @@ http.createServer(async function (req, res) {
 					text = $(".result-summary > span.hidden-xs").text(); text = escape(text);
 					source = $(".result-meta > .col-xs-6 > a, .result-metadata > .col-xs-5 > a").attr("href"); source = escape(source);
 					dateXML = $(".result div.col-xs-2:eq(1), .result li.col-sm-2:eq(0) > span").text(); dateXML = escape(dateXML);
-					dateXML = timestamp(dateXML);
+					dateXML = timestamp(dateXML, interface);
 					const myDate = new Date(dateXML);
 					//dateXML = myDate.toLocaleDateString("en-UK"); // DD/MM/YYYY
 					dateXML = myDate.toISOString().split('T')[0]; // YYYY-MM-DD
 					//dateXML = "<date>" + date + "</date>";
 					//arrayOfObjects = arrayOfObjects.concat({'html': $(item).html(), 'timestamp': timestamp($(date).html()), 'date': $(date).html()});
-					arrayOfObjects = arrayOfObjects.concat({'html': "<item><resource>"+resource+"</resource><text-summary>"+text+"</text-summary><source>"+source+"</source><date>"+dateXML+"</date></item>", 'timestamp': timestamp($(date).html()), 'date': $(date).html()});
+					arrayOfObjects = arrayOfObjects.concat({'html': "<item><resource>"+resource+"</resource><text-summary>"+text+"</text-summary><source>"+source+"</source><date>"+dateXML+"</date></item>", 'timestamp': timestamp($(date).html(), interface), 'date': $(date).html()});
 				}
 				else {
 					var classLabel;
 					if ($(".result-title > a") ) {
 						if ($(".result-title > a").attr('href').includes("cylchgronau") ) { classLabel = "cc" }
 						if ($(".result-title > a").attr('href').includes("papuraunewydd") ) { classLabel = "pn" }
+						if ($(".result-title > a").attr('href').includes("journals") ) { classLabel = "cc" }
+						if ($(".result-title > a").attr('href').includes("newspapers") ) { classLabel = "pn" }
 					}
-					arrayOfObjects = arrayOfObjects.concat({'html': "<div class='" + classLabel + "'>" + $(item).html() + "</div>", 'timestamp': timestamp($(date).html()), 'date': $(date).html()}); // AS ABOVE BUT ADD DIV ID FOR CSS
+					arrayOfObjects = arrayOfObjects.concat({'html': "<div class='" + classLabel + "'>" + $(item).html() + "</div>", 'timestamp': timestamp($(date).html(), interface), 'date': $(date).html()}); // AS ABOVE BUT ADD DIV ID FOR CSS
 					//arrayOfObjects = []; // NOT HERE!!
 				}
 			}
@@ -424,11 +453,36 @@ http.createServer(async function (req, res) {
 		}
 		
 		function printOutput() {
+			var noResults;
+			if (interface == "en") {
+				noResults = "No Results";
+			}
+			else {
+				noResults = "Dim canlyniadau";
+			}
 			if (output != "") {
 				//res.end(html5_frag1+output+html5_frag2); // outputs results
 				// GET NUMBER OF CC and PN results
-				var numOfCC = finalArrayOfObjects.filter((item) => item.html.includes("cylchgronau")).length;
-				var numOfPN = finalArrayOfObjects.filter((item) => item.html.includes("papuraunewydd")).length;
+				var numOfCC;
+				var numOfPN;
+				var msgText;
+				var CCLabel;
+				var PNLabel;
+				var noResults;
+				if (interface == "en") {
+					numOfCC = finalArrayOfObjects.filter((item) => item.html.includes("journals")).length;
+					numOfPN = finalArrayOfObjects.filter((item) => item.html.includes("newspapers")).length;
+					msgText = "Number of results";
+					CCLabel = "WJ";
+					PNLabel = "WN";
+				}
+				else { // cy
+					numOfCC = finalArrayOfObjects.filter((item) => item.html.includes("cylchgronau")).length;
+					numOfPN = finalArrayOfObjects.filter((item) => item.html.includes("papuraunewydd")).length;
+					msgText = "Nifer o ganlyniadau";
+					CCLabel = "CC";
+					PNLabel = "PN"
+				}
 				//var numTotal = finalArrayOfObjects.length;
 				var numTotal = numOfCC + numOfPN;
 				if (sources == 1 || sources == 0) console.log('CC: '+numOfCC);
@@ -438,17 +492,20 @@ http.createServer(async function (req, res) {
 				}
 				else { // HTML
 					if (sources == 0) {
-						res.end(html5_frag1+regex+'<h2>Nifer o ganlyniadau: '+numTotal+' (CC: '+numOfCC+'\, PN: '+numOfPN+')'+'</h2>'+output+html5_frag2); // adds regex expansion/checking output before results
+						//res.end(html5_frag1+regex+'<h2>Nifer o ganlyniadau: '+numTotal+' (CC: '+numOfCC+'\, PN: '+numOfPN+')'+'</h2>'+output+html5_frag2); // adds regex expansion/checking output before results
+						res.end(html5_frag1+regex+'<h2>'+msgText+': '+numTotal+' ('+CCLabel+': '+numOfCC+'\, '+PNLabel+': '+numOfPN+')'+'</h2>'+output+html5_frag2); // adds regex expansion/checking output before results
 					} else if (sources == 1) {
-						res.end(html5_frag1+regex+'<h2>Nifer o ganlyniadau (CC): '+numTotal+'</h2>'+output+html5_frag2); // adds regex expansion/checking output before results
+						//res.end(html5_frag1+regex+'<h2>Nifer o ganlyniadau (CC): '+numTotal+'</h2>'+output+html5_frag2); // adds regex expansion/checking output before results
+						res.end(html5_frag1+regex+'<h2>'+msgText+' ('+CCLabel+'): '+numTotal+'</h2>'+output+html5_frag2); // adds regex expansion/checking output before results
 					} else if (sources == 2) {
-						res.end(html5_frag1+regex+'<h2>Nifer o ganlyniadau (PN): '+numTotal+'</h2>'+output+html5_frag2); // adds regex expansion/checking output before results
+						//res.end(html5_frag1+regex+'<h2>Nifer o ganlyniadau (PN): '+numTotal+'</h2>'+output+html5_frag2); // adds regex expansion/checking output before results
+						res.end(html5_frag1+regex+'<h2>'+msgText+' ('+PNLabel+'): '+numTotal+'</h2>'+output+html5_frag2); // adds regex expansion/checking output before results
 					}
 				}
 			}
 			else {
 				//res.end(html5_frag1+regex+"\n\t\t\t<h2>"+"Dim canlyniadau / No results</h2>"+html5_frag2); // adds regex expansion/checking output
-				res.end(html5_frag1+regex+"\n\t\t\t<h2>"+"Dim canlyniadau</h2>"+html5_frag2); // adds regex expansion/checking output
+				res.end(html5_frag1+regex+"\n\t\t\t<h2>"+noResults+"</h2>"+html5_frag2); // adds regex expansion/checking output
 			}
 		}
 	}
