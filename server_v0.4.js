@@ -537,8 +537,10 @@ http.createServer(async function (req, res) {
 	function acceptLang () {
 		var acceptLang;
 		acceptLang = req.headers["accept-language"];
-		acceptLangArray = acceptLang.split(',');
-		acceptLang = acceptLangArray[0];
+		acceptLangArray = acceptLang.split(','); // get first lang in sequence
+		acceptLang = acceptLangArray[0]; // put string back together
+		acceptLangArray = acceptLang.split("-"); // removes -gb, -us etc
+		acceptLang = acceptLangArray[0]; // put string back together
 		return acceptLang;
 	}
 	
