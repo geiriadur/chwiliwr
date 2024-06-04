@@ -77,8 +77,17 @@ http.createServer(async function (req, res) {
 	if ("interface" in data && data['interface'].toLowerCase() == "en") {
 		interface = "en"; // interface search
 	}
-	else {
-		interface = "cy"; // Default to 0 = normal search
+	else if ("interface" in data && data['interface'].toLowerCase() == "cy") {
+		interface = "cy"; // interface search
+	}
+	else { // check browser language
+		var acceptLang = acceptLang();
+		if (acceptLang != "") {
+			interface = acceptLang;
+		}
+		else {
+			interface = "cy"; // Default to cy
+		}
 	}
 	
 	if (interface == "en") {
@@ -90,7 +99,7 @@ http.createServer(async function (req, res) {
 		sourceURL2 = 'https://papuraunewydd.llyfrgell.cymru/';
 	}
 	
-	var allowedFiles = ["style.css", "form-cy.html", "form-en.html", 
+	var allowedFiles = ["assets/css/results.css", "form-cy.html", "form-en.html", 
 		"form-advanced-cy.html", "form-advanced-en.html",
 		"assets/css/style.css",
 		"vendor/jquery/jquery-3.7.1.min.js",
@@ -523,6 +532,14 @@ http.createServer(async function (req, res) {
 				.replace(/'/g, "&#39;");
 		}
 
+	}
+	
+	function acceptLang () {
+		var acceptLang;
+		acceptLang = req.headers["accept-language"];
+		acceptLangArray = acceptLang.split(',');
+		acceptLang = acceptLangArray[0];
+		return acceptLang;
 	}
 	
 // END OF SERVER CODE

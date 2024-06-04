@@ -33,3 +33,4 @@ Version 0.4
 - Added optional XML view so that the data can be saved, for instance for import into a spreadsheet or a database
 - Added English version and English results and dates
 - Added new form with CSS
+- Added automatic browser language detection from HTTP accept-language header

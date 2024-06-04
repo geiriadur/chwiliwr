@@ -24,7 +24,7 @@
     <link rel="stylesheet" href="https://journals.library.wales/assets/css/NLW-application.css" />
     <link rel="stylesheet" href="https://newspapers.library.wales/assets/css/NLW-application.css" />
     <!--link rel="stylesheet" type="text/css" href="https://brandedframe.library.wales/templates/bootstrap3-nui/css/newspapers.css" /-->
-    <link rel="stylesheet" type="text/css" href="../style.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/results.css">
     <!--link rel="stylesheet" type="text/css" href="../style-results.css"-->
   </head>
   <body>
