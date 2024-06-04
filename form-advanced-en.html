@@ -1,12 +1,11 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
 	<title>ChwiM-aidd</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link href="assets/css/style.css" type="text/css" rel="stylesheet" />
-	<script type="text/javascript"
-		src="vendor/jquery/jquery-3.7.1.min.js"
-		sourceMappingURL="vendor/jquery/jquery-3.6.0.min.map"></script>
-	<script src="assets/js/form-en.js" type="text/javascript"></script>
+	<link href="assets/css/style.css" type="text/css" rel="stylesheet">
+	<script src="vendor/jquery/jquery-3.7.1.min.js"</script>
+	<script src="assets/js/form-en.js"></script>
 </head>
 <body>
     <div class="form-container">
@@ -25,7 +24,7 @@
                     <input type="text"
 						class="input-field"
                         name="query"
-                        id="query" />
+                        id="query">
 						<p class="label">Searches are automatically put within quotation marks if there are spaces, 
 							hyphens or special characters in them that are not part of the regular expression</p>
 						<p class="label">WJ and WNO treat hyphens and spaces identically, unlike FileLocatorPro, 
@@ -36,7 +35,7 @@
                         Warning: <span id="complexity-info"
                             class="info"></span>
                     </div>
-                    <textarea type="textarea"
+                    <textarea
 						class="input-field" 
 						name="complexity"
 						id="complexity"
@@ -52,7 +51,7 @@
 								name="regex"
 								id="regex"
                                 value="true"
-								checked="checked" />Show Search Terms
+								checked="checked">Show Search Terms
                         </div>
                     </div>
                 </div>
@@ -62,13 +61,13 @@
                     <input type="hidden"
                         name="interface"
                         class="interface"
-                        value="en"
+                        value="en">
                 </div>
             </div>
             <div class="row">
                 <div class="inline-block right-margin">
                     <div class="label">
-                        Order by <span id="order-info" class="info"></span>
+                        Order by <span id="sort-info" class="info"></span>
                     </div>
                     <div class="input-field-radio">
                         <div>
@@ -78,7 +77,7 @@
 								id="date"
 								onclick="changeSearchRadioButton(this)"
                                 checked="checked"
-                                value="date" />Date
+                                value="date">Date
                         </div>
                         <div>
                             <input type="radio"
@@ -86,7 +85,7 @@
 								name="sort"
 								id="score"
 								onclick="changeSearchRadioButton(this)"
-                                value="score" />Relevance (<span id="search">by variation: WJ, WNO</span>)
+                                value="score">Relevance (<span id="search">by variation: WJ, WNO</span>)
                         </div>
                     </div>
                 </div>
@@ -101,14 +100,14 @@
 								name="order"
                                 id="asc"
                                 checked="checked"
-                                value="asc" />Ascending
+                                value="asc">Ascending
                         </div>
                         <div>
                             <input type="radio"
 								class="order-option" 
 								name="order"
                                 id="desc"
-                                value="desc" />Descending
+                                value="desc">Descending
                         </div>
                     </div>
                 </div>
@@ -125,7 +124,7 @@
 								name="src"
 								id="cc"
 								onclick="changeSourceRadioButton(this)"
-                                value="cc" />Welsh Journals
+                                value="cc">Welsh Journals
                         </div>
                         <div>
                             <input type="radio"
@@ -133,7 +132,7 @@
 								name="src"
 								id="pn"
 								onclick="changeSourceRadioButton(this)"
-                                value="pn" />Newspapers
+                                value="pn">Newspapers
                         </div>
                         <div>
                             <input type="radio"
@@ -142,7 +141,7 @@
 								id="all"
 								onclick="changeSourceRadioButton(this)"
                                 checked="checked"
-                                value="all" />Welsh Journals and Newspapers
+                                value="all">Welsh Journals and Newspapers
                         </div>
                     </div>
                 </div>
@@ -157,14 +156,14 @@
 								name="output"
                                 id="html"
                                 checked="checked"
-                                value="html" />HTML
+                                value="html">HTML
                         </div>
                         <div>
                             <input type="radio"
 								class="output-option" 
 								name="output"
                                 id="xml"
-                                value="xml" />XML
+                                value="xml">XML
                         </div>
                     </div>
                 </div>
@@ -173,17 +172,17 @@
                 <!--input type="submit"
                     name="send"
                     class="button"
-                    value="Submit" /-->
+                    value="Submit"-->
                 <div class="inline-block right-margin">
 					<input type="submit"
 						class="btn"
-						value="Submit" />
+						value="Submit">
 				</div>
 				<div class="inline-block responsive">
 					<a href="?advanced=false&interface=en">
 					<input type="button"
 						class="btn"
-						value="Normal Search" /></a>
+						value="Normal Search"></a>
 				</div>
             </div>
             <div class="row">
