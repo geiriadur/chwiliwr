@@ -103,7 +103,9 @@ http.createServer(async function (req, res) {
 		"form-advanced-cy.html", "form-advanced-en.html",
 		"assets/css/style.css",
 		"vendor/jquery/jquery-3.7.1.min.js",
-		"assets/js/form-cy.js", "assets/js/form-en.js"
+		"assets/js/form-cy.js", "assets/js/form-en.js",
+		"assets/Mynegiadau_Rheolaidd.html",
+		"assets/Regular_Expressions.html"
 		];
 	
 	if (path.endsWith("/search") || path.endsWith("/search/")) {
@@ -132,6 +134,7 @@ http.createServer(async function (req, res) {
 			}
 			//else { console.log("File isn't empty");} // TESTING
 			if (filename.endsWith(".css")){ res.writeHead(200, {'Content-Type': 'text/css'}); }
+			else if (filename.endsWith(".html") || filename.endsWith(".htm")){ res.writeHead(200, {'Content-Type': 'text/html'}); }
 			else if (filename.endsWith(".js")){ res.writeHead(200, {'Content-Type': 'text/javascript'}); }
 			else { res.writeHead(200, {'Content-Type': 'text/html'}); }
 			res.write(data);
@@ -373,7 +376,7 @@ http.createServer(async function (req, res) {
 		// MAKES A REQUEST TO THE WEB SERVICE FOR EACH REQUEST
 		// Added pass-through of GET data
 		//GETdata
-		https.get(sourceURL+'search?query='+val+'&rows=1000000'+'&'+GETData, (resp) => {
+		https.get(sourceURL+'search?query='+val+'&rows=1000000'+'&'+GETData, (resp) => { // server will run out of memory over ~1000
 			
 			// SET UP REQUEST
 			let request_data = '';
@@ -393,8 +396,7 @@ http.createServer(async function (req, res) {
 			// The whole response has been received. Print out the result.
 			resp.on('end', () => {
 				arrayOfMultipleObjects = returnHTMLArray(request_data); // returns data
-				callback(arrayOfMultipleObjects); // necessary to make sure that 
-				
+				callback(arrayOfMultipleObjects); // necessary to make sure that it works?
 				// CATCH ERRORS
 				}).on("error", (err) => {
 				console.log("Error: " + err.message);

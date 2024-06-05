@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="cy">
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=utf-8">
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Cambria;
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	font-size:12.0pt;
+	font-family:"Times New Roman",serif;}
+h1
+	{mso-style-link:"Heading 1 Char";
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:0cm;
+	page-break-after:avoid;
+	font-size:16.0pt;
+	font-family:"Cambria",serif;
+	color:#365F91;
+	font-weight:normal;}
+h2
+	{mso-style-link:"Heading 2 Char";
+	margin-top:2.0pt;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:0cm;
+	page-break-after:avoid;
+	font-size:13.0pt;
+	font-family:"Cambria",serif;
+	color:#365F91;
+	font-weight:normal;}
+a:link, span.MsoHyperlink
+	{color:blue;
+	text-decoration:underline;}
+p
+	{margin-right:0cm;
+	margin-left:0cm;
+	font-size:12.0pt;
+	font-family:"Times New Roman",serif;}
+p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
+	{margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:36.0pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman",serif;}
+span.Heading1Char
+	{mso-style-name:"Heading 1 Char";
+	mso-style-link:"Heading 1";
+	font-family:"Cambria",serif;
+	color:#365F91;}
+span.Heading2Char
+	{mso-style-name:"Heading 2 Char";
+	mso-style-link:"Heading 2";
+	font-family:"Cambria",serif;
+	color:#365F91;}
+.MsoChpDefault
+	{font-size:10.0pt;}
+@page WordSection1
+	{size:595.3pt 841.9pt;
+	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
+div.WordSection1
+	{page:WordSection1;}
+-->
+</style>
+
+</head>
+
+<body lang=CY link=blue vlink=purple style='word-wrap:break-word'>
+
+<div class=WordSection1>
+
+<h1 align=center style='text-align:center'>Mynegiadau rheolaidd (S. ‘regular
+expressions’)</h1>
+
+<p style='margin:0cm'>&nbsp;</p>
+
+<p style='margin:0cm'><span style='font-size:11.0pt;font-family:"Calibri",sans-serif'>&nbsp;</span></p>
+
+<h2>Enghreifftiau</h2>
+
+<p style='margin:0cm'><span style='font-size:11.0pt;font-family:"Calibri",sans-serif'>&nbsp;</span></p>
+
+<p class=MsoListParagraph style='text-indent:-18.0pt;vertical-align:middle'><span
+style='font-size:11.0pt;font-family:"Calibri",sans-serif'>1.</span><span
+style='font-size:7.0pt'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><b><span
+style='font-size:11.0pt;font-family:"Calibri",sans-serif'>\bmarch\b </span></b><span
+style='font-size:11.0pt;font-family:"Calibri",sans-serif'>&nbsp;sy’n dod o hyd
+i bob engh. o’r gair <i>march</i> gyda ffiniau geiriau ‘word boundaries’ (<b>\b</b>) bob pen
+iddo. Dyma’r ffordd fwyaf effeithiol i ddod o hyd i eiriau cyfan.<br>
+&nbsp;</span></p>
+
+<p class=MsoListParagraph style='text-indent:-18.0pt;vertical-align:middle'><span
+style='font-size:11.0pt;font-family:"Calibri",sans-serif'>2.</span><span
+style='font-size:7.0pt'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><b><span
+style='font-size:11.0pt;font-family:"Calibri",sans-serif'>\bm(a|ei)rch\b </span></b><span
+style='font-size:11.0pt;font-family:"Calibri",sans-serif'>sy’n dod o hyd i bob
+engh. o <i>march</i> neu <i>meirch</i> gyda ffiniau geiriau ‘word boundaries’ (<b>\b</b>) bob
+pen iddo.</span></p>
+
+<p class=MsoNormal style='margin-left:18.0pt;text-indent:18.0pt;vertical-align:
+middle'><span style='font-size:11.0pt;font-family:"Calibri",sans-serif'>Defnyddir
+cromfachau <b>(</b> a <b>)</b> i grwpio eitemau; dynoda ‘<b>|</b>’ ‘neu’.<br>
+&nbsp;</span></p>
+
+<p class=MsoListParagraph style='text-indent:-18.0pt;vertical-align:middle'><span
+style='font-size:11.0pt;font-family:"Calibri",sans-serif'>3.</span><span
+style='font-size:7.0pt'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><b><span
+style='font-size:11.0pt;font-family:"Calibri",sans-serif'>[mf](a|ei)rch</span></b><span
+style='font-size:11.0pt;font-family:"Calibri",sans-serif'> i ddod o hyd i
+enghrau. o <i>march</i> neu <i>meirch</i> ynghyd â’u ffurfiau treigledig, e.e.
+&nbsp;<i>march</i>, <i>farch</i>, <i>meirch</i> a <i>feirch</i>. Mae hefyd yn
+dod o hyd i <i>cyfarch</i>, <i>farchnad</i>, <i>marchog</i> ac <i>orwyddfeirch</i>
+gan nad yw’r ‘word boundaries’ wedi eu pennu y tro hwn.</span></p>
+
+<p class=MsoNormal style='margin-left:36.0pt;vertical-align:middle'><span
+style='font-size:11.0pt;font-family:"Calibri",sans-serif'>Mae bachau petryal <b>[</b>
+a <b>]</b> yn amgáu rhestrau o symbolau unigol, felly dynoda <b>[mf]</b> <i>m</i>
+neu <i>f</i>. (Nid yw trefn y llythrennau o bwys.)</span></p>
+
+<p class=MsoNormal style='margin-left:18.0pt;text-indent:18.0pt;vertical-align:
+middle'><span style='font-size:11.0pt;font-family:"Calibri",sans-serif'>&nbsp;</span></p>
+
+<p class=MsoListParagraph style='text-indent:-18.0pt;vertical-align:middle'><span
+style='font-size:11.0pt;font-family:"Calibri",sans-serif'>4.</span><span
+style='font-size:7.0pt'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><b><span
+style='font-size:11.0pt;font-family:"Calibri",sans-serif'>\b(c|g|ngh|ch)effyl(au)?\b</span></b><span
+style='font-size:11.0pt;font-family:"Calibri",sans-serif'> i ddod o hyd i
+enghrau. o <i>ceffyl</i> neu <i>ceffylau</i> ynghyd â’u ffurfiau treigledig.
+Dylai hyn ddod o hyd i <i>ceffyl, geffyl, ngheffyl, cheffyl, ceffylau,
+geffylau, ngheffylau, </i>a<i> cheffylau</i>.</span></p>
+
+<p class=MsoNormal style='margin-left:18.0pt;text-indent:18.0pt;vertical-align:
+middle'><span style='font-size:11.0pt;font-family:"Calibri",sans-serif'>&nbsp;</span></p>
+
+<p class=MsoListParagraph style='text-indent:-18.0pt;vertical-align:middle'><span
+style='font-size:11.0pt;font-family:"Calibri",sans-serif'>5.</span><span
+style='font-size:7.0pt'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><b><span
+style='font-size:11.0pt;font-family:"Calibri",sans-serif;color:#222222'>\bll[ae]dd(af|i|a|odd|ir|[ae]s*|wyd|id)\b</span></b><span
+style='font-size:11.0pt;font-family:"Calibri",sans-serif'> i ddod o hyd i
+enghrau. o’r ferf <i>lladd</i>. Gellid defnyddio hyn fel patrwm ar gyfer
+berfau.</span></p>
+
+<p class=MsoNormal style='margin-left:18.0pt;text-indent:18.0pt;vertical-align:
+middle'><span style='font-size:11.0pt;font-family:"Calibri",sans-serif;
+color:#222222'>&nbsp;</span></p>
+
+<p style='margin:0cm'><span style='font-size:11.0pt;font-family:"Calibri",sans-serif'>&nbsp;</span></p>
+
+<p style='margin:0cm'><span style='font-size:11.0pt;font-family:"Calibri",sans-serif;
+color:black;background:white'>Mae pob symbol mewn mynegiad rheolaidd yn
+cynrychioli ei hun ac eithrio’r rheiny a restrir isod:</span></p>
+
+<p style='margin:0cm'><span style='font-size:11.0pt;font-family:"Calibri",sans-serif'>&nbsp;</span></p>
+
+<p style='margin:0cm'><b><span style='font-size:11.0pt;font-family:"Calibri",sans-serif;
+color:black'>. [ ] { } ( ) * + ? | ^ $ \</span></b></p>
+
+<p style='margin:0cm'><span style='font-size:11.0pt;font-family:"Calibri",sans-serif;
+color:black'>&nbsp;</span></p>
+
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:0cm;margin-left:36.0pt;
+text-indent:-36.0pt'><b><span style='font-size:11.0pt;font-family:"Calibri",sans-serif;
+color:black;background:white'>.</span></b><span style='font-size:11.0pt;
+font-family:"Calibri",sans-serif;color:black;background:white'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+yn cynrychioli unrhyw lythyren/symbol unigol - gan gynnwys bwlch (ac eithrio
+mewn rhestr o symbolau).</span></p>
+
+<p style='margin:0cm'><b><span style='font-size:11.0pt;font-family:"Calibri",sans-serif;
+color:black;background:white'>[ ]</span></b><span style='font-size:11.0pt;
+font-family:"Calibri",sans-serif;color:black;background:white'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span style='font-size:11.0pt;font-family:"Calibri",sans-serif'>yn amgáu
+rhestr o symbolau, e.e. <b>[abc]</b> neu ystod o lythrennau, e.e.<b> [a-z]</b>,
+gw. engh.<span style='color:black;background:white'> 3.</span></span></p>
+
+<p style='margin:0cm'><b><span style='font-size:11.0pt;font-family:"Calibri",sans-serif;
+color:black;background:white'>{ }</span></b><span style='font-size:11.0pt;
+font-family:"Calibri",sans-serif;color:black;background:white'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+yn dynodi faint o weithiau mae mynegiad yn cael ei ailadrodd, e.e. mae <b>a{3}</b>
+yn matsio aaa</span></p>
+
+<p style='margin:0cm'><b><span style='font-size:11.0pt;font-family:"Calibri",sans-serif;
+color:black;background:white'>( )</span></b><span style='font-size:11.0pt;
+font-family:"Calibri",sans-serif;color:black;background:white'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span style='font-size:11.0pt;font-family:"Calibri",sans-serif'>yn
+grwpio eitemau, gw. engh. 2, uchod.</span></p>
+
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:0cm;margin-left:36.0pt;
+text-indent:-36.0pt'><b><span style='font-size:11.0pt;font-family:"Calibri",sans-serif'>*</span></b><span
+style='font-size:11.0pt;font-family:"Calibri",sans-serif'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+yn ailadrodd y mynegiad blaenorol dim neu ragor o weithiau, felly cynrychiola <b>.*</b>
+unrhyw beth neu ddim byd.</span></p>
+
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:0cm;margin-left:36.0pt;
+text-indent:-36.0pt'><b><span style='font-size:11.0pt;font-family:"Calibri",sans-serif;
+color:black'>+</span></b><span style='font-size:11.0pt;font-family:"Calibri",sans-serif;
+color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span style='font-size:11.0pt;font-family:"Calibri",sans-serif'>yn
+ailadrodd y mynegiad blaenorol un neu ragor o weithiau, felly cynrychiola <b>.+arch</b>
+<i>march</i> a <i>farch</i>, &amp;c., ond nid<i> arch</i>.</span></p>
+
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:0cm;margin-left:36.0pt;
+text-indent:-36.0pt'><b><span style='font-size:11.0pt;font-family:"Calibri",sans-serif'>?</span></b><span
+style='font-size:11.0pt;font-family:"Calibri",sans-serif'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+yn gwneud yr eitem flaenorol yn ddewisol, e.e. cynrychiola <b>\b[mf]?arch\b</b>
+<i>march</i>, <i>farch</i> ac <i>arch</i>.</span></p>
+
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:0cm;margin-left:36.0pt;
+text-indent:-36.0pt'><b><span style='font-size:11.0pt;font-family:"Calibri",sans-serif;
+color:black'>|</span></b><span style='font-size:11.0pt;font-family:"Calibri",sans-serif;
+color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+yn dynodi ‘neu’ pan fydd yn gwahanu eitemau, e.e. dynoda <b>(march|farch|marchog|farchog)</b>
+unrhyw un o’r geiriau hyn, ond gellid sgrifennu hyn yn fwy cryno fel <b>[fm]arch(og)?</b>.</span></p>
+
+<p style='margin:0cm'><b><span style='font-size:11.0pt;font-family:"Calibri",sans-serif;
+color:black;background:white'>^</span></b><span style='font-size:11.0pt;
+font-family:"Calibri",sans-serif;color:black;background:white'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+yn dynodi dechrau llinell.</span></p>
+
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:0cm;margin-left:36.0pt'><span
+style='font-size:11.0pt;font-family:"Calibri",sans-serif;color:black;
+background:white'>ar ddechrau rhestr rhwng bachau petryal golyga NID unrhyw
+beth sydd yn y rhestr, e.e. daw <b>\b[^fm]arch\b</b> o hyd i bob gair 5
+llythyren sy’n gorffen yn ‘-arch’, ond NID <i>march</i> na <i>farch</i> (daw o
+hyd i <i>parch</i> a <i>barch</i>).</span></p>
+
+<p style='margin:0cm'><b><span style='font-size:11.0pt;font-family:"Calibri",sans-serif;
+color:black;background:white'>$</span></b><span style='font-size:11.0pt;
+font-family:"Calibri",sans-serif;color:black;background:white'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+yn dynodi diwedd llinell. Gelwir y ddau olaf hyn yn </span><span lang=EN-GB><a
+href="http://www.boost.org/doc/libs/1_51_0/libs/regex/doc/html/boost_regex/syntax/perl_syntax.html#boost_regex.syntax.perl_syntax.anchors"><i><span
+lang=CY style='font-size:11.0pt;font-family:"Calibri",sans-serif;background:
+white'>anchors</span></i></a></span><span class=MsoHyperlink><span
+style='font-size:11.0pt;font-family:"Calibri",sans-serif;background:white;
+text-decoration:none'>.</span></span></p>
+
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:0cm;margin-left:36.0pt;
+text-indent:-36.0pt'><b><span style='font-size:11.0pt;font-family:"Calibri",sans-serif'>-</span></b><span
+style='font-size:11.0pt;font-family:"Calibri",sans-serif'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+mewn rhestr dynoda ystod, e.e. dynoda <b>[a-z]</b> unrhyw lythyren fach, dynoda<b>
+[A-Z]</b> unrhyw lythyren fawr a dynoda <b>[a-zA-Z]</b> unrhyw lythyren (fach
+neu fawr), a dynoda <b>[0-9]</b> unrhyw digid (yr un peth â <b>[0123456789]</b>.
+(D.S. mae trefn y llythrennau mewn ystod yn bwysig: bydd chilio am <b>[z-a]</b>
+yn methu.</span></p>
+
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:0cm;margin-left:36.0pt;
+text-indent:-36.0pt'><b><span style='font-size:11.0pt;font-family:"Calibri",sans-serif'>\</span></b><span
+style='font-size:11.0pt;font-family:"Calibri",sans-serif'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+a ddefnyddir o flaen unrhyw un o’r symbolau uchod (a <b>\</b> ei hun) fel
+‘escape’, sy’n golygu’r symbol ei hen heb ei swyddogaeth arbennig, h.y. dynoda <b>\(</b>&nbsp;<i>(</i>,
+a gellir dynodi<i> </i>\ gyda <b>\\</b>.</span></p>
+
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:0cm;margin-left:36.0pt;
+text-indent:-36.0pt'><span style='font-size:11.0pt;font-family:"Calibri",sans-serif'>&nbsp;</span></p>
+
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:0cm;margin-left:36.0pt;
+text-indent:-36.0pt'><span style='font-size:11.0pt;font-family:"Calibri",sans-serif'>&nbsp;</span></p>
+
+<h2>Nodiadau</h2>
+
+<p style='margin:0cm'><span style='font-size:11.0pt;font-family:"Calibri",sans-serif;
+color:black'>&nbsp;</span></p>
+
+<p style='margin:0cm'><span style='font-size:11.0pt;font-family:"Calibri",sans-serif;
+color:black'>Mae acenion yn bwysig, h.y. rhaid defnyddio <b>tân</b> i ddod o
+hyd i enghreifftiau o’r gair <i>tân</i>, a <b>tan</b> i ddod o hyd i <i>tan</i>;
+bydd <b>t[âa]n</b> yn dod o hyd i’r ddau.</span></p>
+
+<p style='margin:0cm'><span style='font-size:11.0pt;font-family:"Calibri",sans-serif;
+color:black'>&nbsp;</span></p>
+
+<p style='margin:0cm'><span style='font-size:11.0pt;font-family:"Calibri",sans-serif;
+color:black'>6 = w&nbsp; mewn rhai testunau Cymraeg Canol</span></p>
+
+<p style='margin:0cm'>&nbsp;</p>
+
+<p style='margin:0cm'><span style='font-size:11.0pt;font-family:"Calibri",sans-serif;
+color:black'>Mae’n well chwilio mor benagored â phosibl i ddechrau ac yna
+cyfyngu’r chwiliad ar ôl gweld canlyniad y chwilio.</span></p>
+
+<p align=right style='margin:0cm;text-align:right'>&nbsp;</p>
+
+</div>
+
+</body>
+
+</html>

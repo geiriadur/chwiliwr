@@ -42,7 +42,7 @@ function validateForm() {
 		$('#statusMessage').attr('style', 'color: red !important');
 	}
 	if (valid == true) {
-		$("#statusMessage").html("Wait a moment after submitting: complex searches can take time!");
+		$("#statusMessage").html("Wait a moment after submitting: complex or large searches can take time!");
 		//$("#statusMessage").css('color', 'orange !important'); /* !important doesn't work */
 		$('#statusMessage').attr('style', 'color: orange !important');
 	}

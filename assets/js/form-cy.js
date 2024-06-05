@@ -42,7 +42,7 @@ function validateForm() {
 		$('#statusMessage').attr('style', 'color: red !important');
 	}
 	if (valid == true) {
-		$("#statusMessage").html("Arhoswch funud ar &ocirc;l cyflwyno: gall chwiliadau cymhleth gymryd ychydig o amser!");
+		$("#statusMessage").html("Arhoswch funud ar &ocirc;l cyflwyno: gall chwiliadau cymhleth neu fawr gymryd ychydig o amser!");
 		//$("#statusMessage").css('color', 'orange !important'); /* !important doesn't work */
 		$('#statusMessage').attr('style', 'color: orange !important');
 	}

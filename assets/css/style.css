@@ -113,6 +113,19 @@ body {
 	color: #5c5953; /* 10% darker */
 }
 
+.link a:link,
+.link a:visited {
+	text-decoration: none;
+	/* color: #5c5953; /* 10% darker */
+	color: #4487d6;
+}
+
+.link a:hover {
+	text-decoration: underline;
+	/* color: #5c5953; /* 10% darker */
+	color: #005cc8;
+}
+
 #statusMessage {
 	/* color: red !important; */
 }

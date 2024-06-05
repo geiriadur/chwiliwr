@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=utf-8">
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Cambria;
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	font-size:12.0pt;
+	font-family:"Times New Roman",serif;}
+h1
+	{mso-style-link:"Heading 1 Char";
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:0cm;
+	page-break-after:avoid;
+	font-size:16.0pt;
+	font-family:"Cambria",serif;
+	color:#365F91;
+	font-weight:normal;}
+h2
+	{mso-style-link:"Heading 2 Char";
+	margin-top:2.0pt;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:0cm;
+	page-break-after:avoid;
+	font-size:13.0pt;
+	font-family:"Cambria",serif;
+	color:#365F91;
+	font-weight:normal;}
+a:link, span.MsoHyperlink
+	{color:blue;
+	text-decoration:underline;}
+p
+	{margin-right:0cm;
+	margin-left:0cm;
+	font-size:12.0pt;
+	font-family:"Times New Roman",serif;}
+p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
+	{margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:36.0pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman",serif;}
+span.Heading1Char
+	{mso-style-name:"Heading 1 Char";
+	mso-style-link:"Heading 1";
+	font-family:"Cambria",serif;
+	color:#365F91;}
+span.Heading2Char
+	{mso-style-name:"Heading 2 Char";
+	mso-style-link:"Heading 2";
+	font-family:"Cambria",serif;
+	color:#365F91;}
+.MsoChpDefault
+	{font-size:10.0pt;}
+@page WordSection1
+	{size:595.3pt 841.9pt;
+	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
+div.WordSection1
+	{page:WordSection1;}
+-->
+</style>
+
+</head>
+
+<body lang=CY link=blue vlink=purple style='word-wrap:break-word'>
+
+<div class=WordSection1>
+
+<h1 align=center style='text-align:center'>Regular Expressions</h1>
+
+<p style='margin:0cm'>&nbsp;</p>
+
+<p style='margin:0cm'><span style='font-size:11.0pt;font-family:"Calibri",sans-serif'>&nbsp;</span></p>
+
+<h2>Examples</h2>
+
+<p style='margin:0cm'><span style='font-size:11.0pt;font-family:"Calibri",sans-serif'>&nbsp;</span></p>
+
+<p class=MsoListParagraph style='text-indent:-18.0pt;vertical-align:middle'><span
+style='font-size:11.0pt;font-family:"Calibri",sans-serif'>1.</span><span
+style='font-size:7.0pt'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><b><span
+style='font-size:11.0pt;font-family:"Calibri",sans-serif'>\bmarch\b </span></b><span
+style='font-size:11.0pt;font-family:"Calibri",sans-serif'>&nbsp;finds every
+example of the word <i>march</i> with word boundaries (<b>\b</b>) surrounding
+it. This is the most effective way to find whole words.<br>
+&nbsp;</span></p>
+
+<p class=MsoListParagraph style='text-indent:-18.0pt;vertical-align:middle'><span
+style='font-size:11.0pt;font-family:"Calibri",sans-serif'>2.</span><span
+style='font-size:7.0pt'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><b><span
+style='font-size:11.0pt;font-family:"Calibri",sans-serif'>\bm(a|ei)rch\b </span></b><span
+style='font-size:11.0pt;font-family:"Calibri",sans-serif'>finds every example
+of <i>march</i> or <i>meirch</i> with word boundaries (<b>\b</b>) surrounding
+it.</span></p>
+
+<p class=MsoNormal style='margin-left:18.0pt;text-indent:18.0pt;vertical-align:
+middle'><span style='font-size:11.0pt;font-family:"Calibri",sans-serif'>Brackets
+<b>(</b> a <b>)</b> are used to group items; <b>|</b> means ‘or’.<br>
+&nbsp;</span></p>
+
+<p class=MsoListParagraph style='text-indent:-18.0pt;vertical-align:middle'><span
+style='font-size:11.0pt;font-family:"Calibri",sans-serif'>3.</span><span
+style='font-size:7.0pt'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><b><span
+style='font-size:11.0pt;font-family:"Calibri",sans-serif'>[mf](a|ei)rch</span></b><span
+style='font-size:11.0pt;font-family:"Calibri",sans-serif'> finds examples of <i>march</i>
+or <i>meirch</i> together with the mutated forms, e.g. &nbsp;<i>march</i>, <i>farch</i>,
+<i>meirch</i> and <i>feirch</i>. It also finds <i>cyfarch</i>, <i>farchnad</i>,
+<i>marchog</i> and <i>orwyddfeirch</i> because the word boundaries have not
+been set this time.</span></p>
+
+<p class=MsoNormal style='margin-left:36.0pt;vertical-align:middle'><span
+style='font-size:11.0pt;font-family:"Calibri",sans-serif'>Square brackets <b>[</b>
+and <b>]</b> enclose lists of individual symbols, so <b>[mf] </b>means&nbsp; <i>m</i>
+or <i>f</i>. (The order is not important.)</span></p>
+
+<p class=MsoNormal style='margin-left:18.0pt;text-indent:18.0pt;vertical-align:
+middle'><span style='font-size:11.0pt;font-family:"Calibri",sans-serif'>&nbsp;</span></p>
+
+<p class=MsoListParagraph style='text-indent:-18.0pt;vertical-align:middle'><span
+style='font-size:11.0pt;font-family:"Calibri",sans-serif'>4.</span><span
+style='font-size:7.0pt'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><b><span
+style='font-size:11.0pt;font-family:"Calibri",sans-serif'>\b(c|g|ngh|ch)effyl(au)?\b</span></b><span
+style='font-size:11.0pt;font-family:"Calibri",sans-serif'> finds examples of <i>ceffyl</i>
+or <i>ceffylau</i> together with the mutated forms. This should also find <i>ceffyl,
+geffyl, ngheffyl, cheffyl, ceffylau, geffylau, ngheffylau, </i>and<i> cheffylau</i>.</span></p>
+
+<p class=MsoNormal style='margin-left:18.0pt;text-indent:18.0pt;vertical-align:
+middle'><span style='font-size:11.0pt;font-family:"Calibri",sans-serif'>&nbsp;</span></p>
+
+<p class=MsoListParagraph style='text-indent:-18.0pt;vertical-align:middle'><span
+style='font-size:11.0pt;font-family:"Calibri",sans-serif'>5.</span><span
+style='font-size:7.0pt'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><b><span
+style='font-size:11.0pt;font-family:"Calibri",sans-serif;color:#222222'>\bll[ae]dd(af|i|a|odd|ir|[ae]s*|wyd|id)\b</span></b><span
+style='font-size:11.0pt;font-family:"Calibri",sans-serif'> finds examples of
+the verb <i>lladd</i>. This can be used as a pattern for verbs.</span></p>
+
+<p class=MsoNormal style='margin-left:18.0pt;text-indent:18.0pt;vertical-align:
+middle'><span style='font-size:11.0pt;font-family:"Calibri",sans-serif;
+color:#222222'>&nbsp;</span></p>
+
+<p style='margin:0cm'><span style='font-size:11.0pt;font-family:"Calibri",sans-serif'>&nbsp;</span></p>
+
+<p style='margin:0cm'><span style='font-size:11.0pt;font-family:"Calibri",sans-serif;
+color:black;background:white'>Every symbol in a regular expression represents
+itself apart from those listed below:</span></p>
+
+<p style='margin:0cm'><span style='font-size:11.0pt;font-family:"Calibri",sans-serif'>&nbsp;</span></p>
+
+<p style='margin:0cm'><b><span style='font-size:11.0pt;font-family:"Calibri",sans-serif;
+color:black'>. [ ] { } ( ) * + ? | ^ $ \</span></b></p>
+
+<p style='margin:0cm'><span style='font-size:11.0pt;font-family:"Calibri",sans-serif;
+color:black'>&nbsp;</span></p>
+
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:0cm;margin-left:36.0pt;
+text-indent:-36.0pt'><b><span style='font-size:11.0pt;font-family:"Calibri",sans-serif;
+color:black;background:white'>.</span></b><span style='font-size:11.0pt;
+font-family:"Calibri",sans-serif;color:black;background:white'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+represents any single letter/symbol yn cynrychioli unrhyw lythyren – including
+a space (except in lists of symbols).</span></p>
+
+<p style='margin:0cm'><b><span style='font-size:11.0pt;font-family:"Calibri",sans-serif;
+color:black;background:white'>[ ]</span></b><span style='font-size:11.0pt;
+font-family:"Calibri",sans-serif;color:black;background:white'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+encloses a list of symbols</span><span style='font-size:11.0pt;font-family:
+"Calibri",sans-serif'>, e.g. <b>[abc]</b> or a list of letters, e.g.<b> [a-z]</b>,
+see ex.<span style='color:black;background:white'> 3.</span></span></p>
+
+<p style='margin:0cm'><b><span style='font-size:11.0pt;font-family:"Calibri",sans-serif;
+color:black;background:white'>{ }</span></b><span style='font-size:11.0pt;
+font-family:"Calibri",sans-serif;color:black;background:white'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+shows how many times an expression is repeated, e.g. <b>a{3}</b> matches aaa</span></p>
+
+<p style='margin:0cm'><b><span style='font-size:11.0pt;font-family:"Calibri",sans-serif;
+color:black;background:white'>( )</span></b><span style='font-size:11.0pt;
+font-family:"Calibri",sans-serif;color:black;background:white'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span style='font-size:11.0pt;font-family:"Calibri",sans-serif'>groups
+items, see ex. 2, above.</span></p>
+
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:0cm;margin-left:36.0pt;
+text-indent:-36.0pt'><b><span style='font-size:11.0pt;font-family:"Calibri",sans-serif'>*</span></b><span
+style='font-size:11.0pt;font-family:"Calibri",sans-serif'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+repeats the previous expression zero or more times, so <b>.*</b> represents
+anything or nothing.</span></p>
+
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:0cm;margin-left:36.0pt;
+text-indent:-36.0pt'><b><span style='font-size:11.0pt;font-family:"Calibri",sans-serif;
+color:black'>+</span></b><span style='font-size:11.0pt;font-family:"Calibri",sans-serif;
+color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span style='font-size:11.0pt;font-family:"Calibri",sans-serif'>repeats
+the previous expression one or more times, so <b>.+arch</b> represents <i>march</i>
+and <i>farch</i>, &amp;c., but not<i> arch</i>.</span></p>
+
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:0cm;margin-left:36.0pt;
+text-indent:-36.0pt'><b><span style='font-size:11.0pt;font-family:"Calibri",sans-serif'>?</span></b><span
+style='font-size:11.0pt;font-family:"Calibri",sans-serif'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+makes the previous item optional, e.g. <b>\b[mf]?arch\b</b> represents <i>march</i>,
+<i>farch</i> and <i>arch</i>.</span></p>
+
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:0cm;margin-left:36.0pt;
+text-indent:-36.0pt'><b><span style='font-size:11.0pt;font-family:"Calibri",sans-serif;
+color:black'>|</span></b><span style='font-size:11.0pt;font-family:"Calibri",sans-serif;
+color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+means ‘or’ when it separates items, e.g. <b>(march|farch|marchog|farchog)</b>
+means any of these words, but this could be written more concisely as <b>[fm]arch(og)?</b>.</span></p>
+
+<p style='margin:0cm'><b><span style='font-size:11.0pt;font-family:"Calibri",sans-serif;
+color:black;background:white'>^</span></b><span style='font-size:11.0pt;
+font-family:"Calibri",sans-serif;color:black;background:white'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+indicates the beginning of a line.</span></p>
+
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:0cm;margin-left:36.0pt'><span
+style='font-size:11.0pt;font-family:"Calibri",sans-serif;color:black;
+background:white'>at the beginning of a list between square brackets it means
+NOT anything in the list, e.g. <b>\b[^fm]arch\b</b> finds every word of 5
+letters that ends in ‘-arch’, but NOT <i>march</i> or <i>farch</i> (it finds <i>parch</i>
+and <i>barch</i>).</span></p>
+
+<p style='margin:0cm'><b><span style='font-size:11.0pt;font-family:"Calibri",sans-serif;
+color:black;background:white'>$</span></b><span style='font-size:11.0pt;
+font-family:"Calibri",sans-serif;color:black;background:white'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+indicates the end of a line. These last two are called </span><span lang=EN-GB><a
+href="http://www.boost.org/doc/libs/1_51_0/libs/regex/doc/html/boost_regex/syntax/perl_syntax.html#boost_regex.syntax.perl_syntax.anchors"><i><span
+lang=CY style='font-size:11.0pt;font-family:"Calibri",sans-serif;background:
+white'>anchors</span></i></a></span><span class=MsoHyperlink><span
+style='font-size:11.0pt;font-family:"Calibri",sans-serif;background:white;
+text-decoration:none'>.</span></span></p>
+
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:0cm;margin-left:36.0pt;
+text-indent:-36.0pt'><b><span style='font-size:11.0pt;font-family:"Calibri",sans-serif'>-</span></b><span
+style='font-size:11.0pt;font-family:"Calibri",sans-serif'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+in a list shows a range, e.g. <b>[a-z]</b> means any lower-case letter, <b>[A-Z]</b>
+means any upper-case letter and <b>[a-zA-Z]</b> means any letter (lower- or
+upper-case), and <b>[0-9]</b> means any digit (the same as <b>[0123456789]</b>.
+(N.B. the order of letters is important: searching for <b>[z-a]</b> will fail.</span></p>
+
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:0cm;margin-left:36.0pt;
+text-indent:-36.0pt'><b><span style='font-size:11.0pt;font-family:"Calibri",sans-serif'>\</span></b><span
+style='font-size:11.0pt;font-family:"Calibri",sans-serif'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+is used before any one of the symbols above (and <b>\</b> itself) as ‘escape’,
+meaning the symbol itself without its special function, i.e. <b>\(</b>&nbsp;means
+<i>(</i>, and<i> </i>\ can be indicated by <b>\\</b>.</span></p>
+
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:0cm;margin-left:36.0pt;
+text-indent:-36.0pt'><span style='font-size:11.0pt;font-family:"Calibri",sans-serif'>&nbsp;</span></p>
+
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:0cm;margin-left:36.0pt;
+text-indent:-36.0pt'><span style='font-size:11.0pt;font-family:"Calibri",sans-serif'>&nbsp;</span></p>
+
+<h2>Notes</h2>
+
+<p style='margin:0cm'><span style='font-size:11.0pt;font-family:"Calibri",sans-serif;
+color:black'>&nbsp;</span></p>
+
+<p style='margin:0cm'><span style='font-size:11.0pt;font-family:"Calibri",sans-serif;
+color:black'>Accents are important, i.e. <b>tân</b> must be used to find
+examples of the word <i>tân</i>, and <b>tan</b> to find <i>tan</i>; <b>t[âa]n</b>
+will find both.</span></p>
+
+<p style='margin:0cm'><span style='font-size:11.0pt;font-family:"Calibri",sans-serif;
+color:black'>&nbsp;</span></p>
+
+<p style='margin:0cm'><span style='font-size:11.0pt;font-family:"Calibri",sans-serif;
+color:black'>6 = w&nbsp; in some Middle Welsh texts</span></p>
+
+<p style='margin:0cm'><span style='font-size:11.0pt;font-family:"Calibri",sans-serif;
+color:black'>&nbsp;</span></p>
+
+<p style='margin:0cm'><span style='font-size:11.0pt;font-family:"Calibri",sans-serif;
+color:black'>It’s better to be as open-ended as possible to start with and then
+restrict the search after seeing the search results.</span></p>
+
+<p align=right style='margin:0cm;text-align:right'>&nbsp;</p>
+
+</div>
+
+</body>
+
+</html>
