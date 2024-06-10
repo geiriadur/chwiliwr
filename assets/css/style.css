@@ -126,6 +126,32 @@ body {
 	color: #005cc8;
 }
 
+.narrow-search {
+    min-width: 150px;
+	max-width: 150px
+}
+
+.wide-search {
+	min-width: 100%;
+	max-width: 100%;
+}
+
+.noOverflow {
+	overflow: hidden;
+	resize: none;
+}
+
+.years-range {
+	min-width: 130px;
+	max-width: 150px;
+	float: left;
+}
+
+.years-box {
+	min-width: 50px;
+	max-width: 50px;
+}
+
 #statusMessage {
 	/* color: red !important; */
 }

@@ -52,7 +52,7 @@ http.createServer(async function (req, res) {
 	if (GETData && GETData.indexOf("&") != -1) { // make sure that GETData contains & before altering parameters
 		//console.log("TEST1: "+GETData);
 		var GETDataArray = GETData.split("query="); // split query= as GETData[0] from remainder as GETData[1]
-		if (GETDataArray[0] == "") { // this checks that we are in fact removing query= because otherwise we should stop
+		if (GETDataArray[0].length == 0) { // this checks that we are in fact removing query= because otherwise we should stop
 			GETData = GETDataArray[1]; // remainder as string }
 			GETDataArray = GETData.split("&"); // split array by &
 			GETDataArray.shift(); // remove first item (after query=) from rest of query string
@@ -376,7 +376,7 @@ http.createServer(async function (req, res) {
 		// MAKES A REQUEST TO THE WEB SERVICE FOR EACH REQUEST
 		// Added pass-through of GET data
 		//GETdata
-		https.get(sourceURL+'search?query='+val+'&rows=1000000'+'&'+GETData, (resp) => { // server will run out of memory over ~1000
+		https.get(sourceURL+'search?query='+val+'&rows=1000'+'&'+GETData, (resp) => { // server will run out of memory over ~1000
 			
 			// SET UP REQUEST
 			let request_data = '';
@@ -399,11 +399,17 @@ http.createServer(async function (req, res) {
 				callback(arrayOfMultipleObjects); // necessary to make sure that it works?
 				// CATCH ERRORS
 				}).on("error", (err) => {
-				console.log("Error: " + err.message);
+				console.error("Error: "+err);
+				console.log("Error: " + err.message); // never called?
 				/* Does not work
 					}).on("uncaughtException", (err) => {
 					console.log("Uncaught Exception: " + err.message);
 				*/
+			});
+			resp.on("error", (err) => { // Does not work either
+				console.error("Error! "+err);
+				//console.log("Error! "+err.message);
+				//throw (err);
 			});
 		});
 	}
@@ -539,11 +545,11 @@ http.createServer(async function (req, res) {
 	function acceptLang () {
 		var acceptLang;
 		acceptLang = req.headers["accept-language"];
-		if (acceptLang != "") {
+		if (typeof acceptLang === "string" && acceptLang.length != 0) { // better than checking != ""
 			acceptLangArray = acceptLang.split(','); // get first lang in sequence
 			acceptLang = acceptLangArray[0]; // put string back together
 		}
-		if (acceptLang != "") {
+		if (typeof acceptLang === "string" && acceptLang.length != 0) { // better than checking != ""
 			acceptLangArray = acceptLang.split("-"); // removes -gb, -us etc
 			acceptLang = acceptLangArray[0]; // put string back together
 		}

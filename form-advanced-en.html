@@ -22,7 +22,7 @@
                             class="info"></span>
                     </div>
                     <input type="text"
-						class="input-field"
+						class="input-field wide-search"
                         name="query"
                         id="query">
 						<p class="label">Searches are automatically put within quotation marks if there are spaces, 
@@ -30,17 +30,16 @@
 						<p class="label">WJ and WNO treat hyphens and spaces identically, unlike FileLocatorPro, 
 							so you don't need both. They don't accept \b ^ $ etc.</p>
 						<p class="link"><a href="assets/Regular_Expressions.html">Help with regular expressions</a></p>
-							</div>
+				</div>
                 <div class="inline-block responsive">
                     <div class="label">
                         Warning: <span id="complexity-info"
                             class="info"></span>
                     </div>
                     <textarea
-						class="input-field" 
+						class="input-field noOverflow wide-search" 
 						name="complexity"
 						id="complexity"
-                        style="resize: none; overflow: hidden;"
                         readonly disabled
                         cols="60" rows="5">
 						The largest number of variations allowed in the regular expression is 60 * 2 = 120.
@@ -169,6 +168,1104 @@
                     </div>
                 </div>
             </div>
+			
+			<div class="row">
+                <div class="inline-block right-margin">
+                    <div class="label">
+                        Years <span id="years-info" class="info"></span>
+                    </div>
+                    <div class="input-field-radio">
+                        <div>
+							<div class="years-range"><label for="range[min]">Earliest year</label></div>
+                            <input type="number"
+								class="years-box"
+								name="range[min]"
+								id="range[min]"
+                                value="1735">
+                        </div>
+                        <div>
+							<div class="years-range"><label for="range[max]">Latest year</label></div>
+                            <input type="number"
+								class="years-box"
+								name="range[max]"
+								id="range[max]"
+                                value="2007">
+                        </div>
+                        <div><br>
+						<label for="decade[]" class="label">Decade(s)</label><br>
+							<input type="search" id="decade-search" class="narrow-search numbers-only"><br>
+                            <select name="decade[]" id="decade[]" multiple class="narrow-search">
+								<!--option id="Decade" value="" style="display: none;">Decade</option-->
+								<option id="decade1730" value="1730">1730</option>
+								<option id="decade1740" value="1740">1740</option>
+								<option id="decade1750" value="1750">1750</option>
+								<option id="decade1760" value="1760">1760</option>
+								<option id="decade1770" value="1770">1770</option>
+								<option id="decade1780" value="1780">1780</option>
+								<option id="decade1790" value="1790">1790</option>
+								<option id="decade1800" value="1800">1800</option>
+								<option id="decade1810" value="1810">1810</option>
+								<option id="decade1820" value="1820">1820</option>
+								<option id="decade1830" value="1830">1830</option>
+								<option id="decade1840" value="1840">1840</option>
+								<option id="decade1850" value="1850">1850</option>
+								<option id="decade1860" value="1860">1860</option>
+								<option id="decade1870" value="1870">1870</option>
+								<option id="decade1880" value="1880">1880</option>
+								<option id="decade1890" value="1890">1890</option>
+								<option id="decade1900" value="1900">1900</option>
+								<option id="decade1910" value="1910">1910</option>
+								<option id="decade1920" value="1920">1920</option>
+								<option id="decade1930" value="1930">1930</option>
+								<option id="decade1940" value="1940">1940</option>
+								<option id="decade1950" value="1950">1950</option>
+								<option id="decade1960" value="1960">1960</option>
+								<option id="decade1970" value="1970">1970</option>
+								<option id="decade1980" value="1980">1980</option>
+								<option id="decade1990" value="1990">1990</option>
+								<option id="decade2000" value="2000">2000</option>
+							</select>
+                        </div>
+						<div><br>
+							<label for="year[]" class="label">Year</label><br>
+							<input type="search" id="year-search" class="narrow-search numbers-only"><br>
+                            <select name="year[]" id="year[]" multiple class="narrow-search">
+								<!--option id="Year" value="">Year</option-->
+								<option id="1735" value="1735">1735</option>
+								<option id="1736" value="1736">1736</option>
+								<option id="1737" value="1737">1737</option>
+								<option id="1738" value="1738">1738</option>
+								<option id="1739" value="1739">1739</option>
+								<option id="1740" value="1740">1740</option>
+								<option id="1741" value="1741">1741</option>
+								<option id="1742" value="1742">1742</option>
+								<option id="1743" value="1743">1743</option>
+								<option id="1744" value="1744">1744</option>
+								<option id="1745" value="1745">1745</option>
+								<option id="1746" value="1746">1746</option>
+								<option id="1747" value="1747">1747</option>
+								<option id="1748" value="1748">1748</option>
+								<option id="1749" value="1749">1749</option>
+								<option id="1750" value="1750">1750</option>
+								<option id="1751" value="1751">1751</option>
+								<option id="1752" value="1752">1752</option>
+								<option id="1753" value="1753">1753</option>
+								<option id="1754" value="1754">1754</option>
+								<option id="1755" value="1755">1755</option>
+								<option id="1756" value="1756">1756</option>
+								<option id="1757" value="1757">1757</option>
+								<option id="1758" value="1758">1758</option>
+								<option id="1759" value="1759">1759</option>
+								<option id="1760" value="1760">1760</option>
+								<option id="1761" value="1761">1761</option>
+								<option id="1762" value="1762">1762</option>
+								<option id="1763" value="1763">1763</option>
+								<option id="1764" value="1764">1764</option>
+								<option id="1765" value="1765">1765</option>
+								<option id="1766" value="1766">1766</option>
+								<option id="1767" value="1767">1767</option>
+								<option id="1768" value="1768">1768</option>
+								<option id="1769" value="1769">1769</option>
+								<option id="1770" value="1770">1770</option>
+								<option id="1771" value="1771">1771</option>
+								<option id="1772" value="1772">1772</option>
+								<option id="1773" value="1773">1773</option>
+								<option id="1774" value="1774">1774</option>
+								<option id="1775" value="1775">1775</option>
+								<option id="1776" value="1776">1776</option>
+								<option id="1777" value="1777">1777</option>
+								<option id="1778" value="1778">1778</option>
+								<option id="1779" value="1779">1779</option>
+								<option id="1780" value="1780">1780</option>
+								<option id="1781" value="1781">1781</option>
+								<option id="1782" value="1782">1782</option>
+								<option id="1783" value="1783">1783</option>
+								<option id="1784" value="1784">1784</option>
+								<option id="1785" value="1785">1785</option>
+								<option id="1786" value="1786">1786</option>
+								<option id="1787" value="1787">1787</option>
+								<option id="1788" value="1788">1788</option>
+								<option id="1789" value="1789">1789</option>
+								<option id="1790" value="1790">1790</option>
+								<option id="1791" value="1791">1791</option>
+								<option id="1792" value="1792">1792</option>
+								<option id="1793" value="1793">1793</option>
+								<option id="1794" value="1794">1794</option>
+								<option id="1795" value="1795">1795</option>
+								<option id="1796" value="1796">1796</option>
+								<option id="1797" value="1797">1797</option>
+								<option id="1798" value="1798">1798</option>
+								<option id="1799" value="1799">1799</option>
+								<option id="1800" value="1800">1800</option>
+								<option id="1801" value="1801">1801</option>
+								<option id="1802" value="1802">1802</option>
+								<option id="1803" value="1803">1803</option>
+								<option id="1804" value="1804">1804</option>
+								<option id="1805" value="1805">1805</option>
+								<option id="1806" value="1806">1806</option>
+								<option id="1807" value="1807">1807</option>
+								<option id="1808" value="1808">1808</option>
+								<option id="1809" value="1809">1809</option>
+								<option id="1810" value="1810">1810</option>
+								<option id="1811" value="1811">1811</option>
+								<option id="1812" value="1812">1812</option>
+								<option id="1813" value="1813">1813</option>
+								<option id="1814" value="1814">1814</option>
+								<option id="1815" value="1815">1815</option>
+								<option id="1816" value="1816">1816</option>
+								<option id="1817" value="1817">1817</option>
+								<option id="1818" value="1818">1818</option>
+								<option id="1819" value="1819">1819</option>
+								<option id="1820" value="1820">1820</option>
+								<option id="1821" value="1821">1821</option>
+								<option id="1822" value="1822">1822</option>
+								<option id="1823" value="1823">1823</option>
+								<option id="1824" value="1824">1824</option>
+								<option id="1825" value="1825">1825</option>
+								<option id="1826" value="1826">1826</option>
+								<option id="1827" value="1827">1827</option>
+								<option id="1828" value="1828">1828</option>
+								<option id="1829" value="1829">1829</option>
+								<option id="1830" value="1830">1830</option>
+								<option id="1831" value="1831">1831</option>
+								<option id="1832" value="1832">1832</option>
+								<option id="1833" value="1833">1833</option>
+								<option id="1834" value="1834">1834</option>
+								<option id="1835" value="1835">1835</option>
+								<option id="1836" value="1836">1836</option>
+								<option id="1837" value="1837">1837</option>
+								<option id="1838" value="1838">1838</option>
+								<option id="1839" value="1839">1839</option>
+								<option id="1840" value="1840">1840</option>
+								<option id="1841" value="1841">1841</option>
+								<option id="1842" value="1842">1842</option>
+								<option id="1843" value="1843">1843</option>
+								<option id="1844" value="1844">1844</option>
+								<option id="1845" value="1845">1845</option>
+								<option id="1846" value="1846">1846</option>
+								<option id="1847" value="1847">1847</option>
+								<option id="1848" value="1848">1848</option>
+								<option id="1849" value="1849">1849</option>
+								<option id="1850" value="1850">1850</option>
+								<option id="1851" value="1851">1851</option>
+								<option id="1852" value="1852">1852</option>
+								<option id="1853" value="1853">1853</option>
+								<option id="1854" value="1854">1854</option>
+								<option id="1855" value="1855">1855</option>
+								<option id="1856" value="1856">1856</option>
+								<option id="1857" value="1857">1857</option>
+								<option id="1858" value="1858">1858</option>
+								<option id="1859" value="1859">1859</option>
+								<option id="1860" value="1860">1860</option>
+								<option id="1861" value="1861">1861</option>
+								<option id="1862" value="1862">1862</option>
+								<option id="1863" value="1863">1863</option>
+								<option id="1864" value="1864">1864</option>
+								<option id="1865" value="1865">1865</option>
+								<option id="1866" value="1866">1866</option>
+								<option id="1867" value="1867">1867</option>
+								<option id="1868" value="1868">1868</option>
+								<option id="1869" value="1869">1869</option>
+								<option id="1870" value="1870">1870</option>
+								<option id="1871" value="1871">1871</option>
+								<option id="1872" value="1872">1872</option>
+								<option id="1873" value="1873">1873</option>
+								<option id="1874" value="1874">1874</option>
+								<option id="1875" value="1875">1875</option>
+								<option id="1876" value="1876">1876</option>
+								<option id="1877" value="1877">1877</option>
+								<option id="1878" value="1878">1878</option>
+								<option id="1879" value="1879">1879</option>
+								<option id="1880" value="1880">1880</option>
+								<option id="1881" value="1881">1881</option>
+								<option id="1882" value="1882">1882</option>
+								<option id="1883" value="1883">1883</option>
+								<option id="1884" value="1884">1884</option>
+								<option id="1885" value="1885">1885</option>
+								<option id="1886" value="1886">1886</option>
+								<option id="1887" value="1887">1887</option>
+								<option id="1888" value="1888">1888</option>
+								<option id="1889" value="1889">1889</option>
+								<option id="1890" value="1890">1890</option>
+								<option id="1891" value="1891">1891</option>
+								<option id="1892" value="1892">1892</option>
+								<option id="1893" value="1893">1893</option>
+								<option id="1894" value="1894">1894</option>
+								<option id="1895" value="1895">1895</option>
+								<option id="1896" value="1896">1896</option>
+								<option id="1897" value="1897">1897</option>
+								<option id="1898" value="1898">1898</option>
+								<option id="1899" value="1899">1899</option>
+								<option id="1900" value="1900">1900</option>
+								<option id="1901" value="1901">1901</option>
+								<option id="1902" value="1902">1902</option>
+								<option id="1903" value="1903">1903</option>
+								<option id="1904" value="1904">1904</option>
+								<option id="1905" value="1905">1905</option>
+								<option id="1906" value="1906">1906</option>
+								<option id="1907" value="1907">1907</option>
+								<option id="1908" value="1908">1908</option>
+								<option id="1909" value="1909">1909</option>
+								<option id="1910" value="1910">1910</option>
+								<option id="1911" value="1911">1911</option>
+								<option id="1912" value="1912">1912</option>
+								<option id="1913" value="1913">1913</option>
+								<option id="1914" value="1914">1914</option>
+								<option id="1915" value="1915">1915</option>
+								<option id="1916" value="1916">1916</option>
+								<option id="1917" value="1917">1917</option>
+								<option id="1918" value="1918">1918</option>
+								<option id="1919" value="1919">1919</option>
+								<option id="1920" value="1920">1920</option>
+								<option id="1921" value="1921">1921</option>
+								<option id="1922" value="1922">1922</option>
+								<option id="1923" value="1923">1923</option>
+								<option id="1924" value="1924">1924</option>
+								<option id="1925" value="1925">1925</option>
+								<option id="1926" value="1926">1926</option>
+								<option id="1927" value="1927">1927</option>
+								<option id="1928" value="1928">1928</option>
+								<option id="1929" value="1929">1929</option>
+								<option id="1930" value="1930">1930</option>
+								<option id="1931" value="1931">1931</option>
+								<option id="1932" value="1932">1932</option>
+								<option id="1933" value="1933">1933</option>
+								<option id="1934" value="1934">1934</option>
+								<option id="1935" value="1935">1935</option>
+								<option id="1936" value="1936">1936</option>
+								<option id="1937" value="1937">1937</option>
+								<option id="1938" value="1938">1938</option>
+								<option id="1939" value="1939">1939</option>
+								<option id="1940" value="1940">1940</option>
+								<option id="1941" value="1941">1941</option>
+								<option id="1942" value="1942">1942</option>
+								<option id="1943" value="1943">1943</option>
+								<option id="1944" value="1944">1944</option>
+								<option id="1945" value="1945">1945</option>
+								<option id="1946" value="1946">1946</option>
+								<option id="1947" value="1947">1947</option>
+								<option id="1948" value="1948">1948</option>
+								<option id="1949" value="1949">1949</option>
+								<option id="1950" value="1950">1950</option>
+								<option id="1951" value="1951">1951</option>
+								<option id="1952" value="1952">1952</option>
+								<option id="1953" value="1953">1953</option>
+								<option id="1954" value="1954">1954</option>
+								<option id="1955" value="1955">1955</option>
+								<option id="1956" value="1956">1956</option>
+								<option id="1957" value="1957">1957</option>
+								<option id="1958" value="1958">1958</option>
+								<option id="1959" value="1959">1959</option>
+								<option id="1960" value="1960">1960</option>
+								<option id="1961" value="1961">1961</option>
+								<option id="1962" value="1962">1962</option>
+								<option id="1963" value="1963">1963</option>
+								<option id="1964" value="1964">1964</option>
+								<option id="1965" value="1965">1965</option>
+								<option id="1966" value="1966">1966</option>
+								<option id="1967" value="1967">1967</option>
+								<option id="1968" value="1968">1968</option>
+								<option id="1969" value="1969">1969</option>
+								<option id="1970" value="1970">1970</option>
+								<option id="1971" value="1971">1971</option>
+								<option id="1972" value="1972">1972</option>
+								<option id="1973" value="1973">1973</option>
+								<option id="1974" value="1974">1974</option>
+								<option id="1975" value="1975">1975</option>
+								<option id="1976" value="1976">1976</option>
+								<option id="1977" value="1977">1977</option>
+								<option id="1978" value="1978">1978</option>
+								<option id="1979" value="1979">1979</option>
+								<option id="1980" value="1980">1980</option>
+								<option id="1981" value="1981">1981</option>
+								<option id="1982" value="1982">1982</option>
+								<option id="1983" value="1983">1983</option>
+								<option id="1984" value="1984">1984</option>
+								<option id="1985" value="1985">1985</option>
+								<option id="1986" value="1986">1986</option>
+								<option id="1987" value="1987">1987</option>
+								<option id="1988" value="1988">1988</option>
+								<option id="1989" value="1989">1989</option>
+								<option id="1990" value="1990">1990</option>
+								<option id="1991" value="1991">1991</option>
+								<option id="1992" value="1992">1992</option>
+								<option id="1993" value="1993">1993</option>
+								<option id="1994" value="1994">1994</option>
+								<option id="1995" value="1995">1995</option>
+								<option id="1996" value="1996">1996</option>
+								<option id="1997" value="1997">1997</option>
+								<option id="1998" value="1998">1998</option>
+								<option id="1999" value="1999">1999</option>
+								<option id="2000" value="2000">2000</option>
+								<option id="2001" value="2001">2001</option>
+								<option id="2002" value="2002">2002</option>
+								<option id="2003" value="2003">2003</option>
+								<option id="2004" value="2004">2004</option>
+								<option id="2005" value="2005">2005</option>
+								<option id="2006" value="2006">2006</option>
+								<option id="2007" value="2007">2007</option>
+							</select>
+                        </div>
+                   </div>
+                </div>
+                <div class="inline-block responsive">
+                    <!--div class="label">
+                        Date <span id="date-info" class="info"></span>
+                    </div-->
+                    <div class="input-field-radio">
+                        <!--div>
+							<label for="year[]">Year</label>
+                            <input type="number" placeholder="YYYY"
+								class="years-option"
+								name="year[]"
+								id="year[]"
+								min="1735"
+								max="2007">
+                        </div-->						
+                        <div>
+							<label for="month[]" class="label">Month</label><br>
+							<input type="search" id="month-search" class="narrow-search text-only"><br>
+                            <select name="month[]" id="month[]" multiple class="narrow-search">
+								<!--option id="Month" value="">Month</option-->
+								<option id="January" value="1">January</option>
+								<option id="February" value="2">February</option>
+								<option id="March" value="3">March</option>
+								<option id="April" value="4">April</option>
+								<option id="May" value="5">May</option>
+								<option id="June" value="6">June</option>
+								<option id="July" value="7">July</option>
+								<option id="August" value="8">August</option>
+								<option id="September" value="9">September</option>
+								<option id="October" value="10">October</option>
+								<option id="November" value="11">November</option>
+								<option id="December" value="12">December</option>
+							</select>
+                        </div>
+						<div><br>
+							<label for="day[]" class="label">Day</label><br>
+							<input type="search" id="day-search" class="narrow-search numbers-only"><br>
+                            <select name="day[]" id="day[]" multiple class="narrow-search">
+								<!--option id="0" value="">Day</option-->
+								<option id="1" value="1">1</option>
+								<option id="2" value="2">2</option>
+								<option id="3" value="3">3</option>
+								<option id="4" value="4">4</option>
+								<option id="5" value="5">5</option>
+								<option id="6" value="6">6</option>
+								<option id="7" value="7">7</option>
+								<option id="8" value="8">8</option>
+								<option id="9" value="9">9</option>
+								<option id="10" value="10">10</option>
+								<option id="11" value="11">11</option>
+								<option id="12" value="12">12</option>
+								<option id="13" value="13">13</option>
+								<option id="14" value="14">14</option>
+								<option id="15" value="15">15</option>
+								<option id="16" value="16">16</option>
+								<option id="17" value="17">17</option>
+								<option id="18" value="18">18</option>
+								<option id="19" value="19">19</option>
+								<option id="20" value="20">20</option>
+								<option id="21" value="21">21</option>
+								<option id="22" value="22">22</option>
+								<option id="23" value="23">23</option>
+								<option id="24" value="24">24</option>
+								<option id="25" value="25">25</option>
+								<option id="26" value="26">26</option>
+								<option id="27" value="27">27</option>
+								<option id="28" value="28">28</option>
+								<option id="29" value="29">29</option>
+								<option class="no-feb" id="30" value="30">30</option>
+								<option class="no-feb no-long" id="31" value="31">31</option>
+							</select>
+                        </div>
+                    </div><br>
+					<div class="input-field-radio">
+                        <div>
+                            <input type="checkbox"
+								class="lang-option"
+								name="lang[]"
+                                id="cy"
+                                value="cy">Welsh
+                        </div>
+                        <div>
+                            <input type="checkbox"
+								class="lang-option" 
+								name="lang[]"
+                                id="en"
+                                value="en">English
+                        </div>
+                    </div>
+                </div>
+            </div>
+			
+			<div class="row">
+                <div class="inline-block right-margin">
+                    <div class="input-field-radio">
+                        <div class="cc_and_pn">
+						<label for="publication[]" class="label">Publication(s)</label><br>
+							<input type="search" id="pub-search" class="wide-search"><br>
+                            <select name="publication[]" id="publication[]" multiple size="8" class="wide-search">
+								<!--option id="Publication" value="" style="display: none;">Publication</option-->
+								<option id="CC_Eurgrawn_Wesleyaidd" value="Eurgrawn Wesleyaidd">Eurgrawn Wesleyaidd</option>
+								<option id="CC_Dysgedydd_crefyddol" value="Dysgedydd crefyddol">Dysgedydd crefyddol</option>
+								<option id="CC_Cyfaill_o'r_Hen_Wlad_yn_America" value="Cyfaill o'r Hen Wlad yn America">Cyfaill o'r Hen Wlad yn America</option>
+								<option id="CC_Yr_haul" value="Yr haul">Yr haul</option>
+								<option id="CC_Drysorfa_(Caerlleon)" value="Drysorfa (Caerlleon)">Drysorfa (Caerlleon)</option>
+								<option id="CC_Diwygiwr" value="Diwygiwr">Diwygiwr</option>
+								<option id="CC_Y_Traethodydd_(1900-2007)" value="Y Traethodydd (1900-2007)">Y Traethodydd (1900-2007)</option>
+								<option id="CC_Seren_Gomer" value="Seren Gomer">Seren Gomer</option>
+								<option id="CC_Y_Traethodydd_(1845-1899)" value="Y Traethodydd (1845-1899)">Y Traethodydd (1845-1899)</option>
+								<option id="CC_Cronicl_y_cymdeithasau_crefyddol" value="Cronicl y cymdeithasau crefyddol">Cronicl y cymdeithasau crefyddol</option>
+								<option id="CC_Archaeologia_Cambrensis_(1846-1899)" value="Archaeologia Cambrensis (1846-1899)">Archaeologia Cambrensis (1846-1899)</option>
+								<option id="CC_Cenhadwr_Americanaidd" value="Cenhadwr Americanaidd">Cenhadwr Americanaidd</option>
+								<option id="CC_Transactions_of_the_Honourable_Society_of_Cymmrodorion" value="Transactions of the Honourable Society of Cymmrodorion">Transactions of the Honourable Society of Cymmrodorion</option>
+								<option id="CC_Greal_(Llangollen)" value="Greal (Llangollen)">Greal (Llangollen)</option>
+								<option id="CC_Yr_athraw" value="Yr athraw">Yr athraw</option>
+								<option id="CC_Archaeologia_Cambrensis_(1900-1999)" value="Archaeologia Cambrensis (1900-1999)">Archaeologia Cambrensis (1900-1999)</option>
+								<option id="CC_Yr_ymofynydd" value="Yr ymofynydd">Yr ymofynydd</option>
+								<option id="CC_Trysorfa_y_plant" value="Trysorfa y plant">Trysorfa y plant</option>
+								<option id="CC_Cyfaill_eglwysig" value="Cyfaill eglwysig">Cyfaill eglwysig</option>
+								<option id="CC_Y_winllan" value="Y winllan">Y winllan</option>
+								<option id="CC_Cymru" value="Cymru">Cymru</option>
+								<option id="CC_Tywysydd_y_plant" value="Tywysydd y plant">Tywysydd y plant</option>
+								<option id="CC_National_Library_of_Wales_journal" value="National Library of Wales journal">National Library of Wales journal</option>
+								<option id="CC_Archeologica_Cambrensis_(1900-1999)" value="Archeologica Cambrensis (1900-1999)">Archeologica Cambrensis (1900-1999)</option>
+								<option id="CC_Y_cylchgrawn" value="Y cylchgrawn">Y cylchgrawn</option>
+								<option id="CC_Welsh_History_Review_Cylchgrawn_Hanes_Cymru." value="Welsh History Review Cylchgrawn Hanes Cymru.">Welsh History Review Cylchgrawn Hanes Cymru.</option>
+								<option id="CC_Dysgedydd_y_plant" value="Dysgedydd y plant">Dysgedydd y plant</option>
+								<option id="CC_Cenad_hedd_(Merthyr)" value="Cenad hedd (Merthyr)">Cenad hedd (Merthyr)</option>
+								<option id="CC_University_College_of_Wales_magazine" value="University College of Wales magazine">University College of Wales magazine</option>
+								<option id="CC_Y_geninen" value="Y geninen">Y geninen</option>
+								<option id="CC_Y_Lladmerydd" value="Y Lladmerydd">Y Lladmerydd</option>
+								<option id="CC_Y_Cymmrodor_the_magazine_of_the_Honourable_Society_of_Cymmrodorion_(1900-1951)." value="Y Cymmrodor the magazine of the Honourable Society of Cymmrodorion (1900-1951).">Y Cymmrodor the magazine of the Honourable Society of Cymmrodorion (1900-1951).</option>
+								<option id="CC_Bye-gones" value="Bye-gones">Bye-gones</option>
+								<option id="CC_Montgomeryshire_collections_relating_to_Montgomeryshire_and_its_borders." value="Montgomeryshire collections relating to Montgomeryshire and its borders.">Montgomeryshire collections relating to Montgomeryshire and its borders.</option>
+								<option id="CC_Yr_hauwr" value="Yr hauwr">Yr hauwr</option>
+								<option id="CC_Y_wawr_(Utica)" value="Y wawr (Utica)">Y wawr (Utica)</option>
+								<option id="CC_Welsh_outlook_a_monthly_journal_of_national_social_progress." value="Welsh outlook a monthly journal of national social progress.">Welsh outlook a monthly journal of national social progress.</option>
+								<option id="CC_Radnorshire_Society_transactions" value="Radnorshire Society transactions">Radnorshire Society transactions</option>
+								<option id="CC_Y_Beirniad_1859-1879" value="Y Beirniad 1859-1879">Y Beirniad 1859-1879</option>
+								<option id="CC_Y_Llenor_cylchgrawn_chwarterol_dan_nawdd_cymdeithasau_Cymraeg_y_colegau_cenedlaethol." value="Y Llenor cylchgrawn chwarterol dan nawdd cymdeithasau Cymraeg y colegau cenedlaethol.">Y Llenor cylchgrawn chwarterol dan nawdd cymdeithasau Cymraeg y colegau cenedlaethol.</option>
+								<option id="CC_Cymru'r_plant" value="Cymru'r plant">Cymru'r plant</option>
+								<option id="CC_The_treasury" value="The treasury">The treasury</option>
+								<option id="CC_Red_Dragon" value="Red Dragon">Red Dragon</option>
+								<option id="CC_Yr_ymwelydd_(Porthmadog)" value="Yr ymwelydd (Porthmadog)">Yr ymwelydd (Porthmadog)</option>
+								<option id="CC_Journal_of_the_Chester_Archaeological_and_Historical_Society" value="Journal of the Chester Archaeological and Historical Society">Journal of the Chester Archaeological and Historical Society</option>
+								<option id="CC_Reports_and_transactions_(Cardiff_Naturalists'_Society),_1900-1981" value="Reports and transactions (Cardiff Naturalists' Society), 1900-1981">Reports and transactions (Cardiff Naturalists' Society), 1900-1981</option>
+								<option id="CC_Y_bedyddiwr_:_sef,_cyfrwng_gwybodaeth_ac_hanesion_cyffredinol_..." value="Y bedyddiwr : sef, cyfrwng gwybodaeth ac hanesion cyffredinol ...">Y bedyddiwr : sef, cyfrwng gwybodaeth ac hanesion cyffredinol ...</option>
+								<option id="CC_Llusern_(Caernarfon)" value="Llusern (Caernarfon)">Llusern (Caernarfon)</option>
+								<option id="CC_Cyfaill_Deoniaeth_Llanbadarn_Fawr" value="Cyfaill Deoniaeth Llanbadarn Fawr">Cyfaill Deoniaeth Llanbadarn Fawr</option>
+								<option id="CC_Brycheiniog" value="Brycheiniog">Brycheiniog</option>
+								<option id="CC_Ceredigion_:_Journal_of_the_Cardiganshire_Antiquarian_Society" value="Ceredigion : Journal of the Cardiganshire Antiquarian Society">Ceredigion : Journal of the Cardiganshire Antiquarian Society</option>
+								<option id="CC_Lleufer_cylchgrawn_Cymdeithas_Addysg_y_Gweithwyr_yng_Nghymru." value="Lleufer cylchgrawn Cymdeithas Addysg y Gweithwyr yng Nghymru.">Lleufer cylchgrawn Cymdeithas Addysg y Gweithwyr yng Nghymru.</option>
+								<option id="CC_Seren_yr_ysgol_Sul" value="Seren yr ysgol Sul">Seren yr ysgol Sul</option>
+								<option id="CC_Morgannwg_transactions_of_the_Glamorgan_Local_History_Society." value="Morgannwg transactions of the Glamorgan Local History Society.">Morgannwg transactions of the Glamorgan Local History Society.</option>
+								<option id="CC_Gwyliedydd_(Bala)" value="Gwyliedydd (Bala)">Gwyliedydd (Bala)</option>
+								<option id="CC_Y_gwyddonydd_cylchgrawn_gwyddonol." value="Y gwyddonydd cylchgrawn gwyddonol.">Y gwyddonydd cylchgrawn gwyddonol.</option>
+								<option id="CC_Monthly_treasury" value="Monthly treasury">Monthly treasury</option>
+								<option id="CC_Y_frythones" value="Y frythones">Y frythones</option>
+								<option id="CC_Cwrs_y_byd" value="Cwrs y byd">Cwrs y byd</option>
+								<option id="CC_Athraw_i_Blentyn" value="Athraw i Blentyn">Athraw i Blentyn</option>
+								<option id="CC_Y_Tywysydd_a'r_Gymraes" value="Y Tywysydd a'r Gymraes">Y Tywysydd a'r Gymraes</option>
+								<option id="CC_Collections,_historical_&_archaeological_relating_to_Montgomeryshire" value="Collections, historical & archaeological relating to Montgomeryshire">Collections, historical & archaeological relating to Montgomeryshire</option>
+								<option id="CC_Efrydiau_athronyddol" value="Efrydiau athronyddol">Efrydiau athronyddol</option>
+								<option id="CC_Yr_herald_cenadol" value="Yr herald cenadol">Yr herald cenadol</option>
+								<option id="CC_Tywysydd_yr_ieuainc" value="Tywysydd yr ieuainc">Tywysydd yr ieuainc</option>
+								<option id="CC_Nature_in_Wales_the_quarterly_journal_of_the_West_Wales_Field_Society." value="Nature in Wales the quarterly journal of the West Wales Field Society.">Nature in Wales the quarterly journal of the West Wales Field Society.</option>
+								<option id="CC_Gower_journal_of_the_Gower_Society." value="Gower journal of the Gower Society.">Gower journal of the Gower Society.</option>
+								<option id="CC_Perl_y_plant" value="Perl y plant">Perl y plant</option>
+								<option id="CC_Cyfaill_Yr_Aelwyd" value="Cyfaill Yr Aelwyd">Cyfaill Yr Aelwyd</option>
+								<option id="CC_Greal_y_Bedyddwyr_(Aberteifi)" value="Greal y Bedyddwyr (Aberteifi)">Greal y Bedyddwyr (Aberteifi)</option>
+								<option id="CC_Cambrian_Journal" value="Cambrian Journal">Cambrian Journal</option>
+								<option id="CC_Flintshire_Historical_Society_publications" value="Flintshire Historical Society publications">Flintshire Historical Society publications</option>
+								<option id="CC_Pulpud_Cymru" value="Pulpud Cymru">Pulpud Cymru</option>
+								<option id="CC_Gwladgarwr_(Caerlleon)" value="Gwladgarwr (Caerlleon)">Gwladgarwr (Caerlleon)</option>
+								<option id="CC_Goleuad_Gwynedd" value="Goleuad Gwynedd">Goleuad Gwynedd</option>
+								<option id="CC_Llafur_the_journal_of_the_Society_for_the_Study_of_Welsh_Labour_History." value="Llafur the journal of the Society for the Study of Welsh Labour History.">Llafur the journal of the Society for the Study of Welsh Labour History.</option>
+								<option id="CC_Journal_of_the_Welsh_Bibliographical_Society" value="Journal of the Welsh Bibliographical Society">Journal of the Welsh Bibliographical Society</option>
+								<option id="CC_Wales" value="Wales">Wales</option>
+								<option id="CC_Y_seren_orllewinol" value="Y seren orllewinol">Y seren orllewinol</option>
+								<option id="CC_Gwent_local_history_the_journal_of_Gwent_Local_History_Council." value="Gwent local history the journal of Gwent Local History Council.">Gwent local history the journal of Gwent Local History Council.</option>
+								<option id="CC_Y_Cofiadur_sef_cylchgrawn_Cymdeithas_Hanes_Annibynwyr_Cymru." value="Y Cofiadur sef cylchgrawn Cymdeithas Hanes Annibynwyr Cymru.">Y Cofiadur sef cylchgrawn Cymdeithas Hanes Annibynwyr Cymru.</option>
+								<option id="CC_Y_Deonglwr" value="Y Deonglwr">Y Deonglwr</option>
+								<option id="CC_Cristion" value="Cristion">Cristion</option>
+								<option id="CC_Magazine_of_the_University_College_of_North_Wales" value="Magazine of the University College of North Wales">Magazine of the University College of North Wales</option>
+								<option id="CC_Udgorn_Seion" value="Udgorn Seion">Udgorn Seion</option>
+								<option id="CC_Cambria_a_Welsh_geographical_review" value="Cambria a Welsh geographical review">Cambria a Welsh geographical review</option>
+								<option id="CC_Contemporary_Wales_an_annual_of_economic_&_social_research." value="Contemporary Wales an annual of economic & social research.">Contemporary Wales an annual of economic & social research.</option>
+								<option id="CC_Y_cerddor" value="Y cerddor">Y cerddor</option>
+								<option id="CC_Lamp_(Oshkosh,_Wisconsin)" value="Lamp (Oshkosh, Wisconsin)">Lamp (Oshkosh, Wisconsin)</option>
+								<option id="CC_Y_Gymraes_(Dolgellau)" value="Y Gymraes (Dolgellau)">Y Gymraes (Dolgellau)</option>
+								<option id="CC_Young_Wales" value="Young Wales">Young Wales</option>
+								<option id="CC_Y_Drysorfa_Gynnulleidfaol" value="Y Drysorfa Gynnulleidfaol">Y Drysorfa Gynnulleidfaol</option>
+								<option id="CC_Yr_Annibynwr" value="Yr Annibynwr">Yr Annibynwr</option>
+								<option id="CC_Y_tyst_dirwestol" value="Y tyst dirwestol">Y tyst dirwestol</option>
+								<option id="CC_Trysorfa'r_Adroddwr" value="Trysorfa'r Adroddwr">Trysorfa'r Adroddwr</option>
+								<option id="CC_Cyfaill_Eglwysig_Deoniaeth_Glyn_Aeron" value="Cyfaill Eglwysig Deoniaeth Glyn Aeron">Cyfaill Eglwysig Deoniaeth Glyn Aeron</option>
+								<option id="CC_Cambrian_quarterly_magazine_and_Celtic_repertory" value="Cambrian quarterly magazine and Celtic repertory">Cambrian quarterly magazine and Celtic repertory</option>
+								<option id="CC_Traethodydd_yn_America" value="Traethodydd yn America">Traethodydd yn America</option>
+								<option id="CC_Athraw_(Llanidloes)" value="Athraw (Llanidloes)">Athraw (Llanidloes)</option>
+								<option id="CC_Llais_Rhyddid" value="Llais Rhyddid">Llais Rhyddid</option>
+								<option id="CC_Cymru_Fydd" value="Cymru Fydd">Cymru Fydd</option>
+								<option id="CC_Y_Brython" value="Y Brython">Y Brython</option>
+								<option id="CC_Heddiw_cylchgrawn_misol." value="Heddiw cylchgrawn misol.">Heddiw cylchgrawn misol.</option>
+								<option id="CC_Cennad_cylchgrawn_Y_Gymdeithas_Feddygol." value="Cennad cylchgrawn Y Gymdeithas Feddygol.">Cennad cylchgrawn Y Gymdeithas Feddygol.</option>
+								<option id="CC_Dyngarwr_(Caernarfon)" value="Dyngarwr (Caernarfon)">Dyngarwr (Caernarfon)</option>
+								<option id="CC_Yr_arweinydd_(Aberystwyth)" value="Yr arweinydd (Aberystwyth)">Yr arweinydd (Aberystwyth)</option>
+								<option id="CC_Cronicl_yr_Ysgol_Sabbothol" value="Cronicl yr Ysgol Sabbothol">Cronicl yr Ysgol Sabbothol</option>
+								<option id="CC_Cronicl_Cenadol" value="Cronicl Cenadol">Cronicl Cenadol</option>
+								<option id="CC_Bathafarn_the_journal_of_the_Historical_Society_of_the_Methodist_Church_in_Wales." value="Bathafarn the journal of the Historical Society of the Methodist Church in Wales.">Bathafarn the journal of the Historical Society of the Methodist Church in Wales.</option>
+								<option id="CC_Baptist_Record" value="Baptist Record">Baptist Record</option>
+								<option id="CC_Baner_y_Groes" value="Baner y Groes">Baner y Groes</option>
+								<option id="CC_Y_Cerddor_Cymreig" value="Y Cerddor Cymreig">Y Cerddor Cymreig</option>
+								<option id="CC_Cerddor_y_Cymry_(Atodiad_i_Cyfaill_yr_Aelwyd)" value="Cerddor y Cymry (Atodiad i Cyfaill yr Aelwyd)">Cerddor y Cymry (Atodiad i Cyfaill yr Aelwyd)</option>
+								<option id="CC_Transactions_of_the_Liverpool_Welsh_National_Society" value="Transactions of the Liverpool Welsh National Society">Transactions of the Liverpool Welsh National Society</option>
+								<option id="CC_Tyst_Apostolaidd" value="Tyst Apostolaidd">Tyst Apostolaidd</option>
+								<option id="CC_Yr_Efangylydd" value="Yr Efangylydd">Yr Efangylydd</option>
+								<option id="CC_Yr_Ymwelydd_Misol" value="Yr Ymwelydd Misol">Yr Ymwelydd Misol</option>
+								<option id="CC_Monthly_tidings" value="Monthly tidings">Monthly tidings</option>
+								<option id="CC_The_Torch" value="The Torch">The Torch</option>
+								<option id="CC_Wales_1894-1897" value="Wales 1894-1897">Wales 1894-1897</option>
+								<option id="CC_Amddiffynydd_yr_Eglwys" value="Amddiffynydd yr Eglwys">Amddiffynydd yr Eglwys</option>
+								<option id="CC_Cylchgrawn_myfyrwyr_y_Bala" value="Cylchgrawn myfyrwyr y Bala">Cylchgrawn myfyrwyr y Bala</option>
+								<option id="CC_Adolygydd_(Caerdydd)" value="Adolygydd (Caerdydd)">Adolygydd (Caerdydd)</option>
+								<option id="CC_Yr_hysbysydd" value="Yr hysbysydd">Yr hysbysydd</option>
+								<option id="CC_Flintshire_Historical_Society_journal" value="Flintshire Historical Society journal">Flintshire Historical Society journal</option>
+								<option id="CC_Athronydd_Cymraeg" value="Athronydd Cymraeg">Athronydd Cymraeg</option>
+								<option id="CC_Reports_and_transactions_;_Cardiff_Naturalists'_Society" value="Reports and transactions ; Cardiff Naturalists' Society">Reports and transactions ; Cardiff Naturalists' Society</option>
+								<option id="CC_Yr_eglwysydd" value="Yr eglwysydd">Yr eglwysydd</option>
+								<option id="CC_Y_ford_gron_(The_round_table)_papur_Cymry'r_byd." value="Y ford gron (The round table) papur Cymry'r byd.">Y ford gron (The round table) papur Cymry'r byd.</option>
+								<option id="CC_Trysorfa" value="Trysorfa">Trysorfa</option>
+								<option id="CC_Geiniogwerth" value="Geiniogwerth">Geiniogwerth</option>
+								<option id="CC_Cronicl_(Llanbrynmair)" value="Cronicl (Llanbrynmair)">Cronicl (Llanbrynmair)</option>
+								<option id="CC_Trysor_i_blentyn" value="Trysor i blentyn">Trysor i blentyn</option>
+								<option id="CC_Transactions_and_archaeological_record,_Cardiganshire_Antiquarian_Society" value="Transactions and archaeological record, Cardiganshire Antiquarian Society">Transactions and archaeological record, Cardiganshire Antiquarian Society</option>
+								<option id="CC_Men_of_Harlech" value="Men of Harlech">Men of Harlech</option>
+								<option id="CC_Welsh_music_history" value="Welsh music history">Welsh music history</option>
+								<option id="CC_Cambrian_Register" value="Cambrian Register">Cambrian Register</option>
+								<option id="CC_Cyfaill_yr_aelwyd_a'r_Frythones" value="Cyfaill yr aelwyd a'r Frythones">Cyfaill yr aelwyd a'r Frythones</option>
+								<option id="CC_Lleuad_yr_oes" value="Lleuad yr oes">Lleuad yr oes</option>
+								<option id="CC_Llenor_(Wrecsam)_1895-1898" value="Llenor (Wrecsam) 1895-1898">Llenor (Wrecsam) 1895-1898</option>
+								<option id="CC_Blodau_Yr_Oes" value="Blodau Yr Oes">Blodau Yr Oes</option>
+								<option id="CC_Journal_of_Welsh_religious_history" value="Journal of Welsh religious history">Journal of Welsh religious history</option>
+								<option id="CC_Cambro-Briton_and_general_Celtic_repository" value="Cambro-Briton and general Celtic repository">Cambro-Briton and general Celtic repository</option>
+								<option id="CC_Cerddor_y_tonic_sol-ffa" value="Cerddor y tonic sol-ffa">Cerddor y tonic sol-ffa</option>
+								<option id="CC_Ruthin_School_magazine" value="Ruthin School magazine">Ruthin School magazine</option>
+								<option id="CC_Journal_of_the_Pembrokeshire_Historical_Society" value="Journal of the Pembrokeshire Historical Society">Journal of the Pembrokeshire Historical Society</option>
+								<option id="CC_The_nationalist" value="The nationalist">The nationalist</option>
+								<option id="CC_Journal_of_the_Welsh_Agricultural_Society" value="Journal of the Welsh Agricultural Society">Journal of the Welsh Agricultural Society</option>
+								<option id="CC_Abstainer" value="Abstainer">Abstainer</option>
+								<option id="CC_Y_mynegydd" value="Y mynegydd">Y mynegydd</option>
+								<option id="CC_Ieuenctyd_Cymru" value="Ieuenctyd Cymru">Ieuenctyd Cymru</option>
+								<option id="CC_The_Cambrian_Natural_Observer" value="The Cambrian Natural Observer">The Cambrian Natural Observer</option>
+								<option id="CC_Ystorfa_Weinidogaethol" value="Ystorfa Weinidogaethol">Ystorfa Weinidogaethol</option>
+								<option id="CC_Yr_Australydd" value="Yr Australydd">Yr Australydd</option>
+								<option id="CC_Yr_oenig" value="Yr oenig">Yr oenig</option>
+								<option id="CC_Old_Wales" value="Old Wales">Old Wales</option>
+								<option id="CC_Gorlan" value="Gorlan">Gorlan</option>
+								<option id="CC_The_Llandovery_School_journal" value="The Llandovery School journal">The Llandovery School journal</option>
+								<option id="CC_Transactions_of_the_Caradoc_and_Severn_Valley_Field_Club" value="Transactions of the Caradoc and Severn Valley Field Club">Transactions of the Caradoc and Severn Valley Field Club</option>
+								<option id="CC_The_Breconian" value="The Breconian">The Breconian</option>
+								<option id="CC_The_public_library_journal" value="The public library journal">The public library journal</option>
+								<option id="CC_The_Welsh_review" value="The Welsh review">The Welsh review</option>
+								<option id="CC_Yr_ardd" value="Yr ardd">Yr ardd</option>
+								<option id="CC_Y_fwyell" value="Y fwyell">Y fwyell</option>
+								<option id="CC_Y_temlydd_Cymreig" value="Y temlydd Cymreig">Y temlydd Cymreig</option>
+								<option id="CC_Ysbryd_yr_Oes" value="Ysbryd yr Oes">Ysbryd yr Oes</option>
+								<option id="CC_Y_gerddorfa" value="Y gerddorfa">Y gerddorfa</option>
+								<option id="CC_Y_cylchgrawn_cenedlaethol" value="Y cylchgrawn cenedlaethol">Y cylchgrawn cenedlaethol</option>
+								<option id="CC_Y_cofiadur_(Llanfaircaereinion)" value="Y cofiadur (Llanfaircaereinion)">Y cofiadur (Llanfaircaereinion)</option>
+								<option id="CC_Minerva_transactions_of_the_Royal_Institution_of_South_Wales." value="Minerva transactions of the Royal Institution of South Wales.">Minerva transactions of the Royal Institution of South Wales.</option>
+								<option id="CC_Bwletin_Cymdeithas_Emynau_Cymru" value="Bwletin Cymdeithas Emynau Cymru">Bwletin Cymdeithas Emynau Cymru</option>
+								<option id="CC_Yr_arweinydd" value="Yr arweinydd">Yr arweinydd</option>
+								<option id="CC_The_Baptist_chronicle" value="The Baptist chronicle">The Baptist chronicle</option>
+								<option id="CC_Y_tremydd" value="Y tremydd">Y tremydd</option>
+								<option id="CC_Cydymaith_yr_ysgol_Sabbothol" value="Cydymaith yr ysgol Sabbothol">Cydymaith yr ysgol Sabbothol</option>
+								<option id="CC_Golud_yr_oes" value="Golud yr oes">Golud yr oes</option>
+								<option id="CC_Y_Methodist_(Llanidloes)" value="Y Methodist (Llanidloes)">Y Methodist (Llanidloes)</option>
+								<option id="CC_Y_mis_(Lerpwl)" value="Y mis (Lerpwl)">Y mis (Lerpwl)</option>
+								<option id="CC_Arwystli_Deanery_Magazine" value="Arwystli Deanery Magazine">Arwystli Deanery Magazine</option>
+								<option id="CC_The_Journal_of_Welsh_Ecclesiastical_History" value="The Journal of Welsh Ecclesiastical History">The Journal of Welsh Ecclesiastical History</option>
+								<option id="CC_The_Wrexhamian" value="The Wrexhamian">The Wrexhamian</option>
+								<option id="CC_Dirwestwr" value="Dirwestwr">Dirwestwr</option>
+								<option id="CC_Dr_Williams'_School_magazine" value="Dr Williams' School magazine">Dr Williams' School magazine</option>
+								<option id="CC_Cardiff_and_South_Wales_Whip" value="Cardiff and South Wales Whip">Cardiff and South Wales Whip</option>
+								<option id="CC_Y_punch_Cymraeg" value="Y punch Cymraeg">Y punch Cymraeg</option>
+								<option id="CC_Yr_arweinydd_annibynol" value="Yr arweinydd annibynol">Yr arweinydd annibynol</option>
+								<option id="CC_Geiriau_Gras_a_Gwirionedd" value="Geiriau Gras a Gwirionedd">Geiriau Gras a Gwirionedd</option>
+								<option id="CC_Iforydd" value="Iforydd">Iforydd</option>
+								<option id="CC_Y_eisteddfod" value="Y eisteddfod">Y eisteddfod</option>
+								<option id="CC_Yr_hyfforddwr" value="Yr hyfforddwr">Yr hyfforddwr</option>
+								<option id="CC_Y_beirniadur_Cymreig" value="Y beirniadur Cymreig">Y beirniadur Cymreig</option>
+								<option id="CC_Y_Piwritan_Newydd" value="Y Piwritan Newydd">Y Piwritan Newydd</option>
+								<option id="CC_Gwir_Fedyddiwr" value="Gwir Fedyddiwr">Gwir Fedyddiwr</option>
+								<option id="CC_Y_Fflam_cylchgrawn_Cymraeg." value="Y Fflam cylchgrawn Cymraeg.">Y Fflam cylchgrawn Cymraeg.</option>
+								<option id="CC_Y_Gymraes_:_cylchgrawn_i_ferched_Cymru" value="Y Gymraes : cylchgrawn i ferched Cymru">Y Gymraes : cylchgrawn i ferched Cymru</option>
+								<option id="CC_Cerddor_Sol-ffa" value="Cerddor Sol-ffa">Cerddor Sol-ffa</option>
+								<option id="CC_Golygydd" value="Golygydd">Golygydd</option>
+								<option id="CC_Publications_of_the_South_Wales_Record_Society" value="Publications of the South Wales Record Society">Publications of the South Wales Record Society</option>
+								<option id="CC_Y_Llyfr_yng_Nghymru_Welsh_book_studies." value="Y Llyfr yng Nghymru Welsh book studies.">Y Llyfr yng Nghymru Welsh book studies.</option>
+								<option id="CC_Newyddion_da" value="Newyddion da">Newyddion da</option>
+								<option id="CC_The_Transactions_of_the_University_College_of_Wales_Agricultural_Department" value="The Transactions of the University College of Wales Agricultural Department">The Transactions of the University College of Wales Agricultural Department</option>
+								<option id="CC_Yr_athraw_:_cylchgrawn_misol" value="Yr athraw : cylchgrawn misol">Yr athraw : cylchgrawn misol</option>
+								<option id="CC_Ymwelydd_(Smythesdale,_Awstralia)" value="Ymwelydd (Smythesdale, Awstralia)">Ymwelydd (Smythesdale, Awstralia)</option>
+								<option id="CC_Llenor_(Caernarfon)" value="Llenor (Caernarfon)">Llenor (Caernarfon)</option>
+								<option id="CC_Y_cylchgrawn_llaw-fer" value="Y cylchgrawn llaw-fer">Y cylchgrawn llaw-fer</option>
+								<option id="CC_Llandaff_Diocesan_magazine" value="Llandaff Diocesan magazine">Llandaff Diocesan magazine</option>
+								<option id="CC_Cronicl_y_cerddor" value="Cronicl y cerddor">Cronicl y cerddor</option>
+								<option id="CC_Y_Llusern_(Wrecsam)" value="Y Llusern (Wrecsam)">Y Llusern (Wrecsam)</option>
+								<option id="CC_The_Pembrokeshire_historian_journal_of_the_Pembrokeshire_Local_History_Society." value="The Pembrokeshire historian journal of the Pembrokeshire Local History Society.">The Pembrokeshire historian journal of the Pembrokeshire Local History Society.</option>
+								<option id="CC_Y_pregethwr_(Bala)" value="Y pregethwr (Bala)">Y pregethwr (Bala)</option>
+								<option id="CC_Cymru_fu" value="Cymru fu">Cymru fu</option>
+								<option id="CC_Y_Methodist_(Dinbych)" value="Y Methodist (Dinbych)">Y Methodist (Dinbych)</option>
+								<option id="CC_Welsh_Calvinistic_Methodist_Record" value="Welsh Calvinistic Methodist Record">Welsh Calvinistic Methodist Record</option>
+								<option id="CC_Nelson" value="Nelson">Nelson</option>
+								<option id="CC_Swansea_Grammar_School_Magazine" value="Swansea Grammar School Magazine">Swansea Grammar School Magazine</option>
+								<option id="CC_Y_gwyliwr_(1870-1872)" value="Y gwyliwr (1870-1872)">Y gwyliwr (1870-1872)</option>
+								<option id="CC_Cylchgrawn_y_Gymdeithas_er_Taenu_Gwybodaeth_Fuddiol" value="Cylchgrawn y Gymdeithas er Taenu Gwybodaeth Fuddiol">Cylchgrawn y Gymdeithas er Taenu Gwybodaeth Fuddiol</option>
+								<option id="CC_Taliesin" value="Taliesin">Taliesin</option>
+								<option id="CC_The_Grail" value="The Grail">The Grail</option>
+								<option id="CC_Athraw,_crefyddol,_hanesyddol,_eglwysig_a" value="Athraw, crefyddol, hanesyddol, eglwysig a">Athraw, crefyddol, hanesyddol, eglwysig a</option>
+								<option id="CC_Cambrian_visitor" value="Cambrian visitor">Cambrian visitor</option>
+								<option id="CC_Llusern_y_llan" value="Llusern y llan">Llusern y llan</option>
+								<option id="CC_Y_ffenestr" value="Y ffenestr">Y ffenestr</option>
+								<option id="CC_Old_Price's_remains" value="Old Price's remains">Old Price's remains</option>
+								<option id="CC_Prophwyd_y_Jubili" value="Prophwyd y Jubili">Prophwyd y Jubili</option>
+								<option id="CC_Y_cwmwl" value="Y cwmwl">Y cwmwl</option>
+								<option id="CC_Carmarthenshire_notes" value="Carmarthenshire notes">Carmarthenshire notes</option>
+								<option id="CC_Y_cyfeiriadur" value="Y cyfeiriadur">Y cyfeiriadur</option>
+								<option id="CC_Telyn_y_Plant" value="Telyn y Plant">Telyn y Plant</option>
+								<option id="CC_Cardiff_congregational_magazine" value="Cardiff congregational magazine">Cardiff congregational magazine</option>
+								<option id="CC_Y_gwerinwr" value="Y gwerinwr">Y gwerinwr</option>
+								<option id="CC_Bangor_Parish_Magazine" value="Bangor Parish Magazine">Bangor Parish Magazine</option>
+								<option id="CC_Baner_y_Plant" value="Baner y Plant">Baner y Plant</option>
+								<option id="CC_The_Welsh_weekly" value="The Welsh weekly">The Welsh weekly</option>
+								<option id="CC_Trysorfa_gwybodaeth_(Caerfyrddin)" value="Trysorfa gwybodaeth (Caerfyrddin)">Trysorfa gwybodaeth (Caerfyrddin)</option>
+								<option id="CC_Magazine_of_the_University_College_of_South_Wales_and_Monmouthshire" value="Magazine of the University College of South Wales and Monmouthshire">Magazine of the University College of South Wales and Monmouthshire</option>
+								<option id="CC_Llandudno_Parish_Magazine" value="Llandudno Parish Magazine">Llandudno Parish Magazine</option>
+								<option id="CC_The_Newport_Presbyterian" value="The Newport Presbyterian">The Newport Presbyterian</option>
+								<option id="CC_Gedeon_neu_Ddiwygiwr_Wesleyaidd" value="Gedeon neu Ddiwygiwr Wesleyaidd">Gedeon neu Ddiwygiwr Wesleyaidd</option>
+								<option id="CC_Y_llenor_Cymreig" value="Y llenor Cymreig">Y llenor Cymreig</option>
+								<option id="CC_Gwyliedydd_(Abertawe)" value="Gwyliedydd (Abertawe)">Gwyliedydd (Abertawe)</option>
+								<option id="CC_Yr_arloeswr" value="Yr arloeswr">Yr arloeswr</option>
+								<option id="CC_Ruthin_illustrated_magazine" value="Ruthin illustrated magazine">Ruthin illustrated magazine</option>
+								<option id="CC_Charles_o'r_Bala_sef_cyhoeddiad_pythefnosol_at_wasanaeth_crefydd,_llenyddiaeth_ac_addysg" value="Charles o'r Bala sef cyhoeddiad pythefnosol at wasanaeth crefydd, llenyddiaeth ac addysg">Charles o'r Bala sef cyhoeddiad pythefnosol at wasanaeth crefydd, llenyddiaeth ac addysg</option>
+								<option id="CC_Greal_(Llundain)" value="Greal (Llundain)">Greal (Llundain)</option>
+								<option id="CC_Tir_Newydd" value="Tir Newydd">Tir Newydd</option>
+								<option id="CC_Aberystwyth_Grammar_School_magazine_1891-1897" value="Aberystwyth Grammar School magazine 1891-1897">Aberystwyth Grammar School magazine 1891-1897</option>
+								<option id="CC_Wawr_(Caerdydd)" value="Wawr (Caerdydd)">Wawr (Caerdydd)</option>
+								<option id="CC_Usk_Gleaner" value="Usk Gleaner">Usk Gleaner</option>
+								<option id="CC_Y_Cymro_(Llundain)" value="Y Cymro (Llundain)">Y Cymro (Llundain)</option>
+								<option id="CC_Y_bugeilydd" value="Y bugeilydd">Y bugeilydd</option>
+								<option id="CC_Illustrated_Wrexham_argus_and_North_Wales_athlete" value="Illustrated Wrexham argus and North Wales athlete">Illustrated Wrexham argus and North Wales athlete</option>
+								<option id="CC_Eurgrawn_Mon" value="Eurgrawn Mon">Eurgrawn Mon</option>
+								<option id="CC_The_Aeron_visitor" value="The Aeron visitor">The Aeron visitor</option>
+								<option id="CC_Darlunydd" value="Darlunydd">Darlunydd</option>
+								<option id="CC_The_Monmouthshire_congregational_magazine" value="The Monmouthshire congregational magazine">The Monmouthshire congregational magazine</option>
+								<option id="CC_Y_Beread,_neu,_Drysorfa_y_Bedyddwyr" value="Y Beread, neu, Drysorfa y Bedyddwyr">Y Beread, neu, Drysorfa y Bedyddwyr</option>
+								<option id="CC_Y_pregethwr" value="Y pregethwr">Y pregethwr</option>
+								<option id="CC_Yr_ysgol_(Treffynnon)" value="Yr ysgol (Treffynnon)">Yr ysgol (Treffynnon)</option>
+								<option id="CC_Antiquarian_Notes" value="Antiquarian Notes">Antiquarian Notes</option>
+								<option id="CC_Efengylydd" value="Efengylydd">Efengylydd</option>
+								<option id="CC_Ifor_Hael" value="Ifor Hael">Ifor Hael</option>
+								<option id="CC_Monmouth_High_School_Magazine" value="Monmouth High School Magazine">Monmouth High School Magazine</option>
+								<option id="CC_Ceredigion_:_Journal_of_the_Ceredigion_Historical_Society" value="Ceredigion : Journal of the Ceredigion Historical Society">Ceredigion : Journal of the Ceredigion Historical Society</option>
+								<option id="CC_Bristol_West_of_England_and_South_Wales_magazine" value="Bristol West of England and South Wales magazine">Bristol West of England and South Wales magazine</option>
+								<option id="CC_Y_ddraig_goch" value="Y ddraig goch">Y ddraig goch</option>
+								<option id="CC_Cyfrinach_y_Bedyddwyr" value="Cyfrinach y Bedyddwyr">Cyfrinach y Bedyddwyr</option>
+								<option id="CC_Y_cynniweirydd" value="Y cynniweirydd">Y cynniweirydd</option>
+								<option id="CC_Y_detholydd" value="Y detholydd">Y detholydd</option>
+								<option id="CC_Yr_ysgol_(New_York)" value="Yr ysgol (New York)">Yr ysgol (New York)</option>
+								<option id="CC_The_Trefecca_magazine" value="The Trefecca magazine">The Trefecca magazine</option>
+								<option id="CC_Tywysog_Cymru" value="Tywysog Cymru">Tywysog Cymru</option>
+								<option id="CC_Y_pregethwr_a'r_esboniwr" value="Y pregethwr a'r esboniwr">Y pregethwr a'r esboniwr</option>
+								<option id="CC_Y_trefnydd" value="Y trefnydd">Y trefnydd</option>
+								<option id="CC_The_Christian_Standard" value="The Christian Standard">The Christian Standard</option>
+								<option id="CC_Cronicl_dirwestol_Cymru" value="Cronicl dirwestol Cymru">Cronicl dirwestol Cymru</option>
+								<option id="CC_St._David's_College_Magazine" value="St. David's College Magazine">St. David's College Magazine</option>
+								<option id="CC_Athrofa_y_plant" value="Athrofa y plant">Athrofa y plant</option>
+								<option id="CC_Hanesydd_Cenadawl" value="Hanesydd Cenadawl">Hanesydd Cenadawl</option>
+								<option id="CC_Yr_aelwyd_(Caernarfon)" value="Yr aelwyd (Caernarfon)">Yr aelwyd (Caernarfon)</option>
+								<option id="CC_Y_gwyliwr" value="Y gwyliwr">Y gwyliwr</option>
+								<option id="CC_Proceedings_of_the_Llandudno_&_District_Field_Club" value="Proceedings of the Llandudno & District Field Club">Proceedings of the Llandudno & District Field Club</option>
+								<option id="CC_Y_rhosyn" value="Y rhosyn">Y rhosyn</option>
+								<option id="CC_Y_wawrddydd_(Caerfyrddin)" value="Y wawrddydd (Caerfyrddin)">Y wawrddydd (Caerfyrddin)</option>
+								<option id="CC_Heddyw" value="Heddyw">Heddyw</option>
+								<option id="CC_Yr_amaethydd" value="Yr amaethydd">Yr amaethydd</option>
+								<option id="CC_Restorer" value="Restorer">Restorer</option>
+								<option id="CC_Yr_arweinydd_(Aberdar)" value="Yr arweinydd (Aberdar)">Yr arweinydd (Aberdar)</option>
+								<option id="CC_Y_Cenhadydd_Cymreig" value="Y Cenhadydd Cymreig">Y Cenhadydd Cymreig</option>
+								<option id="CC_Greal_y_corau" value="Greal y corau">Greal y corau</option>
+								<option id="CC_Trysorfa_rhyfeddodau" value="Trysorfa rhyfeddodau">Trysorfa rhyfeddodau</option>
+								<option id="CC_Ymwelydd_(Bala)" value="Ymwelydd (Bala)">Ymwelydd (Bala)</option>
+								<option id="CC_Cydymaith_y_plentyn" value="Cydymaith y plentyn">Cydymaith y plentyn</option>
+								<option id="CC_Y_cydymaith_(Blaenau_Ffestiniog)" value="Y cydymaith (Blaenau Ffestiniog)">Y cydymaith (Blaenau Ffestiniog)</option>
+								<option id="CC_Dirwestydd" value="Dirwestydd">Dirwestydd</option>
+								<option id="CC_Y_symbylydd" value="Y symbylydd">Y symbylydd</option>
+								<option id="CC_Y_sylwedydd" value="Y sylwedydd">Y sylwedydd</option>
+								<option id="CC_Cyfaill_Plentyn" value="Cyfaill Plentyn">Cyfaill Plentyn</option>
+								<option id="CC_Cylch-grawn_Cynmraeg" value="Cylch-grawn Cynmraeg">Cylch-grawn Cynmraeg</option>
+								<option id="CC_Y_geirgrawn" value="Y geirgrawn">Y geirgrawn</option>
+								<option id="CC_Oswald's_well" value="Oswald's well">Oswald's well</option>
+								<option id="CC_Y_cenadwr_eglwysig" value="Y cenadwr eglwysig">Y cenadwr eglwysig</option>
+								<option id="CC_Yr_ysgol_gerddorol" value="Yr ysgol gerddorol">Yr ysgol gerddorol</option>
+								<option id="CC_The_monthly_journal_of_the_Newport_Athenaeum_and_Mechanical_Institute" value="The monthly journal of the Newport Athenaeum and Mechanical Institute">The monthly journal of the Newport Athenaeum and Mechanical Institute</option>
+								<option id="CC_Yr_Yspiwr" value="Yr Yspiwr">Yr Yspiwr</option>
+								<option id="CC_Gwladgarwr_(Caerfyrddin)" value="Gwladgarwr (Caerfyrddin)">Gwladgarwr (Caerfyrddin)</option>
+								<option id="CC_Archeologica_Cambrensis_(1846-1899)" value="Archeologica Cambrensis (1846-1899)">Archeologica Cambrensis (1846-1899)</option>
+								<option id="CC_The_stepping-stone" value="The stepping-stone">The stepping-stone</option>
+								<option id="CC_Yr_esboniwr" value="Yr esboniwr">Yr esboniwr</option>
+								<option id="CC_Cylchgrawn_Cymru" value="Cylchgrawn Cymru">Cylchgrawn Cymru</option>
+								<option id="CC_Y_phonographwr" value="Y phonographwr">Y phonographwr</option>
+								<option id="CC_Yr_oes_newydd" value="Yr oes newydd">Yr oes newydd</option>
+								<option id="CC_Y_drysorfa_hynafiaethol" value="Y drysorfa hynafiaethol">Y drysorfa hynafiaethol</option>
+								<option id="CC_The_Baptist_Sunday_school_record" value="The Baptist Sunday school record">The Baptist Sunday school record</option>
+								<option id="CC_Y_brud_a_sylwydd" value="Y brud a sylwydd">Y brud a sylwydd</option>
+								<option id="CC_Y_bugail_(Bethesda)" value="Y bugail (Bethesda)">Y bugail (Bethesda)</option>
+								<option id="CC_Yr_oes_(Llanelli)" value="Yr oes (Llanelli)">Yr oes (Llanelli)</option>
+								<option id="CC_Briwsion_y_ford_gron" value="Briwsion y ford gron">Briwsion y ford gron</option>
+								<option id="CC_Y_Wasg" value="Y Wasg">Y Wasg</option>
+								<option id="CC_Wrexham_registrar_and_people's_friend" value="Wrexham registrar and people's friend">Wrexham registrar and people's friend</option>
+								<option id="CC_Cennad_Llydewig_Llanrwst" value="Cennad Llydewig Llanrwst">Cennad Llydewig Llanrwst</option>
+								<option id="CC_Twr_Gwalia" value="Twr Gwalia">Twr Gwalia</option>
+								<option id="CC_Y_cenadydd_(Coedpoeth)" value="Y cenadydd (Coedpoeth)">Y cenadydd (Coedpoeth)</option>
+								<option id="CC_Wenynen" value="Wenynen">Wenynen</option>
+								<option id="CC_The_American_Celt" value="The American Celt">The American Celt</option>
+								<option id="CC_Swansea_Scientific_Society" value="Swansea Scientific Society">Swansea Scientific Society</option>
+								<option id="CC_The_Normalite_(Y_Normalydd)" value="The Normalite (Y Normalydd)">The Normalite (Y Normalydd)</option>
+								<option id="CC_Hen_wr_Cymreig" value="Hen wr Cymreig">Hen wr Cymreig</option>
+								<option id="CC_Trysor_i'r_ieuangc" value="Trysor i'r ieuangc">Trysor i'r ieuangc</option>
+								<option id="CC_Ymgeisydd_(Brynmawr)" value="Ymgeisydd (Brynmawr)">Ymgeisydd (Brynmawr)</option>
+								<option id="CC_Y_solffaydd" value="Y solffaydd">Y solffaydd</option>
+								<option id="CC_Tarian_rhyddid_a_dymchwelydd_gormes" value="Tarian rhyddid a dymchwelydd gormes">Tarian rhyddid a dymchwelydd gormes</option>
+								<option id="CC_Cyfaill_eglwysig_plwyfi_Llanrwst,_Llangerniew,_Eglwys_Fach,_Yspytty_Ifan_a_Llanddoget" value="Cyfaill eglwysig plwyfi Llanrwst, Llangerniew, Eglwys Fach, Yspytty Ifan a Llanddoget">Cyfaill eglwysig plwyfi Llanrwst, Llangerniew, Eglwys Fach, Yspytty Ifan a Llanddoget</option>
+								<option id="CC_Cylchgrawn_Chwarterol_Tywyn" value="Cylchgrawn Chwarterol Tywyn">Cylchgrawn Chwarterol Tywyn</option>
+								<option id="CC_Hyfforddwr_Salem" value="Hyfforddwr Salem">Hyfforddwr Salem</option>
+								<option id="CC_Cenhadydd_Cwmtawe" value="Cenhadydd Cwmtawe">Cenhadydd Cwmtawe</option>
+								<option id="CC_Y_cerbyd_dirwestol" value="Y cerbyd dirwestol">Y cerbyd dirwestol</option>
+								<option id="CC_Y_nofelydd_a_chydymaith_y_teulu" value="Y nofelydd a chydymaith y teulu">Y nofelydd a chydymaith y teulu</option>
+								<option id="CC_Y_seren_foreu" value="Y seren foreu">Y seren foreu</option>
+								<option id="CC_Yr_addysgydd_(Solva)" value="Yr addysgydd (Solva)">Yr addysgydd (Solva)</option>
+								<option id="CC_Dirwestydd_Deheuol" value="Dirwestydd Deheuol">Dirwestydd Deheuol</option>
+								<option id="CC_The_Oswestry_Presbyterian_Treasury" value="The Oswestry Presbyterian Treasury">The Oswestry Presbyterian Treasury</option>
+								<option id="CC_The_Caermarthenshire_miscellany" value="The Caermarthenshire miscellany">The Caermarthenshire miscellany</option>
+								<option id="CC_The_Swansea_and_South_Walian" value="The Swansea and South Walian">The Swansea and South Walian</option>
+								<option id="CC_The_Western_Good_Templar_and_general_temperance_monthly" value="The Western Good Templar and general temperance monthly">The Western Good Templar and general temperance monthly</option>
+								<option id="CC_Old_Brecknock_chips" value="Old Brecknock chips">Old Brecknock chips</option>
+								<option id="CC_Yr_oes" value="Yr oes">Yr oes</option>
+								<option id="CC_Wrexham_recorder" value="Wrexham recorder">Wrexham recorder</option>
+								<option id="CC_Y_drych" value="Y drych">Y drych</option>
+								<option id="CC_The_true_templar" value="The true templar">The true templar</option>
+								<option id="CC_Montgomery_and_Radnor_Baptist_Visitor" value="Montgomery and Radnor Baptist Visitor">Montgomery and Radnor Baptist Visitor</option>
+								<option id="CC_The_Chepstow_gleaner" value="The Chepstow gleaner">The Chepstow gleaner</option>
+								<option id="CC_Yr_arweinydd_(New_York)" value="Yr arweinydd (New York)">Yr arweinydd (New York)</option>
+								<option id="CC_Yr_hyfforddiadur" value="Yr hyfforddiadur">Yr hyfforddiadur</option>
+								<option id="CC_Addysgydd_(Caerfyrddin)" value="Addysgydd (Caerfyrddin)">Addysgydd (Caerfyrddin)</option>
+								<option id="CC_Cenadwr" value="Cenadwr">Cenadwr</option>
+								<option id="CC_Yr_odydd_Cymreig" value="Yr odydd Cymreig">Yr odydd Cymreig</option>
+								<option id="CC_Churchman_in_Wales" value="Churchman in Wales">Churchman in Wales</option>
+								<option id="CC_Pwllheli_home_messenger" value="Pwllheli home messenger">Pwllheli home messenger</option>
+								<option id="CC_Annual_Report_of_the_Swansea_Literary_and_Scientific_Society" value="Annual Report of the Swansea Literary and Scientific Society">Annual Report of the Swansea Literary and Scientific Society</option>
+								<option id="CC_Cyfaill_Rhinwedd" value="Cyfaill Rhinwedd">Cyfaill Rhinwedd</option>
+								<option id="CC_The_Cambrian_remembrancer,_relating_to_North_Wales" value="The Cambrian remembrancer, relating to North Wales">The Cambrian remembrancer, relating to North Wales</option>
+								<option id="CC_Ymofynydd_(Caernarfon)" value="Ymofynydd (Caernarfon)">Ymofynydd (Caernarfon)</option>
+								<option id="CC_Yr_athraw_a'r_ymwelydd" value="Yr athraw a'r ymwelydd">Yr athraw a'r ymwelydd</option>
+								<option id="CC_Gwladgarwr_(Llanidloes)" value="Gwladgarwr (Llanidloes)">Gwladgarwr (Llanidloes)</option>
+								<option id="CC_The_Saint_Peter's_Chair" value="The Saint Peter's Chair">The Saint Peter's Chair</option>
+								<option id="CC_Y_gwron_odyddol" value="Y gwron odyddol">Y gwron odyddol</option>
+								<option id="CC_Y_meddyg_teuluaidd" value="Y meddyg teuluaidd">Y meddyg teuluaidd</option>
+								<option id="CC_Gwir_Iforydd" value="Gwir Iforydd">Gwir Iforydd</option>
+								<option id="CC_The_Cambrian_Society_of_South_Wales_and_Monmouthshire_transactions" value="The Cambrian Society of South Wales and Monmouthshire transactions">The Cambrian Society of South Wales and Monmouthshire transactions</option>
+								<option id="CC_Dirwestwr_Deheuol" value="Dirwestwr Deheuol">Dirwestwr Deheuol</option>
+								<option id="CC_Trysorfa_Gwybodaeth_(Caernarfon)" value="Trysorfa Gwybodaeth (Caernarfon)">Trysorfa Gwybodaeth (Caernarfon)</option>
+								<option id="CC_The_archaeological_magazine_of_Bristol" value="The archaeological magazine of Bristol">The archaeological magazine of Bristol</option>
+								<option id="CC_Udgorn_dirwest" value="Udgorn dirwest">Udgorn dirwest</option>
+								<option id="CC_Cardiff_Astrological_Society_Record" value="Cardiff Astrological Society Record">Cardiff Astrological Society Record</option>
+								<option id="CC_The_home_missionary" value="The home missionary">The home missionary</option>
+								<option id="CC_Ymadroddion_ffyddlawn_i_hen_ac_ieuainc" value="Ymadroddion ffyddlawn i hen ac ieuainc">Ymadroddion ffyddlawn i hen ac ieuainc</option>
+								<option id="CC_Ford_gron_(Scranton)" value="Ford gron (Scranton)">Ford gron (Scranton)</option>
+								<option id="CC_Caradoc_Field_Club" value="Caradoc Field Club">Caradoc Field Club</option>
+								<option id="CC_The_Newport_review_and_Monmouthshire_register" value="The Newport review and Monmouthshire register">The Newport review and Monmouthshire register</option>
+								<option id="CC_The_Cambrian_magazine" value="The Cambrian magazine">The Cambrian magazine</option>
+								<option id="CC_Trysorfa_grefyddol_Gwent_a_Morgannwg" value="Trysorfa grefyddol Gwent a Morgannwg">Trysorfa grefyddol Gwent a Morgannwg</option>
+								<option id="CC_Y_wawr-ddydd_(Caernarfon)" value="Y wawr-ddydd (Caernarfon)">Y wawr-ddydd (Caernarfon)</option>
+								<option id="CC_Cardiff_Libraries_Review" value="Cardiff Libraries Review">Cardiff Libraries Review</option>
+								<option id="CC_Cennad_Hedd" value="Cennad Hedd">Cennad Hedd</option>
+								<option id="CC_Mid-Wales_herald" value="Mid-Wales herald">Mid-Wales herald</option>
+								<option id="CC_Maridunian" value="Maridunian">Maridunian</option>
+								<option id="CC_St_Paul's_Scholars_magazine" value="St Paul's Scholars magazine">St Paul's Scholars magazine</option>
+								<option id="CC_The_South_Wales_Athenaeum" value="The South Wales Athenaeum">The South Wales Athenaeum</option>
+								<option id="CC_Undebwr_Cymreig" value="Undebwr Cymreig">Undebwr Cymreig</option>
+								<option id="CC_Y_cymedrolwr" value="Y cymedrolwr">Y cymedrolwr</option>
+								<option id="CC_Yr_ymwelwr" value="Yr ymwelwr">Yr ymwelwr</option>
+								<option id="CC_Darlun_cenadawl" value="Darlun cenadawl">Darlun cenadawl</option>
+								<option id="CC_Burgess_(Cardiff)" value="Burgess (Cardiff)">Burgess (Cardiff)</option>
+								<option id="CC_Cyfaill_y_plant" value="Cyfaill y plant">Cyfaill y plant</option>
+								<option id="CC_Blodau_cerdd" value="Blodau cerdd">Blodau cerdd</option>
+								<option id="CC_Yr_athraw_cerddorol" value="Yr athraw cerddorol">Yr athraw cerddorol</option>
+								<option id="CC_Cylchgrawn_yr_Ysgol_Sabbothol" value="Cylchgrawn yr Ysgol Sabbothol">Cylchgrawn yr Ysgol Sabbothol</option>
+								<option id="CC_Cronicl_cenhadol_(Treffynnon)" value="Cronicl cenhadol (Treffynnon)">Cronicl cenhadol (Treffynnon)</option>
+								<option id="CC_St._Asaph_Advertising_Circular" value="St. Asaph Advertising Circular">St. Asaph Advertising Circular</option>
+								<option id="CC_Trysorfa_efangylaidd" value="Trysorfa efangylaidd">Trysorfa efangylaidd</option>
+								<option id="CC_Gwreichion" value="Gwreichion">Gwreichion</option>
+								<option id="CC_Llyfr_y_plant" value="Llyfr y plant">Llyfr y plant</option>
+								<option id="CC_Monmouthshire_Baptist" value="Monmouthshire Baptist">Monmouthshire Baptist</option>
+								<option id="CC_Y_ceidwadwr" value="Y ceidwadwr">Y ceidwadwr</option>
+								<option id="CC_Cyfaill_y_Cymro" value="Cyfaill y Cymro">Cyfaill y Cymro</option>
+								<option id="CC_Yr_adfywiadur" value="Yr adfywiadur">Yr adfywiadur</option>
+								<option id="CC_Y_bardd" value="Y bardd">Y bardd</option>
+								<option id="CC_Dalen_genhadol_chwarterol_y_Gymdeithas_er_Ledaenu_yr_Efengyl" value="Dalen genhadol chwarterol y Gymdeithas er Ledaenu yr Efengyl">Dalen genhadol chwarterol y Gymdeithas er Ledaenu yr Efengyl</option>
+								<option id="CC_John_P._Thomas's_monthly_advertiser" value="John P. Thomas's monthly advertiser">John P. Thomas's monthly advertiser</option>
+								<option id="CC_Seren_y_mynydd" value="Seren y mynydd">Seren y mynydd</option>
+								<option id="CC_The_Aberystwyth_young_men's_magazine" value="The Aberystwyth young men's magazine">The Aberystwyth young men's magazine</option>
+								<option id="CC_Y_cerbyd_cerddorol" value="Y cerbyd cerddorol">Y cerbyd cerddorol</option>
+								<option id="CC_Cydymaith_(Abermaw)" value="Cydymaith (Abermaw)">Cydymaith (Abermaw)</option>
+								<option id="CC_Cymrodor_Prestatyn" value="Cymrodor Prestatyn">Cymrodor Prestatyn</option>
+								<option id="CC_The_homeward_bound" value="The homeward bound">The homeward bound</option>
+								<option id="CC_Hwyl" value="Hwyl">Hwyl</option>
+								<option id="CC_The_duoglott_medical_adviser_=_Y_cynghorydd_meddygol_dwyieithawg." value="The duoglott medical adviser = Y cynghorydd meddygol dwyieithawg.">The duoglott medical adviser = Y cynghorydd meddygol dwyieithawg.</option>
+								<option id="CC_The_Welsh_educationist" value="The Welsh educationist">The Welsh educationist</option>
+								<option id="CC_Y_medelwr_ieuanc" value="Y medelwr ieuanc">Y medelwr ieuanc</option>
+								<option id="CC_Y_Wylfa" value="Y Wylfa">Y Wylfa</option>
+								<option id="CC_Greal,_neu_Eurgrawn" value="Greal, neu Eurgrawn">Greal, neu Eurgrawn</option>
+								<option id="CC_Newyddion_o_fywyd_a_heddwch" value="Newyddion o fywyd a heddwch">Newyddion o fywyd a heddwch</option>
+								<option id="CC_Y_Cymreigydd" value="Y Cymreigydd">Y Cymreigydd</option>
+								<option id="CC_Y_deonglydd_ysgrythurol" value="Y deonglydd ysgrythurol">Y deonglydd ysgrythurol</option>
+								<option id="CC_Amddiffynydd_y_ffydd_a'r_cyfansoddiad_Wesleyaidd_yn_erbyn_ymosodiadau_pleidwyr_Annibyniaeth_Cynulleidfaol" value="Amddiffynydd y ffydd a'r cyfansoddiad Wesleyaidd yn erbyn ymosodiadau pleidwyr Annibyniaeth Cynulleidfaol">Amddiffynydd y ffydd a'r cyfansoddiad Wesleyaidd yn erbyn ymosodiadau pleidwyr Annibyniaeth Cynulleidfaol</option>
+								<option id="CC_South_Wales_Jewish_Review" value="South Wales Jewish Review">South Wales Jewish Review</option>
+								<option id="CC_The_Welchman" value="The Welchman">The Welchman</option>
+								<option id="CC_Y_bedyddiwr_bach" value="Y bedyddiwr bach">Y bedyddiwr bach</option>
+								<option id="CC_North_Wales_and_Border_Counties_Congregational_Magazine" value="North Wales and Border Counties Congregational Magazine">North Wales and Border Counties Congregational Magazine</option>
+								<option id="CC_Liverpool_young_Wales" value="Liverpool young Wales">Liverpool young Wales</option>
+								<option id="CC_Brud_cenadawl" value="Brud cenadawl">Brud cenadawl</option>
+								<option id="CC_Y_gweithiwr" value="Y gweithiwr">Y gweithiwr</option>
+								<option id="CC_Y_seren_ddirwestol" value="Y seren ddirwestol">Y seren ddirwestol</option>
+								<option id="CC_Y_vord_gron" value="Y vord gron">Y vord gron</option>
+								<option id="CC_Pryse's_Cambrian_book_register" value="Pryse's Cambrian book register">Pryse's Cambrian book register</option>
+								<option id="CC_St._David's_College_and_School_Gazette" value="St. David's College and School Gazette">St. David's College and School Gazette</option>
+								<option id="CC_Cylchgrawn_yr_ysgol_Sabbothol_(Caernarfon)" value="Cylchgrawn yr ysgol Sabbothol (Caernarfon)">Cylchgrawn yr ysgol Sabbothol (Caernarfon)</option>
+								<option id="CC_Cydymaith_yr_ysgol_Sabbathol" value="Cydymaith yr ysgol Sabbathol">Cydymaith yr ysgol Sabbathol</option>
+								<option id="CC_The_Beaumaris_magazine" value="The Beaumaris magazine">The Beaumaris magazine</option>
+								<option id="CC_Y_gloch" value="Y gloch">Y gloch</option>
+								<option id="CC_Cyfaill_y_plant_(Lerpwl)" value="Cyfaill y plant (Lerpwl)">Cyfaill y plant (Lerpwl)</option>
+								<option id="CC_Trysorfa_ieuenctyd" value="Trysorfa ieuenctyd">Trysorfa ieuenctyd</option>
+								<option id="CC_Brynarvor_School_magazine" value="Brynarvor School magazine">Brynarvor School magazine</option>
+								<option id="CC_Cardiff_University_Settlement_magazine" value="Cardiff University Settlement magazine">Cardiff University Settlement magazine</option>
+								<option id="CC_Greal_y_Bedyddwyr_(Abertawe)" value="Greal y Bedyddwyr (Abertawe)">Greal y Bedyddwyr (Abertawe)</option>
+								<option id="CC_The_Swansea_Congregationalist" value="The Swansea Congregationalist">The Swansea Congregationalist</option>
+								<option id="CC_The_Carmarthenshire_congregational_magazine" value="The Carmarthenshire congregational magazine">The Carmarthenshire congregational magazine</option>
+								<option id="CC_University_College_of_North_Wales_magazine" value="University College of North Wales magazine">University College of North Wales magazine</option>
+								<option id="CC_Wales_and_Armenia" value="Wales and Armenia">Wales and Armenia</option>
+								<option id="CC_Adam_Evans's_Machynlleth_standard_(1891-1892)" value="Adam Evans's Machynlleth standard (1891-1892)">Adam Evans's Machynlleth standard (1891-1892)</option>
+								<option id="CC_Cyfaill_y_gweithiwr" value="Cyfaill y gweithiwr">Cyfaill y gweithiwr</option>
+								<option id="CC_Dolgellau_Grammar_School" value="Dolgellau Grammar School">Dolgellau Grammar School</option>
+								<option id="CC_Oswestry_Presbyterian_Messenger" value="Oswestry Presbyterian Messenger">Oswestry Presbyterian Messenger</option>
+								<option id="CC_Fishguard_County_School_magazine" value="Fishguard County School magazine">Fishguard County School magazine</option>
+								<option id="CC_Tlysau_yr_hen_oesoedd" value="Tlysau yr hen oesoedd">Tlysau yr hen oesoedd</option>
+								<option id="CC_Yr_efrydydd_llaw-fer" value="Yr efrydydd llaw-fer">Yr efrydydd llaw-fer</option>
+								<option id="CC_Cymro_Llundeinig" value="Cymro Llundeinig">Cymro Llundeinig</option>
+								<option id="CC_Hanesydd_(Llangollen)" value="Hanesydd (Llangollen)">Hanesydd (Llangollen)</option>
+								<option id="CC_Trysorfa'r_plant_(Llangollen)" value="Trysorfa'r plant (Llangollen)">Trysorfa'r plant (Llangollen)</option>
+								<option id="CC_Trysorfa'r_ysgol_Sabbothol" value="Trysorfa'r ysgol Sabbothol">Trysorfa'r ysgol Sabbothol</option>
+								<option id="CC_Yr_arweinydd_(Pwllheli)" value="Yr arweinydd (Pwllheli)">Yr arweinydd (Pwllheli)</option>
+								<option id="CC_Efengylydd_Cymreig" value="Efengylydd Cymreig">Efengylydd Cymreig</option>
+								<option id="CC_John_Jones_(Talysarn)" value="John Jones (Talysarn)">John Jones (Talysarn)</option>
+								<option id="CC_Monmouthshire_portfolio" value="Monmouthshire portfolio">Monmouthshire portfolio</option>
+								<option id="CC_Negesydd_Cymreig" value="Negesydd Cymreig">Negesydd Cymreig</option>
+								<option id="CC_Y_caniedydd_milwrol" value="Y caniedydd milwrol">Y caniedydd milwrol</option>
+								<option id="CC_Yr_hanesydd_(Aberystwyth)" value="Yr hanesydd (Aberystwyth)">Yr hanesydd (Aberystwyth)</option>
+								<option id="CC_Ymdeithydd_yr_Ysgolion_Sabbathol" value="Ymdeithydd yr Ysgolion Sabbathol">Ymdeithydd yr Ysgolion Sabbathol</option>
+								<option id="CC_Bridgend_illustrated_magazine" value="Bridgend illustrated magazine">Bridgend illustrated magazine</option>
+								<option id="CC_Cardiff_Methodist_Temperance_Magazine" value="Cardiff Methodist Temperance Magazine">Cardiff Methodist Temperance Magazine</option>
+								<option id="CC_Castle_Street's_Mutual_Improvement_Society_magazine" value="Castle Street's Mutual Improvement Society magazine">Castle Street's Mutual Improvement Society magazine</option>
+								<option id="CC_Lamp_y_Cymro" value="Lamp y Cymro">Lamp y Cymro</option>
+								<option id="CC_Lloffion" value="Lloffion">Lloffion</option>
+								<option id="CC_Y_gwyliedydd_(Brynmawr)" value="Y gwyliedydd (Brynmawr)">Y gwyliedydd (Brynmawr)</option>
+								<option id="CC_The_Welsh_pioneer_and_watchword_of_progress" value="The Welsh pioneer and watchword of progress">The Welsh pioneer and watchword of progress</option>
+								<option id="CC_Y_diwyllydd" value="Y diwyllydd">Y diwyllydd</option>
+								<option id="CC_The_Carmarthen_punch" value="The Carmarthen punch">The Carmarthen punch</option>
+								<option id="PN_The_Western_Mail" value="The Western Mail">The Western Mail</option>
+								<option id="PN_Evening_Express" value="Evening Express">Evening Express</option>
+								<option id="PN_South_Wales_Daily_News" value="South Wales Daily News">South Wales Daily News</option>
+								<option id="PN_Baner_ac_Amserau_Cymru" value="Baner ac Amserau Cymru">Baner ac Amserau Cymru</option>
+								<option id="PN_South_Wales_Echo" value="South Wales Echo">South Wales Echo</option>
+								<option id="PN_The_Cardiff_Times" value="The Cardiff Times">The Cardiff Times</option>
+								<option id="PN_The_North_Wales_Chronicle_and_Advertiser_for_the_Principality" value="The North Wales Chronicle and Advertiser for the Principality">The North Wales Chronicle and Advertiser for the Principality</option>
+								<option id="PN_Weekly_Mail" value="Weekly Mail">Weekly Mail</option>
+								<option id="PN_The_Cambrian" value="The Cambrian">The Cambrian</option>
+								<option id="PN_The_Cambria_Daily_Leader" value="The Cambria Daily Leader">The Cambria Daily Leader</option>
+								<option id="PN_The_Cambrian_News_and_Merionethshire_Standard" value="The Cambrian News and Merionethshire Standard">The Cambrian News and Merionethshire Standard</option>
+								<option id="PN_Monmouthshire_Merlin" value="Monmouthshire Merlin">Monmouthshire Merlin</option>
+								<option id="PN_The_South_Wales_Daily_Post" value="The South Wales Daily Post">The South Wales Daily Post</option>
+								<option id="PN_The_Aberystwith_Observer" value="The Aberystwith Observer">The Aberystwith Observer</option>
+								<option id="PN_Flintshire_Observer_Mining_Journal_and_General_Advertiser_for_the_Counties_of_Flint_Denbigh" value="Flintshire Observer Mining Journal and General Advertiser for the Counties of Flint Denbigh">Flintshire Observer Mining Journal and General Advertiser for the Counties of Flint Denbigh</option>
+								<option id="PN_Carnarvon_and_Denbigh_Herald_and_North_and_South_Wales_Independent" value="Carnarvon and Denbigh Herald and North and South Wales Independent">Carnarvon and Denbigh Herald and North and South Wales Independent</option>
+								<option id="PN_Tarian_Y_Gweithiwr" value="Tarian Y Gweithiwr">Tarian Y Gweithiwr</option>
+								<option id="PN_Seren_Cymru" value="Seren Cymru">Seren Cymru</option>
+								<option id="PN_Y_Drych" value="Y Drych">Y Drych</option>
+								<option id="PN_The_North_Wales_Express" value="The North Wales Express">The North Wales Express</option>
+								<option id="PN_The_Pembrokeshire_Herald_and_General_Advertiser" value="The Pembrokeshire Herald and General Advertiser">The Pembrokeshire Herald and General Advertiser</option>
+								<option id="PN_Denbighshire_Free_Press" value="Denbighshire Free Press">Denbighshire Free Press</option>
+								<option id="PN_Y_Genedl_Gymreig" value="Y Genedl Gymreig">Y Genedl Gymreig</option>
+								<option id="PN_Y_Goleuad" value="Y Goleuad">Y Goleuad</option>
+								<option id="PN_The_Welshman" value="The Welshman">The Welshman</option>
+								<option id="PN_Wrexham_and_Denbighshire_Advertiser_and_Cheshire_Shropshire_and_North_Wales_Register" value="Wrexham and Denbighshire Advertiser and Cheshire Shropshire and North Wales Register">Wrexham and Denbighshire Advertiser and Cheshire Shropshire and North Wales Register</option>
+								<option id="PN_Y_Dydd" value="Y Dydd">Y Dydd</option>
+								<option id="PN_Barry_Dock_News" value="Barry Dock News">Barry Dock News</option>
+								<option id="PN_County_Observer_and_Monmouthshire_Central_Advertiser_Abergavenny_and_Raglan_Herald_Usk_and_Pontypool_Messenger_and_Chepstow_Argus" value="County Observer and Monmouthshire Central Advertiser Abergavenny and Raglan Herald Usk and Pontypool Messenger and Chepstow Argus">County Observer and Monmouthshire Central Advertiser Abergavenny and Raglan Herald Usk and Pontypool Messenger and Chepstow Argus</option>
+								<option id="PN_Llangollen_Advertiser_Denbighshire_Merionethshire_and_North_Wales_Journal" value="Llangollen Advertiser Denbighshire Merionethshire and North Wales Journal">Llangollen Advertiser Denbighshire Merionethshire and North Wales Journal</option>
+								<option id="PN_Yr_Herald_Cymraeg" value="Yr Herald Cymraeg">Yr Herald Cymraeg</option>
+								<option id="PN_The_Aberdare_Times" value="The Aberdare Times">The Aberdare Times</option>
+								<option id="PN_The_Carmarthen_Journal_and_South_Wales_Weekly_Advertiser" value="The Carmarthen Journal and South Wales Weekly Advertiser">The Carmarthen Journal and South Wales Weekly Advertiser</option>
+								<option id="PN_Y_Gwyliedydd" value="Y Gwyliedydd">Y Gwyliedydd</option>
+								<option id="PN_The_Welsh_Coast_Pioneer_and_Review_for_North_Cambria" value="The Welsh Coast Pioneer and Review for North Cambria">The Welsh Coast Pioneer and Review for North Cambria</option>
+								<option id="PN_The_Aberdare_Leader" value="The Aberdare Leader">The Aberdare Leader</option>
+								<option id="PN_Rhyl_Record_and_Advertiser" value="Rhyl Record and Advertiser">Rhyl Record and Advertiser</option>
+								<option id="PN_The_Cardiff_and_Merthyr_Guardian_Glamorgan_Monmouth_and_Brecon_Gazette" value="The Cardiff and Merthyr Guardian Glamorgan Monmouth and Brecon Gazette">The Cardiff and Merthyr Guardian Glamorgan Monmouth and Brecon Gazette</option>
+								<option id="PN_Rhyl_Journal" value="Rhyl Journal">Rhyl Journal</option>
+								<option id="PN_The_Chester_Courant_and_Advertiser_for_North_Wales" value="The Chester Courant and Advertiser for North Wales">The Chester Courant and Advertiser for North Wales</option>
+								<option id="PN_Y_Gwladgarwr" value="Y Gwladgarwr">Y Gwladgarwr</option>
+								<option id="PN_The_Rhondda_Leader" value="The Rhondda Leader">The Rhondda Leader</option>
+								<option id="PN_Gwalia" value="Gwalia">Gwalia</option>
+								<option id="PN_The_Carmarthen_Weekly_Reporter" value="The Carmarthen Weekly Reporter">The Carmarthen Weekly Reporter</option>
+								<option id="PN_Y_Clorianydd" value="Y Clorianydd">Y Clorianydd</option>
+								<option id="PN_Cheshire_Observer" value="Cheshire Observer">Cheshire Observer</option>
+								<option id="PN_The_Glamorgan_Gazette" value="The Glamorgan Gazette">The Glamorgan Gazette</option>
+								<option id="PN_Y_Llan" value="Y Llan">Y Llan</option>
+								<option id="PN_Y_Tyst" value="Y Tyst">Y Tyst</option>
+								<option id="PN_Y_Cymro" value="Y Cymro">Y Cymro</option>
+								<option id="PN_The_Brecon_County_Times_Neath_Gazette_and_General_Advertiser_for_the_Counties_of_Brecon_Carmarthen_Radnor_Monmouth_Glamorgan_Cardigan_Montgomery_Hereford" value="The Brecon County Times Neath Gazette and General Advertiser for the Counties of Brecon Carmarthen Radnor Monmouth Glamorgan Cardigan Montgomery Hereford">The Brecon County Times Neath Gazette and General Advertiser for the Counties of Brecon Carmarthen Radnor Monmouth Glamorgan Cardigan Montgomery Hereford</option>
+								<option id="PN_Welsh_Gazette_and_West_Wales_Advertiser" value="Welsh Gazette and West Wales Advertiser">Welsh Gazette and West Wales Advertiser</option>
+								<option id="PN_Herald_of_Wales_and_Monmouthshire_Recorder" value="Herald of Wales and Monmouthshire Recorder">Herald of Wales and Monmouthshire Recorder</option>
+								<option id="PN_Barry_Herald" value="Barry Herald">Barry Herald</option>
+								<option id="PN_Y_Celt" value="Y Celt">Y Celt</option>
+								<option id="PN_Llandudno_Advertiser_and_List_of_Visitors" value="Llandudno Advertiser and List of Visitors">Llandudno Advertiser and List of Visitors</option>
+								<option id="PN_Abergavenny_Chronicle" value="Abergavenny Chronicle">Abergavenny Chronicle</option>
+								<option id="PN_Y_Werin" value="Y Werin">Y Werin</option>
+								<option id="PN_Y_Tyst_a'r_Dydd" value="Y Tyst a'r Dydd">Y Tyst a'r Dydd</option>
+								<option id="PN_The_Pontypridd_Chronicle_and_Workman's_News" value="The Pontypridd Chronicle and Workman's News">The Pontypridd Chronicle and Workman's News</option>
+								<option id="PN_The_Tenby_Observer_Weekly_List_of_Visitors_and_Directory" value="The Tenby Observer Weekly List of Visitors and Directory">The Tenby Observer Weekly List of Visitors and Directory</option>
+								<option id="PN_The_Weekly_News_and_Visitors'_Chronicle_for_Colwyn_Bay_Colwyn_Llandrillo_Conway_Deganwy_and_Neighbourhood" value="The Weekly News and Visitors' Chronicle for Colwyn Bay Colwyn Llandrillo Conway Deganwy and Neighbourhood">The Weekly News and Visitors' Chronicle for Colwyn Bay Colwyn Llandrillo Conway Deganwy and Neighbourhood</option>
+								<option id="PN_The_Merthyr_Telegraph_and_General_Advertiser_for_the_Iron_Districts_of_South_Wales" value="The Merthyr Telegraph and General Advertiser for the Iron Districts of South Wales">The Merthyr Telegraph and General Advertiser for the Iron Districts of South Wales</option>
+								<option id="PN_South_Wales_Weekly_Post" value="South Wales Weekly Post">South Wales Weekly Post</option>
+								<option id="PN_The_Cardigan_Observer_and_General_Advertiser_for_the_Counties_of_Cardigan_Carmarthen_and_Pembroke" value="The Cardigan Observer and General Advertiser for the Counties of Cardigan Carmarthen and Pembroke">The Cardigan Observer and General Advertiser for the Counties of Cardigan Carmarthen and Pembroke</option>
+								<option id="PN_The_Illustrated_Usk_Observer_and_Raglan_Herald" value="The Illustrated Usk Observer and Raglan Herald">The Illustrated Usk Observer and Raglan Herald</option>
+								<option id="PN_The_Pembroke_County_Guardian_and_Cardigan_Reporter" value="The Pembroke County Guardian and Cardigan Reporter">The Pembroke County Guardian and Cardigan Reporter</option>
+								<option id="PN_Papur_Pawb" value="Papur Pawb">Papur Pawb</option>
+								<option id="PN_The_Brecon_Radnor_Express_Carmarthen_and_Swansea_Valley_Gazette_and_Brynmawr_District_Advertiser" value="The Brecon Radnor Express Carmarthen and Swansea Valley Gazette and Brynmawr District Advertiser">The Brecon Radnor Express Carmarthen and Swansea Valley Gazette and Brynmawr District Advertiser</option>
+								<option id="PN_Haverfordwest_and_Milford_Haven_Telegraph_and_General_Weekly_Reporter_for_the_Counties_of_Pembroke_Cardigan_Carmarthen_Glamorgan_and_the_Rest_of_South_Wales" value="Haverfordwest and Milford Haven Telegraph and General Weekly Reporter for the Counties of Pembroke Cardigan Carmarthen Glamorgan and the Rest of South Wales">Haverfordwest and Milford Haven Telegraph and General Weekly Reporter for the Counties of Pembroke Cardigan Carmarthen Glamorgan and the Rest of South Wales</option>
+								<option id="PN_Y_Dinesydd_Cymreig" value="Y Dinesydd Cymreig">Y Dinesydd Cymreig</option>
+								<option id="PN_The_Montgomery_County_Times_and_Shropshire_and_Mid-Wales_Advertiser" value="The Montgomery County Times and Shropshire and Mid-Wales Advertiser">The Montgomery County Times and Shropshire and Mid-Wales Advertiser</option>
+								<option id="PN_Ye_Brython_Cymreig" value="Ye Brython Cymreig">Ye Brython Cymreig</option>
+								<option id="PN_Y_Negesydd" value="Y Negesydd">Y Negesydd</option>
+								<option id="PN_Llais_Llafur" value="Llais Llafur">Llais Llafur</option>
+								<option id="PN_The_County_Echo" value="The County Echo">The County Echo</option>
+								<option id="PN_Y_Genedl" value="Y Genedl">Y Genedl</option>
+								<option id="PN_The_Rhyl_Advertiser" value="The Rhyl Advertiser">The Rhyl Advertiser</option>
+								<option id="PN_The_Montgomeryshire_Express_and_Radnor_Times" value="The Montgomeryshire Express and Radnor Times">The Montgomeryshire Express and Radnor Times</option>
+								<option id="PN_Pontypool_Free_Press_and_Herald_of_the_Hills" value="Pontypool Free Press and Herald of the Hills">Pontypool Free Press and Herald of the Hills</option>
+								<option id="PN_The_Cardigan_Bay_Visitor" value="The Cardigan Bay Visitor">The Cardigan Bay Visitor</option>
+								<option id="PN_The_Amman_Valley_Chronicle_and_East_Carmarthen_News" value="The Amman Valley Chronicle and East Carmarthen News">The Amman Valley Chronicle and East Carmarthen News</option>
+								<option id="PN_The_North_Wales_Times" value="The North Wales Times">The North Wales Times</option>
+								<option id="PN_Towyn-on-Sea_and_Merioneth_County_Times" value="Towyn-on-Sea and Merioneth County Times">Towyn-on-Sea and Merioneth County Times</option>
+								<option id="PN_Prestatyn_Weekly" value="Prestatyn Weekly">Prestatyn Weekly</option>
+								<option id="PN_The_Glamorgan_Monmouth_and_Brecon_Gazette_and_Merthyr_Guardian" value="The Glamorgan Monmouth and Brecon Gazette and Merthyr Guardian">The Glamorgan Monmouth and Brecon Gazette and Merthyr Guardian</option>
+								<option id="PN_The_Merthyr_Express" value="The Merthyr Express">The Merthyr Express</option>
+								<option id="PN_Wrexham_Guardian" value="Wrexham Guardian">Wrexham Guardian</option>
+								<option id="PN_North_Wales_Gazette" value="North Wales Gazette">North Wales Gazette</option>
+								<option id="PN_Gwyliedydd_Newydd" value="Gwyliedydd Newydd">Gwyliedydd Newydd</option>
+								<option id="PN_Llanelly_Star" value="Llanelly Star">Llanelly Star</option>
+								<option id="PN_Pioneer" value="Pioneer">Pioneer</option>
+								<option id="PN_Y_Darian" value="Y Darian">Y Darian</option>
+								<option id="PN_The_Swansea_Gazette_and_Daily_Shipping_Register" value="The Swansea Gazette and Daily Shipping Register">The Swansea Gazette and Daily Shipping Register</option>
+								<option id="PN_Monmouth_Guardian_and_Bargoed_and_Caerphilly_Observer" value="Monmouth Guardian and Bargoed and Caerphilly Observer">Monmouth Guardian and Bargoed and Caerphilly Observer</option>
+								<option id="PN_Merthyr_Times_and_Dowlais_Times_and_Aberdare_Echo" value="Merthyr Times and Dowlais Times and Aberdare Echo">Merthyr Times and Dowlais Times and Aberdare Echo</option>
+								<option id="PN_The_North_Wales_Weekly_News" value="The North Wales Weekly News">The North Wales Weekly News</option>
+								<option id="PN_Yr_Wythnos_a'r_Eryr" value="Yr Wythnos a'r Eryr">Yr Wythnos a'r Eryr</option>
+								<option id="PN_Llais_Y_Wlad" value="Llais Y Wlad">Llais Y Wlad</option>
+								<option id="PN_The_South_Wales_Star" value="The South Wales Star">The South Wales Star</option>
+								<option id="PN_The_Llanelly_Mercury_and_South_Wales_Advertiser" value="The Llanelly Mercury and South Wales Advertiser">The Llanelly Mercury and South Wales Advertiser</option>
+								<option id="PN_Y_Rhedegydd" value="Y Rhedegydd">Y Rhedegydd</option>
+								<option id="PN_The_London_Kelt" value="The London Kelt">The London Kelt</option>
+								<option id="PN_Glamorgan_Free_Press" value="Glamorgan Free Press">Glamorgan Free Press</option>
+								<option id="PN_Potter's_Electric_News" value="Potter's Electric News">Potter's Electric News</option>
+								<option id="PN_Rhondda_Leader_Maesteg_Garw_and_Ogmore_Telegraph" value="Rhondda Leader Maesteg Garw and Ogmore Telegraph">Rhondda Leader Maesteg Garw and Ogmore Telegraph</option>
+								<option id="PN_Y_Tyst_Cymreig" value="Y Tyst Cymreig">Y Tyst Cymreig</option>
+								<option id="PN_Y_Brython" value="Y Brython">Y Brython</option>
+								<option id="PN_The_Brecon_Reporter_and_South_Wales_General_Advertiser" value="The Brecon Reporter and South Wales General Advertiser">The Brecon Reporter and South Wales General Advertiser</option>
+								<option id="PN_Yr_Adsain" value="Yr Adsain">Yr Adsain</option>
+								<option id="PN_Y_Drafod" value="Y Drafod">Y Drafod</option>
+								<option id="PN_The_Principality" value="The Principality">The Principality</option>
+								<option id="PN_Yr_Udgorn" value="Yr Udgorn">Yr Udgorn</option>
+								<option id="PN_Yr_Amserau" value="Yr Amserau">Yr Amserau</option>
+								<option id="PN_The_Rhos_Herald" value="The Rhos Herald">The Rhos Herald</option>
+								<option id="PN_Cymro_a'r_Celt_Llundain" value="Cymro a'r Celt Llundain">Cymro a'r Celt Llundain</option>
+								<option id="PN_The_Aberystwyth_Times_Cardiganshire_Chronicle_and_Merionethshire_News" value="The Aberystwyth Times Cardiganshire Chronicle and Merionethshire News">The Aberystwyth Times Cardiganshire Chronicle and Merionethshire News</option>
+								<option id="PN_The_Barmouth_and_County_Advertiser_and_District_Weekly_News" value="The Barmouth and County Advertiser and District Weekly News">The Barmouth and County Advertiser and District Weekly News</option>
+								<option id="PN_The_London_Welshman" value="The London Welshman">The London Welshman</option>
+								<option id="PN_The_Abergavenny_Mail" value="The Abergavenny Mail">The Abergavenny Mail</option>
+								<option id="PN_Seren_Gomer" value="Seren Gomer">Seren Gomer</option>
+								<option id="PN_Penarth_Chronicle_and_District_Advertiser" value="Penarth Chronicle and District Advertiser">Penarth Chronicle and District Advertiser</option>
+								<option id="PN_The_Demetian_Mirror" value="The Demetian Mirror">The Demetian Mirror</option>
+								<option id="PN_The_Visitors'_List_and_Guide_for_Aberystwyth_Aberayron_Borth_Aberdovey_Towyn_C" value="The Visitors' List and Guide for Aberystwyth Aberayron Borth Aberdovey Towyn C">The Visitors' List and Guide for Aberystwyth Aberayron Borth Aberdovey Towyn C</option>
+							</select>
+                        </div>
+                        <div class="pn"><br>
+						<label for="category[]" class="label">Category/Categories</label><br>
+                            <select name="category[]" id="category[]" multiple class="wide-search" size="3">
+								<!--option id="Category" value="" style="display: none;">Category</option-->
+								<option id="News" value="News">News</option>
+								<option id="Advertising" value="Advertising">Advertising</option>
+								<option id="Detailed_Lists_Results_and_Guides" value="Detailed Lists, Results and Guides">Detailed Lists, Results and Guides</option>
+								<option id="Family_Notices" value="Family Notices">Family Notices</option>
+								<option id="Missing" value="">Missing</option>
+							</select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="inline-block responsive">
+                    <div class="input-field-radio">
+                        <div class="pn">
+						<label for="region[]" class="label">Region(s)</label><br>
+                            <select name="region[]" id="region[]" multiple class="narrow-search">
+								<!--option id="Region" value="" style="display: none;">Region</option-->
+								<option id="South_Wales" value="Wales, South.">South Wales</option>
+								<option id="Mid_Wales" value="Wales, Mid.">Mid Wales</option>
+								<option id="North_Wales" value="Wales, North.">North Wales</option>
+								<option id="West_Wales" value="Wales, West.">West Wales</option>
+								<option id="Welsh_Borders" value="Welsh Borders (England & Wales)">Welsh Borders</option>
+								<option id="Liverpool_(England)" value="Liverpool (England)">Liverpool (England)</option>
+								<option id="United_States" value="United States.">United States</option>
+								<option id="London_(England)" value="London (England)">London (England)</option>
+								<option id="Trelew_(Argentina)" value="Trelew (Argentina)">Trelew (Argentina)</option>
+							</select>
+                        </div>
+                        <div class="pn"><br>
+						<label for="illustration[]" class="label">Illustration Type</label><br>
+                            <select name="illustration[]" id="illustration[]" multiple size="3" class="narrow-search">
+								<!--option id="Type" value="" style="display: none;">Type</option-->
+								<option id="Illustration" value="illustration">Illustration</option>
+								<option id="Photograph" value="photo">Photograph</option>
+								<option id="Cartoon" value="cartoon">Cartoon</option>
+								<option id="Graph" value="graph">Graph</option>
+								<option id="Map" value="map">Map</option>
+							</select>
+                        </div>
+                        <div class="pn"><br>
+						<label for="rights[]" class="label">Copyright</label><br>
+                            <select name="rights[]" id="rights[]" multiple size="3" class="narrow-search noOverflow">
+								<!--option id="NONE" value="" style="display: none;">NONE</option-->
+								<option id="Unknown" value="UNKNOWN">Unknown</option>
+								<option id="Copyrighted" value="COPYRIGHTED">Copyrighted</option>
+								<option id="Public_Domain" value="PUBLIC DOMAIN">Public Domain</option>
+							</select>
+                        </div>
+                    </div><br>
+                </div>
+            </div>
+			
             <div class="row">
                 <!--input type="submit"
                     name="send"
@@ -180,10 +1277,10 @@
 						value="Submit">
 				</div>
 				<div class="inline-block responsive">
-					<a href="?advanced=false&interface=en">
 					<input type="button"
 						class="btn"
-						value="Normal Search"></a>
+						value="Normal Search"
+						onclick="window.location='?advanced=false&interface=en';">
 				</div>
             </div>
             <div class="row">
