@@ -6,6 +6,14 @@
 	<link href="assets/css/style.css" type="text/css" rel="stylesheet">
 	<script src="vendor/jquery/jquery-3.7.1.min.js"></script>
 	<script src="assets/js/form-en.js"></script>
+	<script>
+		function switchForms() {
+			var queryString = $('#formSearch').serialize();
+			//window.location='?advanced=false&interface=en'+'&'+queryString;
+			window.location='?'+queryString+'&advanced=false';
+			//alert(queryString);
+		}
+	</script>
 </head>
 <body>
     <div class="form-container">
@@ -60,6 +68,7 @@
                 <div>
                     <input type="hidden"
                         name="interface"
+						id="interface"
                         class="interface"
                         value="en">
                 </div>
@@ -1280,7 +1289,7 @@
 					<input type="button"
 						class="btn"
 						value="Normal Search"
-						onclick="window.location='?advanced=false&interface=en';">
+						onclick="switchForms();">
 				</div>
             </div>
             <div class="row">

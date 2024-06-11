@@ -8,7 +8,9 @@ window.onload = function() {
 	searchableBox("pub-search","publication\\[\\]", true);
 	
 	var inputNumFields = document.querySelectorAll('.numbers-only');
+	var inputTextOnlyFields = document.querySelectorAll('.text-only');
 
+	// For decades, years and days allow only numerals
 	inputNumFields.forEach((inputNumField) => {
 		inputNumField.onkeydown = function(event) {
 			// Only allow if the e.key value is a number or if it's 'Backspace'
@@ -18,14 +20,10 @@ window.onload = function() {
 		};
 	});
 	
-	var inputTextOnlyFields = document.querySelectorAll('.text-only');
-
+	// For months allow only letters not numerals
 	inputTextOnlyFields.forEach((inputTextOnlyField) => {
 		inputTextOnlyField.onkeydown = function(event) {
-			// Only allow if the e.key value is a number or if it's 'Backspace'
-			/* if(isNaN(event.key) && event.key !== 'Backspace') {
-				event.preventDefault();
-			} */
+			// Only allow if the e.key value is a letter a-z or A-Z or if it's 'Backspace'
 			if (event.keyCode >= 65 && event.keyCode <= 90) {
 				// Alphabet upper case is fine
 			} else if (event.keyCode >= 97 && event.keyCode <= 122) {
@@ -38,6 +36,9 @@ window.onload = function() {
 		};
 	});
 	
+	const searchParams = new URLSearchParams(window.location.search);
+	var getData = unserialize(searchParams);
+	alert(JSON.stringify(getData));
 	
 }
 //alert( init.name+"=\""+init.value+"\"" ); // TESTING
@@ -155,7 +156,7 @@ function searchableBox(searchBox, elements, bool) {
 	elements = document.querySelector("#"+elements);
 	var when = "keyup"; //You can change this to keydown, keypress or change
 	
-	searchBox.addEventListener("keyup", function (e) {
+	if (searchBox) { searchBox.addEventListener("keyup", function (e) {
 		var text = e.target.value; //searchBox value
 		var options = elements.options; //select options
 		for (var i = 0; i < options.length; i++) {
@@ -187,5 +188,15 @@ function searchableBox(searchBox, elements, bool) {
 			else { option.selected = false; } //deselect that option
 			//searchBox.selectedIndex = 0; //if nothing matches it selects the default option
 		}
-	});
+	}); }
+}
+
+function unserialize(serializedData) {
+    let urlParams = new URLSearchParams(serializedData); // get interface / iterator
+    let unserializedData = {}; // prepare result object
+    for (let [key, value] of urlParams) { // get pair > extract it to key/value
+        unserializedData[key] = value;
+    }
+
+    return unserializedData;
 }

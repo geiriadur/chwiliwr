@@ -9,7 +9,7 @@ window.onload = function() {
 	
 	var inputNumFields = document.querySelectorAll('.numbers-only');
 	var inputTextOnlyFields = document.querySelectorAll('.text-only');
-
+	
 	// For decades, years and days allow only numerals
 	inputNumFields.forEach((inputNumField) => {
 		inputNumField.onkeydown = function(event) {
@@ -26,15 +26,76 @@ window.onload = function() {
 			// Only allow if the e.key value is a letter a-z or A-Z or if it's 'Backspace'
 			if (event.keyCode >= 65 && event.keyCode <= 90) {
 				// Alphabet upper case is fine
-			} else if (event.keyCode >= 97 && event.keyCode <= 122) {
+				} else if (event.keyCode >= 97 && event.keyCode <= 122) {
 				// Alphabet lower case is fine
-			} else if (event.key == 'Backspace') {
+				} else if (event.key == 'Backspace') {
 				// Backspace is fine
-			} else {
+				} else {
 				event.preventDefault();
 			}
 		};
 	});
+	
+	getData = Object.fromEntries(new URLSearchParams(location.search));
+	//alert(JSON.stringify(getData));
+	//alert(typeof getData);
+	
+	function loadFormElements(form, data ) {
+		//alert("here");
+		alert(JSON.stringify(data));
+		$.each(data, function(name, value) {
+			alert(name);
+			alert(value);
+			
+			if ($("input[id='" + name + "']").length) {
+				// input id=name exists
+				alert("input id=name");
+				var element = $(form).find("input[id='" + name + "']");
+				//element.val() = value;
+			}
+			else if ($("input[id='" + value + "']").length) {
+				// input id=value exists
+				alert("input id=value");
+				var element = $(form).find("input[id='" + value + "']");
+				//element.val() = value;
+			}
+			else if ($("option[value='" + value + "']").length) {
+				// option value=value exists
+				alert("option");
+				element = $(form).find("option[id='" + value + "']");
+				element.selected = true;
+				//element.val() = value;
+			}
+			else {
+				// The element does not exist
+				alert ("not here");
+			}
+			
+			//var element = $(form).find("input[id='" + name + "']");
+			//alert(JSON.stringify(element));
+			//if (!element) { element = $(form).find("select[id='" + name + "']"); }
+			//alert(JSON.stringify(element));
+			
+			if( $(element).is(":checkbox") ) {
+				alert("checkbox");
+				if( value == "true" ) {
+					alert("checked box");
+					//$(element).prop('checked', $(element).val() === "true" );
+				}
+				else {
+					alert("unchecked box");
+					//$(element).removeProp('checked' );
+					//$(element).prop('checked', $(element).val() === "false" );
+				}
+			}
+			else {
+				alert("not checkbox");
+				//if (document.querySelector(element)) { alert("value set"); element.val(value); }
+			}
+		});
+	}
+	//alert("here");
+	loadFormElements( $("#formSearch"),getData);	
 }
 //alert( init.name+"=\""+init.value+"\"" ); // TESTING
 
@@ -44,15 +105,15 @@ function changeSearchRadioButton(el){
 	//}else{
 	//document.getElementById("search").innerHTML = "Results by date.";
 	//} 
-}
-function changeSourceRadioButton(el){
+	}
+	function changeSourceRadioButton(el){
     if (el.value == 'all'){
-        //alert( el.name+"=\""+el.value+"\"" ); // TESTING
-		document.getElementById("complexity").innerHTML = "The largest number of variations allowed in the regular expression is 60 * 2 = 120.";
-		document.getElementById("search").innerHTML = "by variation: WJ, WNO";
-		}else{
-		document.getElementById("complexity").innerHTML = "The largest number of variations allowed in the regular expression is 120.";
-		document.getElementById("search").innerHTML = "by variation";
+//alert( el.name+"=\""+el.value+"\"" ); // TESTING
+document.getElementById("complexity").innerHTML = "The largest number of variations allowed in the regular expression is 60 * 2 = 120.";
+document.getElementById("search").innerHTML = "by variation: WJ, WNO";
+}else{
+document.getElementById("complexity").innerHTML = "The largest number of variations allowed in the regular expression is 120.";
+document.getElementById("search").innerHTML = "by variation";
 	} 
 	if (el.value == 'all'){
 		$("[id^='CC']:selected").prop("selected", false); $("[id^='PN']:selected").prop("selected", false); /* unselects all publications */
@@ -152,7 +213,7 @@ function searchableBox(searchBox, elements, bool) {
 	elements = document.querySelector("#"+elements);
 	var when = "keyup"; //You can change this to keydown, keypress or change
 	
-	searchBox.addEventListener("keyup", function (e) {
+	if (searchBox) { searchBox.addEventListener("keyup", function (e) {
 		var text = e.target.value; //searchBox value
 		var options = elements.options; //select options
 		for (var i = 0; i < options.length; i++) {
@@ -184,5 +245,15 @@ function searchableBox(searchBox, elements, bool) {
 			else { option.selected = false; } //deselect that option
 			//searchBox.selectedIndex = 0; //if nothing matches it selects the default option
 		}
-	});
+	}); }
+}
+
+function unserialize(serializedData) {
+    let urlParams = new URLSearchParams(serializedData); // get interface / iterator
+    let unserializedData = {}; // prepare result object
+    for (let [key, value] of urlParams) { // get pair > extract it to key/value
+        unserializedData[key] = value;
+	}
+	
+    return unserializedData;
 }

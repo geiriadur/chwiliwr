@@ -6,6 +6,13 @@
 	<link href="assets/css/style.css" type="text/css" rel="stylesheet">
 	<script src="vendor/jquery/jquery-3.7.1.min.js"></script>
 	<script src="assets/js/form-cy.js"></script>
+	<script>
+		function switchForms() {
+			var queryString = $('#formSearch').serialize();
+			//window.location='?advanced=false&interface=cy'+'&'+queryString;
+			window.location='?'+queryString+'&advanced=false';
+		}
+	</script>
 </head>
 <body>
     <div class="form-container">
@@ -60,6 +67,7 @@
                 <div>
                     <input type="hidden"
                         name="interface"
+						id="interface"
                         class="interface"
                         value="cy">
                 </div>
@@ -1285,7 +1293,7 @@
 					<input type="button"
 						class="btn"
 						value="Chwiliad Arferol"
-						onclick="window.location='?advanced=false&interface=cy';">
+						onclick="switchForms();">
 				</div>
             </div>
             <div class="row">

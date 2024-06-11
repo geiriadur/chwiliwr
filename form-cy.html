@@ -6,6 +6,13 @@
 	<link href="assets/css/style.css" type="text/css" rel="stylesheet">
 	<script src="vendor/jquery/jquery-3.7.1.min.js"></script>
 	<script src="assets/js/form-cy.js"></script>
+	<script>
+		function switchForms() {
+			var queryString = $('#formSearch').serialize();
+			//window.location='?advanced=true&interface=cy'+'&'+queryString;
+			window.location='?'+queryString+'&advanced=true';
+		}
+	</script>
 </head>
 <body>
     <div class="form-container">
@@ -183,7 +190,7 @@
 					<input type="button"
 						class="btn"
 						value="Chwiliad Uwch"
-						onclick="window.location='?advanced=true&interface=cy';">
+						onclick="switchForms();">
 				</div>
             </div>			
             <div class="row">
