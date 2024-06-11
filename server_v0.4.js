@@ -229,7 +229,7 @@ http.createServer(async function (req, res) {
 		regex = pattern.generate().join(', '); // adds space after comma
 		// Enforce quotation marks if any of the expanded search terms contains
 		//if (regex.includes(' ') || regex.includes('-')) {
-		if (containsSpecialChars(regex)) {
+		if (containsSpecialChars(regex) || regex.includes(' ')) {
 			// re-formulate the expansion with quotation marks
 			pattern = genex(("\""+data['query']+"\"".toString()));
 			//regex = pattern.generate().toString(); // does not add space after comma
