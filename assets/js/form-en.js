@@ -9,7 +9,7 @@ window.onload = function() {
 	
 	var inputNumFields = document.querySelectorAll('.numbers-only');
 	var inputTextOnlyFields = document.querySelectorAll('.text-only');
-	
+
 	// For decades, years and days allow only numerals
 	inputNumFields.forEach((inputNumField) => {
 		inputNumField.onkeydown = function(event) {
@@ -26,11 +26,11 @@ window.onload = function() {
 			// Only allow if the e.key value is a letter a-z or A-Z or if it's 'Backspace'
 			if (event.keyCode >= 65 && event.keyCode <= 90) {
 				// Alphabet upper case is fine
-				} else if (event.keyCode >= 97 && event.keyCode <= 122) {
+			} else if (event.keyCode >= 97 && event.keyCode <= 122) {
 				// Alphabet lower case is fine
-				} else if (event.key == 'Backspace') {
+			} else if (event.key == 'Backspace') {
 				// Backspace is fine
-				} else {
+			} else {
 				event.preventDefault();
 			}
 		};
@@ -105,15 +105,15 @@ function changeSearchRadioButton(el){
 	//}else{
 	//document.getElementById("search").innerHTML = "Results by date.";
 	//} 
-	}
-	function changeSourceRadioButton(el){
+}
+function changeSourceRadioButton(el){
     if (el.value == 'all'){
-//alert( el.name+"=\""+el.value+"\"" ); // TESTING
-document.getElementById("complexity").innerHTML = "The largest number of variations allowed in the regular expression is 60 * 2 = 120.";
-document.getElementById("search").innerHTML = "by variation: WJ, WNO";
-}else{
-document.getElementById("complexity").innerHTML = "The largest number of variations allowed in the regular expression is 120.";
-document.getElementById("search").innerHTML = "by variation";
+        //alert( el.name+"=\""+el.value+"\"" ); // TESTING
+		document.getElementById("complexity").innerHTML = "The largest number of variations allowed in the regular expression is 60 * 2 = 120.";
+		document.getElementById("search").innerHTML = "by variation: WJ, WNO";
+		}else{
+		document.getElementById("complexity").innerHTML = "The largest number of variations allowed in the regular expression is 120.";
+		document.getElementById("search").innerHTML = "by variation";
 	} 
 	if (el.value == 'all'){
 		$("[id^='CC']:selected").prop("selected", false); $("[id^='PN']:selected").prop("selected", false); /* unselects all publications */
