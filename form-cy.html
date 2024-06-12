@@ -6,17 +6,10 @@
 	<link href="assets/css/style.css" type="text/css" rel="stylesheet">
 	<script src="vendor/jquery/jquery-3.7.1.min.js"></script>
 	<script src="assets/js/form-cy.js"></script>
-	<script>
-		function switchForms() {
-			var queryString = $('#formSearch').serialize();
-			//window.location='?advanced=true&interface=cy'+'&'+queryString;
-			window.location='?'+queryString+'&advanced=true';
-		}
-	</script>
 </head>
 <body>
     <div class="form-container">
-	<h4 class="lang-button-right"><a href="?interface=en&advanced=false">English</a></h4>
+	<h4 class="lang-button-right"><a onclick="switchForms('en', 'false');" style='cursor: pointer;'target='_blank'>English</a></h4>
         <h1 class="text-center">ChwiM-aidd</h1>
         <h2 class="text-center">Chwiliwr Mynegiadau <br>Rheolaidd i adnoddau LlGC</h2>
         <form name="formSearch" id="formSearch" method="get"
@@ -190,7 +183,7 @@
 					<input type="button"
 						class="btn"
 						value="Chwiliad Uwch"
-						onclick="switchForms();">
+						onclick="switchForms('cy', 'true');">
 				</div>
             </div>			
             <div class="row">

@@ -36,47 +36,72 @@ window.onload = function() {
 		};
 	});
 	
-	getData = Object.fromEntries(new URLSearchParams(location.search));
+	// sadly this doesn't allow duplicate keys - latter overwrites former
+	const searchParams = new URLSearchParams(window.location.search);
+	var getData = unserialize(searchParams);
+	//alert(JSON.stringify(getData));
+	
+	//getData = Object.fromEntries(new URLSearchParams(location.search)); // does the same as the above without the function, with same restriction
 	//alert(JSON.stringify(getData));
 	//alert(typeof getData);
 	
 	function loadFormElements(form, data ) {
 		//alert("here");
-		alert(JSON.stringify(data));
+		//alert(JSON.stringify(data));
 		$.each(data, function(name, value) {
-			alert(name);
-			alert(value);
-			
+			//alert(name);
+			//alert(value);
+					
 			if ($("input[id='" + name + "']").length) {
 				// input id=name exists
-				alert("input id=name");
+				//alert("input id=name");
 				var element = $(form).find("input[id='" + name + "']");
-				//element.val() = value;
+				/*if( $(element).is(":text") || (element).is(":hidden") || (element).is(":number")) { // No number selector in jquery
+					$("input[id='" + name + "']").val(value);
+					//(element).val(value);
+				} */
+				if( $(element).is(":checkbox") || (element).is(":radio")) {
+					//$("input[id='" + name + "']").prop("checked", true);
+					//$(element).prop("checked", true); // might be false for checkbox, so see next line
+					$(element).prop('checked', $(element).val() === value );
+				}
+				else {
+					//$("input[id='" + name + "']").val(value);
+					$(element).val(value);
+				}
 			}
 			else if ($("input[id='" + value + "']").length) {
 				// input id=value exists
-				alert("input id=value");
+				//alert("input id=value");
 				var element = $(form).find("input[id='" + value + "']");
-				//element.val() = value;
+				/* if( $(element).is(":hidden") || (element).is(":number")) { // It isn't going to be text, at least - no number selector in jquery
+					//$("input[id='" + value + "']").val(value);
+					$(element).val(value);
+				} */
+				if( $(element).is(":checkbox") || (element).is(":radio")) {
+					//$("input[id='" + value + "']").prop("checked", true);
+					$(element).prop("checked", true);
+				}
+				else {
+					//$("input[id='" + value + "']").val(value);
+					$(element).val(value);
+				}
 			}
 			else if ($("option[value='" + value + "']").length) {
 				// option value=value exists
-				alert("option");
+				//alert("option");
 				element = $(form).find("option[id='" + value + "']");
-				element.selected = true;
-				//element.val() = value;
+				//$("option[id='" + value + "']").prop("selected", function () {
+				$(element).prop("selected", function () {
+					return ~$.inArray(this.text, [value]);
+				});
 			}
-			else {
+			/* else {
 				// The element does not exist
-				alert ("not here");
-			}
+				//alert ("no element");
+			} */
 			
-			//var element = $(form).find("input[id='" + name + "']");
-			//alert(JSON.stringify(element));
-			//if (!element) { element = $(form).find("select[id='" + name + "']"); }
-			//alert(JSON.stringify(element));
-			
-			if( $(element).is(":checkbox") ) {
+			/* if( $(element).is(":checkbox") ) {
 				alert("checkbox");
 				if( value == "true" ) {
 					alert("checked box");
@@ -91,10 +116,9 @@ window.onload = function() {
 			else {
 				alert("not checkbox");
 				//if (document.querySelector(element)) { alert("value set"); element.val(value); }
-			}
+			} */
 		});
 	}
-	//alert("here");
 	loadFormElements( $("#formSearch"),getData);	
 }
 //alert( init.name+"=\""+init.value+"\"" ); // TESTING
@@ -256,4 +280,36 @@ function unserialize(serializedData) {
 	}
 	
     return unserializedData;
+}
+
+function switchForms(interface, advanced) {
+	var queryString = $('#formSearch').serialize();
+	//alert(interface);
+	if (interface) {
+		if (queryString.includes("interface=")) {
+		//alert("replace");
+			queryString = queryString.replace(/interface=../g, "interface="+interface);
+		} else {
+			//alert("add");
+			queryString += "&interface="+interface;
+		}
+		//alert(queryString);
+	}
+	if (advanced) {
+		if (queryString.includes("advanced=true")) {
+			//alert("replace");
+			queryString = queryString.replace(/advanced=true/g, "advanced="+advanced);
+		}
+		else if (queryString.includes("advanced=false")) {
+			//alert("replace");
+			queryString = queryString.replace(/advanced=false/g, "advanced="+advanced);
+		} else {
+			//alert("add");
+			queryString += "&advanced="+advanced;
+		}
+		//alert(queryString);
+	}
+	//window.location='?advanced=false&interface=cy'+'&'+queryString;
+	//window.location='?'+queryString+'&advanced=false';
+	window.location='?'+queryString;
 }

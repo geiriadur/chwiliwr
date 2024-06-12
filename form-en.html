@@ -6,17 +6,10 @@
 	<link href="assets/css/style.css" type="text/css" rel="stylesheet">
 	<script src="vendor/jquery/jquery-3.7.1.min.js"></script>
 	<script src="assets/js/form-en.js"></script>
-	<script>
-		function switchForms() {
-			var queryString = $('#formSearch').serialize();
-			//window.location='?advanced=true&interface=en'+'&'+queryString;
-			window.location='?'+queryString+'&advanced=true';
-		}
-	</script>
 </head>
 <body>
     <div class="form-container">
-	<h4 class="lang-button-right"><a href="?interface=cy&advanced=false">Cymraeg</a></h4>
+	<h4 class="lang-button-right"><a onclick="switchForms('cy', 'false');" style='cursor: pointer;'target='_blank'>Cymraeg</a></h4>
         <h1 class="text-center">ChwiM-aidd</h1>
         <h2 class="text-center">Regular Expressions <br>Search for NLW resources</h2>
         <form name="formSearch" id="formSearch" method="get"
@@ -190,7 +183,7 @@
 					<input type="button"
 						class="btn"
 						value="Advanced Search"
-						onclick="switchForms();">
+						onclick="switchForms('en', 'true');">
 				</div>
 				</div-->
             </div>			
