@@ -12,6 +12,8 @@ gan / by Dr Talat Zafar Chaudhri
 
 ### Dibyniaethau / Dependencies:
 
+#### Gweinydd / Server
+
 npm  
 Node.js  
 Cheerio  
@@ -21,6 +23,8 @@ http
 https  
 url  
 fs  
+
+#### Rhaglen We / Web Application
 
 Mae'r rhaglen hon yn galluogi chwilio gwefannau Cylchgronau Cymru a'r Papurau Newydd Ar-Lein o'r 19eg ganrif yng nghasgliadau Llyfrgell Genedlaethol Cymru drwy ddefnydd mynegiadau rheoliadd, ac yn rhoi'r canlyniadau at ei gilydd (gyda threfn yn ôl dyddiad os dymunir) yn un rhestr.
 
