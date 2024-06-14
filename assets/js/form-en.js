@@ -1,12 +1,5 @@
 var init = {name: "src", value: "all"};
 window.onload = function() {
-	/*changeSourceRadioButton(init);
-	searchableBox("decade-search","decade\\[\\]", false);
-	searchableBox("year-search","year\\[\\]", false);
-	searchableBox("month-search","month\\[\\]", false);
-	searchableBox("day-search","day\\[\\]", false);
-	searchableBox("pub-search","publication\\[\\]", true);*/
-	
 	var inputNumFields = document.querySelectorAll('.numbers-only');
 	var inputTextOnlyFields = document.querySelectorAll('.text-only');
 
@@ -36,59 +29,30 @@ window.onload = function() {
 		};
 	});
 	
-	// sadly this doesn't allow duplicate keys - latter overwrites former
 	const searchParams = new URLSearchParams(window.location.search);
 	var getData = unserialize(searchParams);
-	//alert(JSON.stringify(getData));
 	
 	//getData = Object.fromEntries(new URLSearchParams(location.search)); // does the same as the above without the function, with same restriction
-	//alert(JSON.stringify(getData));
-	//alert(typeof getData);
 	
 	var src_value;
 	
 	function loadFormElements(form, data ) {
-		//alert("here");
-		//alert(JSON.stringify(data));
-		//$.each(data, function(name, value) {
-			//alert(name);
-			//alert(value);
+		//$.each(data, function(name, value) { // this method did not allow duplicate keys
 		// extract values from object from array to allow duplicate keys
 		$.each(data, function(key, obj) {
-			//alert(JSON.stringify(obj));
 			var name;
 			var value;
 			Object.values(obj).forEach((content, index) => {
 				const key = Object.keys(obj)[index];
 				name = key; value = content;
-				//alert(name);
-				//alert(value);
-			});
-/*			
-			for (let [key, value] of obj) { // get pair > extract it to key/value
-				// following lines produces an array containing objects
-				name = key;
-				value = value;
-			}
-			
-*/					
+			});	
 			if (name.includes("[") || name.includes("[")) {
 				// Changes any keys containing the characters [ and ] to \\[ and \\] so that javascript processes them correctly
 				//name = name.replace(/\[/g, "\\[");
 				//name = name.replace(/\]/g, "\\]");
 				name = name.replace(/([\[\]])/g, "\\$1"); // combines above lines
 			}
-			//console.log("--"+$("option[value='" + value + "']").attr("id"));
-			//console.log("name: "+name);
-			//console.log("value: "+value);
-			//console.log($("input[id='" + name + "']").length);
-			//if ($("input[id='" + name + "']").attr("id")) {console.log("id=name: "+$("input[id='" + name + "']").attr("id"));}
-			//if ($("input[id='" + value + "']").attr("name")) {console.log("id=value: "+$("input[id='" + value + "']").attr("name"));}
-			//if ($("option[value='" + value + "']").attr("id")) {console.log( "option: " + $("option[value='" + value + "']").parent().attr("id") );}
 			if ($("input[id='" + name + "']").length) {
-				// input id=name exists
-				//alert("input id=name");
-				//console.log(name+" :: "+value);
 				var element = $(form).find("input[id='" + name + "']");
 				//if( $(element).is(":text")) {
 				if ($(element).attr('type') == "text") { // does the same but supports more type values
@@ -97,10 +61,6 @@ window.onload = function() {
 				}
 				//else if( $(element).is(":checkbox")) {
 				else if ($(element).attr('type') == "checkbox") { // does the same but supports more type values
-					//console.log("name: "+name+"; value: "+value+"; value type: "+typeof value);
-					//console.log($(element).val());
-					//console.log(typeof $(element).val());
-					//console.log($(element).val() === value);
 					//$("input[id='" + name + "']").prop("checked", true); // no need to check value of element again, so see next line
 					//$(element).prop("checked", true); // might be false for checkbox, so see next line
 					$(element).prop('checked', $(element).val() === value ); // also evaluates if element value and type is same as that in the query
@@ -109,28 +69,22 @@ window.onload = function() {
 					//else if (value == "false") { $(element).prop("checked", false); $(element).val(value); }
 				}
 				
-				//if( $(element).is(":radio")) { // does the same but supports more type values
-				else if ($(element).attr('type') == "radio") {
+				//if( $(element).is(":radio")) {
+				else if ($(element).attr('type') == "radio") { // does the same but supports more type values
 					//$("input[id='" + name + "']").prop("checked", true); // no need to check value of element again, so see next line
 					//$(element).prop("checked", true);
 					$(element).prop('checked', $(element).val() === value ); // also evaluates if element value and type is same as that in the query
 				}
-				
-				//if( $(element).is(":hidden")) {
+				//else if( $(element).is(":hidden")) {
 				else if ($(element).attr('type') == "hidden") { // does the same but supports more type values
 					// DO NOTHING TO AVOID A CRASH: OTHERWISE WRITING THIS BELOW APPEARS TO BLANK THE VALUE
 				}
 				//if( $(element).is(":number")) { // Doesn't work because the pseudo-selector :number doesn't exist
 				else if ($(element).attr('type') == "number") {
-				//console.log("here");
-				//console.log("--"+$("option[value='" + value + "']").attr("id"));
-				//console.log("name: "+name);
-				//console.log("value: "+value);
-				//console.log($("input[id='" + name + "']").length);
 					//$("input[id='" + name + "']").val(value); // no need to check value of element again, so see next line
 					var num = parseInt(value);
-					if (!isNaN(num)) {
-						$(element).val(num); //console.log("GOT HERE");
+					if (!isNaN(num)) { // check if numeric
+						$(element).val(num); // write number not string
 					}
 				}
 				else {
@@ -139,8 +93,6 @@ window.onload = function() {
 				}
 			}
 			else if ($("input[id='" + value + "']").length) {
-				// input id=value exists
-				//alert("input id=value");
 				var element = $(form).find("input[id='" + value + "']");
 				/* if( $(element).is(":hidden") || (element).is(":number")) { // It isn't going to be text, at least - no number selector in jquery
 					//$("input[id='" + value + "']").val(value);
@@ -153,17 +105,21 @@ window.onload = function() {
 					//if (value == "true") { $(element).prop("checked", true); }
 					//else if (value == "false") { $(element).prop("checked", false); }
 				}
+				//if( $(element).is(":radio")) {
+				else if ($(element).attr('type') == "radio") { // does the same but supports more type values
+					//$("input[id='" + value + "']").prop("checked", true); // no need to check value of element again, so see next line
+					//$(element).prop("checked", true);
+					$(element).prop('checked', $(element).val() === value ); // also evaluates if element value and type is same as that in the query
+				}
 				else if( $(element).is(":hidden")) {
 					// DO NOTHING TO AVOID A CRASH: OTHERWISE WRITING THIS BELOW APPEARS TO BLANK THE VALUE
 				}
 				//if( $(element).is(":number")) { // Doesn't work because the pseudo-selector :number doesn't exist
 				else if ($(element).attr('type') == "number") {
-				//console.log("there");
-					//$("input[id='" + name + "']").val(value); // no need to check value of element again, so see next line
+					//$("input[id='" + name + "']").val(value); // no need to check value of element again, so see below
 					var num = parseInt(value);
-					//console.log(num);
-					if (isNan(num)) {
-						$(element).val(num);
+					if (isNan(num)) { // check if numeric
+						$(element).val(num); // write number not string
 					}
 				}
 				else {
@@ -172,20 +128,9 @@ window.onload = function() {
 				}
 			}
 			//else if ($("option[value='" + value + "']").length) {
-			else if ($("select[id='" + name + "'] > option[value='" + value + "']").length) { // prevent conflicts - TEST
-				console.log("select[id='" + name + "'] > option[value='" + value + "']");
-				var element = $(form).find("select[id='" + name + "'] > option[value='" + value + "']");
+			else if ($("select[id='" + name + "'] > option[value='" + value + "']").length) { // prevent conflicts
 				//var element = $(form).find("option[value='" + value + "']");
-				//console.log( "option-: " + $("option[value='" + value + "']").parent().attr("id") );
-				//else if ($("select[name='" + name + "'] > option[value='").length) {
-				// option value=value exists
-				//alert("option");
-				
-				//element = $(form).find("select[name='" + name + "'] > option[value='" + value + "']");
-				//$("option[id='" + value + "']").prop("selected", function () {
-				/*$(element).prop("selected", function () {
-					return ~$.inArray(this.text, [value]);
-				});*/
+				var element = $(form).find("select[id='" + name + "'] > option[value='" + value + "']"); // prevent conflicts
 				$(element).prop('selected', $(element).val() === value ); // also evaluates if element value and type is same as that in the query
 			}
 			/* else {
@@ -205,7 +150,6 @@ window.onload = function() {
 	searchableBox("day-search","day\\[\\]", false);
 	searchableBox("pub-search","publication\\[\\]", true);
 }
-//alert( init.name+"=\""+init.value+"\"" ); // TESTING
 
 function changeSearchRadioButton(el){
 	//if (el.value == 'score'){
@@ -216,7 +160,6 @@ function changeSearchRadioButton(el){
 }
 function changeSourceRadioButton(el){
     if (el.value == 'all'){
-        //alert( el.name+"=\""+el.value+"\"" ); // TESTING
 		document.getElementById("complexity").innerHTML = "The largest number of variations allowed in the regular expression is 60 * 2 = 120.";
 		document.getElementById("search").innerHTML = "by variation: WJ, WNO";
 		}else{
@@ -335,18 +278,15 @@ function searchableBox(searchBox, elements, bool) {
 			if (match || (contains && bool)) { //if one or the other goes through, assuming that the latter is not disabled (numbers and months)
 				//option.selected = true; //select that option
 				option.style.display = "block";
-				//console.log("--SHOW--"+option.textContent); // TESTING
 				//return; //prevent other code inside this event from executing
 			}
 			else {
 			    option.selected = false; //deselect that option
 				option.style.display = "none";
-				//console.log("--HIDE--"+option.textContent); // TESTING
 			}
 			if (text == optionText) { //if it matches
 				option.selected = true; //select that option
 				//option.style.display = "block";
-				//console.log("--SHOW--"+option.textContent); // TESTING
 				//return; //prevent other code inside this event from executing
 			}
 			else { option.selected = false; } //deselect that option
@@ -364,7 +304,6 @@ function unserialize(serializedData) {
 		var obj = {};
 		obj[key] = value;
 		unserializedData.push(obj);
-		//alert(JSON.stringify(unserializedData));
 	}
 	
     return unserializedData;
@@ -376,37 +315,27 @@ function switchForms(interface, advanced) {
 	if (!queryString.includes("regex=")) {
 			queryString += "&regex=false";
 	}
-	//alert(interface);
 	if (interface) {
 		/* if (queryString.includes("interface=")) {
-		//alert("replace");
 		queryString = queryString.replace(/interface=../g, "interface="+interface); */
 		if (queryString.includes("interface=cy")) {
-			//alert("replace");
 			queryString = queryString.replace(/interface=cy/g, "interface="+interface);
 		}
 		else if (queryString.includes("interface=en")) {
-			//alert("replace");
 			queryString = queryString.replace(/interface=en/g, "interface="+interface);
 		} else {
-			//alert("add");
 			queryString += "&interface="+interface;
 		}
-		//alert(queryString);
 	}
 	if (advanced) {
 		if (queryString.includes("advanced=true")) {
-			//alert("replace");
 			queryString = queryString.replace(/advanced=true/g, "advanced="+advanced);
 		}
 		else if (queryString.includes("advanced=false")) {
-			//alert("replace");
 			queryString = queryString.replace(/advanced=false/g, "advanced="+advanced);
 		} else {
-			//alert("add");
 			queryString += "&advanced="+advanced;
 		}
-		//alert(queryString);
 	}
 	//window.location='?advanced=false&interface=cy'+'&'+queryString;
 	//window.location='?'+queryString+'&advanced=false';
