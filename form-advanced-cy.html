@@ -9,7 +9,7 @@
 </head>
 <body>
     <div class="form-container">
-	<h4 class="lang-button-right"><a href="?interface=en&advanced=true">English</a></h4>
+	<h4 class="lang-button-right"><a href="" onclick="switchForms('en', 'true');" style="cursor: pointer;" target="_blank">English</a></h4>
         <h1 class="text-center">ChwiM-aidd</h1>
         <h2 class="text-center">Chwiliwr Mynegiadau <br>Rheolaidd i adnoddau LlGC</h2>
         <form name="formSearch" id="formSearch" method="get"
@@ -51,7 +51,7 @@
 								name="regex"
 								id="regex"
                                 value="true"
-								checked="checked">Dangos Termau Chwilio
+								checked>Dangos Termau Chwilio
                         </div>
                     </div>
                 </div>
@@ -60,6 +60,7 @@
                 <div>
                     <input type="hidden"
                         name="interface"
+                        id="interface"
                         class="interface"
                         value="cy">
                 </div>
@@ -1285,7 +1286,7 @@
 					<input type="button"
 						class="btn"
 						value="Chwiliad Arferol"
-						onclick="window.location='?advanced=false&interface=cy';">
+						onclick="switchForms('cy', 'false');">
 				</div>
             </div>
             <div class="row">

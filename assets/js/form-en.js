@@ -1,12 +1,5 @@
-const init = {name: "src", value: "all"};
+var init = {name: "src", value: "all"};
 window.onload = function() {
-	changeSourceRadioButton(init);
-	searchableBox("decade-search","decade\\[\\]", false);
-	searchableBox("year-search","year\\[\\]", false);
-	searchableBox("month-search","month\\[\\]", false);
-	searchableBox("day-search","day\\[\\]", false);
-	searchableBox("pub-search","publication\\[\\]", true);
-	
 	var inputNumFields = document.querySelectorAll('.numbers-only');
 	var inputTextOnlyFields = document.querySelectorAll('.text-only');
 
@@ -35,8 +28,128 @@ window.onload = function() {
 			}
 		};
 	});
+	
+	const searchParams = new URLSearchParams(window.location.search);
+	var getData = unserialize(searchParams);
+	
+	//getData = Object.fromEntries(new URLSearchParams(location.search)); // does the same as the above without the function, with same restriction
+	
+	var src_value;
+	
+	function loadFormElements(form, data ) {
+		//$.each(data, function(name, value) { // this method did not allow duplicate keys
+		// extract values from object from array to allow duplicate keys
+		$.each(data, function(key, obj) {
+			var name;
+			var value;
+			Object.values(obj).forEach((content, index) => {
+				const key = Object.keys(obj)[index];
+				name = key; value = content;
+			});	
+			if (name.includes("[") || name.includes("[")) {
+				// Changes any keys containing the characters [ and ] to \\[ and \\] so that javascript processes them correctly
+				//name = name.replace(/\[/g, "\\[");
+				//name = name.replace(/\]/g, "\\]");
+				name = name.replace(/([\[\]])/g, "\\$1"); // combines above lines
+			}
+			if ($("input[id='" + name + "']").length) {
+				var element = $(form).find("input[id='" + name + "']");
+				//if( $(element).is(":text")) {
+				if ($(element).attr('type') == "text") { // does the same but supports more type values
+					//$("input[id='" + name + "']").val(value); // no need to check value of element again, so see next line
+					$(element).val(value);
+				}
+				//else if( $(element).is(":checkbox")) {
+				else if ($(element).attr('type') == "checkbox") { // does the same but supports more type values
+					//$("input[id='" + name + "']").prop("checked", true); // no need to check value of element again, so see next line
+					//$(element).prop("checked", true); // might be false for checkbox, so see next line
+					$(element).prop('checked', $(element).val() === value ); // also evaluates if element value and type is same as that in the query
+					$(element).val(value); // also set value
+					//if (value == "true") { $(element).prop("checked", true); $(element).val(value); }
+					//else if (value == "false") { $(element).prop("checked", false); $(element).val(value); }
+				}
+				
+				//if( $(element).is(":radio")) {
+				else if ($(element).attr('type') == "radio") { // does the same but supports more type values
+					//$("input[id='" + name + "']").prop("checked", true); // no need to check value of element again, so see next line
+					//$(element).prop("checked", true);
+					$(element).prop('checked', $(element).val() === value ); // also evaluates if element value and type is same as that in the query
+				}
+				//else if( $(element).is(":hidden")) {
+				else if ($(element).attr('type') == "hidden") { // does the same but supports more type values
+					// DO NOTHING TO AVOID A CRASH: OTHERWISE WRITING THIS BELOW APPEARS TO BLANK THE VALUE
+				}
+				//if( $(element).is(":number")) { // Doesn't work because the pseudo-selector :number doesn't exist
+				else if ($(element).attr('type') == "number") {
+					//$("input[id='" + name + "']").val(value); // no need to check value of element again, so see next line
+					var num = parseInt(value);
+					if (!isNaN(num)) { // check if numeric
+						$(element).val(num); // write number not string
+					}
+				}
+				else {
+					//$("input[id='" + name + "']").val(value); // no need to check value of element again, so see next line
+					$(element).val(value);
+				}
+			}
+			else if ($("input[id='" + value + "']").length) {
+				var element = $(form).find("input[id='" + value + "']");
+				/* if( $(element).is(":hidden") || (element).is(":number")) { // It isn't going to be text, at least - no number selector in jquery
+					//$("input[id='" + value + "']").val(value);
+					$(element).val(value);
+				} */
+				if( $(element).is(":checkbox") || (element).is(":radio")) {
+					//$("input[id='" + value + "']").prop("checked", true);
+					//$(element).prop("checked", true); // might be false for checkbox, so see next line
+					$(element).prop('checked', $(element).val() === value );
+					//if (value == "true") { $(element).prop("checked", true); }
+					//else if (value == "false") { $(element).prop("checked", false); }
+				}
+				//if( $(element).is(":radio")) {
+				else if ($(element).attr('type') == "radio") { // does the same but supports more type values
+					//$("input[id='" + value + "']").prop("checked", true); // no need to check value of element again, so see next line
+					//$(element).prop("checked", true);
+					$(element).prop('checked', $(element).val() === value ); // also evaluates if element value and type is same as that in the query
+				}
+				else if( $(element).is(":hidden")) {
+					// DO NOTHING TO AVOID A CRASH: OTHERWISE WRITING THIS BELOW APPEARS TO BLANK THE VALUE
+				}
+				//if( $(element).is(":number")) { // Doesn't work because the pseudo-selector :number doesn't exist
+				else if ($(element).attr('type') == "number") {
+					//$("input[id='" + name + "']").val(value); // no need to check value of element again, so see below
+					var num = parseInt(value);
+					if (isNan(num)) { // check if numeric
+						$(element).val(num); // write number not string
+					}
+				}
+				else {
+					//$("input[id='" + value + "']").val(value);
+					$(element).val(value);
+				}
+			}
+			//else if ($("option[value='" + value + "']").length) {
+			else if ($("select[id='" + name + "'] > option[value='" + value + "']").length) { // prevent conflicts
+				//var element = $(form).find("option[value='" + value + "']");
+				var element = $(form).find("select[id='" + name + "'] > option[value='" + value + "']"); // prevent conflicts
+				$(element).prop('selected', $(element).val() === value ); // also evaluates if element value and type is same as that in the query
+			}
+			/* else {
+				// The element does not exist
+			} */
+			
+			if (name == "src") { src_value = value; } // for changeSourceRadioButton(init) below
+		});
+	}
+	
+	loadFormElements( $("#formSearch"),getData);
+	init = {name: "src", value: src_value};
+	changeSourceRadioButton(init);
+	searchableBox("decade-search","decade\\[\\]", false);
+	searchableBox("year-search","year\\[\\]", false);
+	searchableBox("month-search","month\\[\\]", false);
+	searchableBox("day-search","day\\[\\]", false);
+	searchableBox("pub-search","publication\\[\\]", true);
 }
-//alert( init.name+"=\""+init.value+"\"" ); // TESTING
 
 function changeSearchRadioButton(el){
 	//if (el.value == 'score'){
@@ -47,7 +160,6 @@ function changeSearchRadioButton(el){
 }
 function changeSourceRadioButton(el){
     if (el.value == 'all'){
-        //alert( el.name+"=\""+el.value+"\"" ); // TESTING
 		document.getElementById("complexity").innerHTML = "The largest number of variations allowed in the regular expression is 60 * 2 = 120.";
 		document.getElementById("search").innerHTML = "by variation: WJ, WNO";
 		}else{
@@ -122,7 +234,6 @@ function validateForm() {
 		$("#range\\[max\\]").addClass("error-field");
 		valid = false;
 	}
-	
 	if (valid == false) {
 		$('.error-field').first().focus();
 		$("#statusMessage").html("Search cannot be empty.");
@@ -167,22 +278,66 @@ function searchableBox(searchBox, elements, bool) {
 			if (match || (contains && bool)) { //if one or the other goes through, assuming that the latter is not disabled (numbers and months)
 				//option.selected = true; //select that option
 				option.style.display = "block";
-				//console.log("--SHOW--"+option.textContent); // TESTING
 				//return; //prevent other code inside this event from executing
 			}
 			else {
 			    option.selected = false; //deselect that option
 				option.style.display = "none";
-				//console.log("--HIDE--"+option.textContent); // TESTING
 			}
 			if (text == optionText) { //if it matches
 				option.selected = true; //select that option
 				//option.style.display = "block";
-				//console.log("--SHOW--"+option.textContent); // TESTING
 				//return; //prevent other code inside this event from executing
 			}
 			else { option.selected = false; } //deselect that option
 			//searchBox.selectedIndex = 0; //if nothing matches it selects the default option
 		}
 	}); }
+}
+
+function unserialize(serializedData) {
+    let urlParams = new URLSearchParams(serializedData); // get interface / iterator
+    let unserializedData = []; // prepare result object
+    for (let [key, value] of urlParams) { // get pair > extract it to key/value
+        //unserializedData[key] = value; // array did not allow duplicate keys
+		// following lines produces an array containing objects
+		var obj = {};
+		obj[key] = value;
+		unserializedData.push(obj);
+	}
+	
+    return unserializedData;
+}
+
+function switchForms(interface, advanced) {
+	var queryString = $('#formSearch').serialize();
+	// need to add regex=false in order to pass unselected value
+	if (!queryString.includes("regex=")) {
+			queryString += "&regex=false";
+	}
+	if (interface) {
+		/* if (queryString.includes("interface=")) {
+		queryString = queryString.replace(/interface=../g, "interface="+interface); */
+		if (queryString.includes("interface=cy")) {
+			queryString = queryString.replace(/interface=cy/g, "interface="+interface);
+		}
+		else if (queryString.includes("interface=en")) {
+			queryString = queryString.replace(/interface=en/g, "interface="+interface);
+		} else {
+			queryString += "&interface="+interface;
+		}
+	}
+	if (advanced) {
+		if (queryString.includes("advanced=true")) {
+			queryString = queryString.replace(/advanced=true/g, "advanced="+advanced);
+		}
+		else if (queryString.includes("advanced=false")) {
+			queryString = queryString.replace(/advanced=false/g, "advanced="+advanced);
+		} else {
+			queryString += "&advanced="+advanced;
+		}
+	}
+	//window.location='?advanced=false&interface=cy'+'&'+queryString;
+	//window.location='?'+queryString+'&advanced=false';
+	window.location='?'+queryString;
 }
