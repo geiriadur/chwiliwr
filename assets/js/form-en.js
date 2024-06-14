@@ -183,9 +183,10 @@ window.onload = function() {
 				
 				//element = $(form).find("select[name='" + name + "'] > option[value='" + value + "']");
 				//$("option[id='" + value + "']").prop("selected", function () {
-				$(element).prop("selected", function () {
+				/*$(element).prop("selected", function () {
 					return ~$.inArray(this.text, [value]);
-				});
+				});*/
+				$(element).prop('selected', $(element).val() === value ); // also evaluates if element value and type is same as that in the query
 			}
 			/* else {
 				// The element does not exist
