@@ -9,13 +9,13 @@ div.cc, div.pn {
   padding-left: 4px !important;
   padding-right: 4px !important;
 }
-.cc >.result-summary > span > em {
+.cc .card-subtitle mark {
     background: #c7def2; /* 40% lighter than and replacing #a1c8ea /* light blue */
     border-radius: 2px;
     padding: 0 .1em;
     font-style: normal;
 }
-.pn > .result-summary > span > em {
+.pn .card-subtitle mark {
     background: #ffd6ae; /* 40% lighter than #ffbb78 replacing #edd2a3; */
     border-radius: 2px;
     padding: 0 .1em;
@@ -45,5 +45,26 @@ h1, h2 {
 h2 {
     font-weight: 500;
     font-size: 1.2em;
+}
+
+a:link,
+a:visited {
+	text-decoration: none;
+	/* color: #5c5953; /* 10% darker */
+	color: #3C3C3C; /* #4487d6; */
+}
+
+a:hover {
+	text-decoration: underline;
+	/* color: #5c5953; /* 10% darker */
+	color: #3C3C3C; /* #005cc8; */
+}
+
+.col-md-4.card-body {
+	display: flex;
+}
+
+.col-md-4.card-body div {
+	flex: 1
 }
 

@@ -203,7 +203,7 @@ http.createServer(async function (req, res) {
 	//if (requestLimit < 2) { sources = 1; } // Revert to only CC if requestLimit < 2 // Disabled: user unaware of missing results
 	
 	// Parse 'sort' and 'order' parameters
-	if ("sort" in data && data['sort'].toLowerCase() == "date") {
+	if ("sort" in data && (data['sort'].toLowerCase() == "date" || data['sort'].toLowerCase() == "isodate")) { // NLW isodate, date confusion
 		if ("order" in data && data['order'].toLowerCase() == "asc") {
 			order = 1;
 		}
@@ -256,6 +256,7 @@ http.createServer(async function (req, res) {
 	}
 	
 	function timestamp(date, lang) { // converts Welsh date to UNIX timestamp
+		lang = "en"; // The Library are currently using English dates in the Welsh, so this line disables Welsh month names
 		const months_cy = [
 			"Ionawr", "Chwefror", "Mawrth", "Ebrill", "Mai", "Mehefin", "Gorffennaf",
 			"Awst", "Medi", "Hydref", "Tachwedd", "Rhagfyr"
@@ -305,67 +306,130 @@ http.createServer(async function (req, res) {
 			});
 		}
 		if (order == 2) { data.reverse(); }
-		data.forEach(function(n) { console.log(n['timestamp']) });  // prints each 'timestamp' field from array to console
+		//data.forEach(function(n) { console.log(n['timestamp']) });  // prints each 'timestamp' field from array to console
 		var output = "";
 		data.map(function(n) { output += n['html'] });  // prints each 'html' field from array to variable
 		
-		console.log("\""+output+"\"");
+		console.log("\""+output+"\""); // PRINTS FINAL ARRAY TO CONSOLE
 		console.log("Number of items: "+arrayLength);
 		return output; // return value to be included in the server response, which is waiting for it
 	}
 	
-	function returnHTMLArray(request_data) {
+	function returnHTMLArray(request_data, requestURL) {
 		
 		arrayOfObjects = [];
 		const $ = cheerio.load(request_data);
 		
 		// Find all div elements with a class of "example" using the class selector
-		const items = $(".result"); // returns search items
+		//const items = $(".result"); // returns search items
+		const items = $(".card.mb-4 > .row.g-0"); // returns search items
 		//const items = $('[class="result"]'); // should be equivalent to the above
 		//const date = $(".result div.col-xs-2:eq(1), .result li.col-sm-2:eq(0) > span"); // returns just dates of search items
 		
 		// Add appropriate path to result link (CC)
-		$('.col-xs-12.result > h2.result-title a').attr('href', function(index, attr) {return sourceURL1+attr;});
+		//$('.col-xs-12.result > h2.result-title a').attr('href', function(index, attr) {return sourceURL1+attr;});
+		$('.col-md-8 > .card-body > h1.card-title a').attr('href', function(index, attr) {/*console.log(requestURL+attr);*/ return requestURL+attr;});
 		// Add appropriate path to result link (PN)
-		$('.col-md-12.result > h2.result-title a').attr('href', function(index, attr) {return sourceURL2+attr;});
+		//$('.col-md-12.result > h2.result-title a').attr('href', function(index, attr) {return sourceURL2+attr;});
+		//$('.col-md-8 > .card-body > h1.card-title a').attr('href', function(index, attr) {return sourceURL+attr;});
 		// Add appropriate path to source link in CC (N.B. no need in PN as already there: would create duplicate)
-		$('div.col-xs-5 > a').attr('href', function(index, attr) {return sourceURL1+attr;});
+		//$('div.col-xs-5 > a').attr('href', function(index, attr) {return sourceURL1+attr;});
+		$('.col-md-4 > .card-text:eq(0) a').attr('href', function(index, attr) {/*console.log(requestURL+attr);*/ return requestURL+attr;});
+		//$('div.col-md-4 > a').attr('href', function(index, attr) {return sourceURL2+attr;});
+//console.log(items);
+
+		// Add current page and end page
+		var text = $(".text-nowrap.me-2.num-results-text").text();
+		text = text.replace(/\s\s+/g, ' ').trim(); // remove all line breaks, multiple spaces and whitespace
+		// cy: Dangos x i y o z ar gyfer 
+		// en: Viewing x to y of z results for
+		var textArray = text.split(' ');
+		//var start = Number(textArray[1]);
+		//var end = Number(textArray[3]);
+		//var total = Number(textArray[5]);
+		var page = Math.ceil(Number(textArray[3])/30);
+		var pageTotal = Math.ceil(Number(textArray[5])/30);
+		//page = Math.ceil(Number("120")/30); // TESTING
+		//pageTotal = Math.ceil(Number("121")/30); // TESTING
+		//console.log(text); // TESTING
+		//console.log(start+" : "+end+" : "+total); // TESTING
+		//console.log(page+" : "+pageTotal); // TESTING
 		
 		// Iterate over each div element to get the html, timestamp and date, and put into array
 		items.each((i, item) => {
 			if (item) {
 				// Replaces the above variable 'date' so that the timestamp is correct per item
 				const $ = cheerio.load(item);
-				date = $(".result div.col-xs-2:eq(1), .result li.col-sm-2:eq(0) > span");
+				function extractDate() {
+					// Find all .card-text.pub-details elements
+					var dateElements = $('.card-text.pub-details');
+					// Iterate over each element to find the one with the "DYDDIAD:" text
+					for (var i = 0; i < dateElements.length; i++) {
+						var dateXML = $(dateElements[i]).find('small.text-muted');
+						// Check if the small element contains the text "DYDDIAD:"
+						if (dateXML.text().trim() === "DYDDIAD:") {
+							// Extract and return the date text
+							return $(dateElements[i]).text().replace(dateXML.text(), '').trim();
+							//date = date.parent().text().replace(date.text(), '').trim();
+						}
+					}
+					return null; // Return null if no matching element is found
+				}
+				// Call the function and log the result
+				var date = extractDate();
+				// Escape date
+				//date = escape(date); // not currently required
+				/* console.log(date); // Outputs e.g. 15 August 1873 or null if not found // TESTING */
+				// Extra check to avoid CSS elements that are not search items
+				if (typeof date != "string" || date.length == 0) { return; }
+
 				// Be careful to add it to the array correctly like this, or else it won't be parsed properly
 				//arrayOfObjects = [{'html': $(item).html(), 'timestamp': timestamp($(date).html()), 'date': $(date).html()}]; // PROBLEM!
 				//arrayOfObjects = arrayOfObjects.concat({'html': $(item).html(), 'timestamp': timestamp($(date).html()), 'date': $(date).html()}); // FIXED
 				if (outputFormat == "xml") {
-					resource = $(".result-title > a").attr("href"); resource = escape(resource);
-					text = $(".result-summary > span.hidden-xs").text(); text = escape(text);
-					source = $(".result-meta > .col-xs-6 > a, .result-metadata > .col-xs-5 > a").attr("href"); source = escape(source);
-					dateXML = $(".result div.col-xs-2:eq(1), .result li.col-sm-2:eq(0) > span").text(); dateXML = escape(dateXML);
-					dateXML = timestamp(dateXML, interface);
+					resource = $(".card-title > a").attr("href"); resource = escape(resource);
+					text = $(".card-subtitle").text(); text = escape(text);
+					source = $(".card-text:eq(0) > a").attr("href"); source = escape(source);
+					/* //dateXML = $(".card-text:eq(1) > small").text(); dateXML = escape(dateXML); // OLD LINE NOT WORKING
+					// Select the div with class 'card-text pub-details'
+					dateXML = $('.card-text.pub-details:eq(0) > small');
+					// Escape dateXML
+					dateXML = escape(dateXML);
+					// Extract only the date part using JavaScript string manipulation
+					dateXML = dateXML.parent().text().replace(dateXML.text(), '').trim();
+					console.log(dateXML); */
+					// Turn the date into a timestamp
+					dateXML = timestamp(date, interface);
 					const myDate = new Date(dateXML);
 					//dateXML = myDate.toLocaleDateString("en-UK"); // DD/MM/YYYY
 					dateXML = myDate.toISOString().split('T')[0]; // YYYY-MM-DD
 					//dateXML = "<date>" + date + "</date>";
 					//arrayOfObjects = arrayOfObjects.concat({'html': $(item).html(), 'timestamp': timestamp($(date).html()), 'date': $(date).html()});
-					arrayOfObjects = arrayOfObjects.concat({'html': "<item><resource>"+resource+"</resource><text-summary>"+text+"</text-summary><source>"+source+"</source><date>"+dateXML+"</date></item>", 'timestamp': timestamp($(date).html(), interface), 'date': $(date).html()});
+					//arrayOfObjects = arrayOfObjects.concat({'html': "<item><resource>"+resource+"</resource><text-summary>"+text+"</text-summary><source>"+source+"</source><date>"+dateXML+"</date></item>", 'timestamp': timestamp($(date).html(), interface), 'date': $(date).html()});
+					//arrayOfObjects = arrayOfObjects.concat({'html': "<item><resource>"+resource+"</resource><text-summary>"+text+"</text-summary><source>"+source+"</source><date>"+dateXML+"</date></item>", 'timestamp': timestamp(date, interface), 'date': date});
+					arrayOfObjects = arrayOfObjects.concat({'html': "<item><resource>"+resource+"</resource><text-summary>"+text+"</text-summary><source>"+source+"</source><date>"+dateXML+"</date></item>", 'timestamp': timestamp(date, interface), 'date': date, 'page': page, 'pageTotal': pageTotal});
 				}
 				else {
 					var classLabel;
-					if ($(".result-title > a") ) {
-						if ($(".result-title > a").attr('href').includes("cylchgronau") ) { classLabel = "cc" }
-						if ($(".result-title > a").attr('href').includes("papuraunewydd") ) { classLabel = "pn" }
-						if ($(".result-title > a").attr('href').includes("journals") ) { classLabel = "cc" }
-						if ($(".result-title > a").attr('href').includes("newspapers") ) { classLabel = "pn" }
+					//if ($(".card-title > a") ) {
+					resource = $(".card-title > a").attr("href"); resource = escape(resource);
+					/*console.log("URL: "+resource);*/
+					if (typeof resource === "string" && resource.length != 0) { // better than checking != ""
+						/*console.log($(".card-title > a").attr('href'));*/
+						if ($(".card-title > a").attr('href').includes("cylchgronau") ) { classLabel = "cc"; }
+						if ($(".card-title > a").attr('href').includes("papuraunewydd") ) { classLabel = "pn"; }
+						if ($(".card-title > a").attr('href').includes("journals") ) { classLabel = "cc"; }
+						if ($(".card-title > a").attr('href').includes("newspapers") ) { classLabel = "pn"; }
 					}
-					arrayOfObjects = arrayOfObjects.concat({'html': "<div class='" + classLabel + "'>" + $(item).html() + "</div>", 'timestamp': timestamp($(date).html(), interface), 'date': $(date).html()}); // AS ABOVE BUT ADD DIV ID FOR CSS
+					/*console.log(date); // TESTING */
+					//arrayOfObjects = arrayOfObjects.concat({'html': "<div class='" + classLabel + "'>" + $(item).html() + "</div>", 'timestamp': timestamp($(date).html(), interface), 'date': $(date).html()}); // AS ABOVE BUT ADD DIV ID FOR CSS
+					//arrayOfObjects = arrayOfObjects.concat({'html': "<div class='" + classLabel + "'>" + $(item).html() + "</div>", 'timestamp': timestamp(date, interface), 'date': date}); // AS ABOVE BUT ADD DIV ID FOR CSS
+					arrayOfObjects = arrayOfObjects.concat({'html': "<div class='" + classLabel + "'>" + $(item).html() + "</div>", 'timestamp': timestamp(date, interface), 'date': date, 'page': page, 'pageTotal': pageTotal}); // AS ABOVE BUT ADD DIV ID FOR CSS
 					//arrayOfObjects = []; // NOT HERE!!
 				}
 			}
 		});
+console.log(arrayOfObjects)
 		return arrayOfObjects;
 	}
 	
@@ -375,8 +439,8 @@ http.createServer(async function (req, res) {
 		
 		// MAKES A REQUEST TO THE WEB SERVICE FOR EACH REQUEST
 		// Added pass-through of GET data
-		//GETdata
-		https.get(sourceURL+'search?query='+val+'&rows=1000'+'&'+GETData, (resp) => { // server will run out of memory over ~1000
+		//https.get(sourceURL+'search?query='+val+'&rows=1000'+'&'+GETData, (resp) => { // server will run out of memory over ~1000	
+		https.get(sourceURL+'search?query='+val+'&rows=30'+'&'+GETData, (resp) => { // 30 is the new max
 			
 			// SET UP REQUEST
 			let request_data = '';
@@ -395,8 +459,8 @@ http.createServer(async function (req, res) {
 			
 			// The whole response has been received. Print out the result.
 			resp.on('end', () => {
-				arrayOfMultipleObjects = returnHTMLArray(request_data); // returns data
-				callback(arrayOfMultipleObjects); // necessary to make sure that it works?
+				arrayOfMultipleObjects = returnHTMLArray(request_data, sourceURL); // returns data
+				callback(arrayOfMultipleObjects); // necessary to make sure that it calls handleResults callback function
 				// CATCH ERRORS
 				}).on("error", (err) => {
 				console.error("Error: "+err);
@@ -431,24 +495,86 @@ http.createServer(async function (req, res) {
 			
 			//combinedArrayOfMultipleObjects += serverRequest(val); // SEND REQUEST TO SERVER
 			
-			if (sources == 0 || sources == 1) {
+			if (sources == 0 || sources == 1) { // for CC
 				//sourceURL = sourceURL1;
-				serverRequest(val, sourceURL1, GETData, function(results){
+				// Added next lines because CC and PN are inconsistent about sort=isodate, date
+				//console.log(GETData); // TESTING
+				//console.log(GETData.includes("sort=date") ); // TESTING
+				var page = 0;
+				var pageTotal = 0;
+				// First server request of 30 items also returns page and pageTotal
+				if (GETData.includes("sort=date") ) { GETData = GETData.replace(/sort=date/g, 'sort=isodate'); }
+				serverRequest(val, sourceURL1, GETData+'&page=1', function(results){
 					counter++; handleResults(results);
+					lastObject = finalArrayOfObjects[finalArrayOfObjects.length-1]; // last object
+					lastObject = finalArrayOfObjects[0]; // TESTING
+					if (lastObject) { page = lastObject['page']; }
+					if (lastObject) { pageTotal = lastObject['pageTotal']; }
+					console.log(page+" :: "+pageTotal); // TESTING
 				});
 				// CRUCIAL DELAY TO PREVENT HITTING SERVER TOO HARD
 				await new Promise(resolve => setTimeout(resolve, delay_in_ms));
 				console.log("::"); // TESTING
+				
+				// Remaining server requests of 30 items
+				//if (GETData.includes("sort=date") ) { GETData = GETData.replace(/sort=date/g, 'sort=isodate'); }
+				let i = 2; while (i <= pageTotal) {
+					serverRequest(val, sourceURL1, GETData+'&page='+i, function(results){
+						/*counter++;*/ handleResults(results);
+					});
+					// CRUCIAL DELAY TO PREVENT HITTING SERVER TOO HARD
+					await new Promise(resolve => setTimeout(resolve, delay_in_ms));
+					console.log("::"); // TESTING
+					i++;
+				}
+				
 			}
-			if (sources == 0 || sources == 2) {
+			if (sources == 0 || sources == 2) { // for PN
 				//sourceURL = sourceURL2;
-				serverRequest(val, sourceURL2, GETData, function(results){
+				// Added next lines because CC and PN are inconsistent about sort=isodate, date
+				//console.log(GETData); // TESTING
+				//console.log(GETData.includes("sort=isodate") ); // TESTING
+				var page = 0;
+				var pageTotal = 0;
+				// First server request of 30 items also returns page and pageTotal
+				if (GETData.includes("sort=isodate") ) { GETData = GETData.replace(/sort=isodate/g, 'sort=date'); }
+				serverRequest(val, sourceURL2, GETData+'&page=1', function(results){
 					counter++; handleResults(results);
+					lastObject = finalArrayOfObjects[finalArrayOfObjects.length-1]; // last object
+					lastObject = finalArrayOfObjects[0]; // TESTING
+					if (lastObject) { page = lastObject['page']; }
+					if (lastObject) { pageTotal = lastObject['pageTotal']; }
+					console.log(page+" :: "+pageTotal); // TESTING
 				});
 				// CRUCIAL DELAY TO PREVENT HITTING SERVER TOO HARD
 				await new Promise(resolve => setTimeout(resolve, delay_in_ms));
 				console.log("::"); // TESTING
+				
+				// Remaining server requests of 30 items
+				//if (GETData.includes("sort=isodate") ) { GETData = GETData.replace(/sort=isodate/g, 'sort=date'); }
+				let i = 2; while (i <= pageTotal) {
+					serverRequest(val, sourceURL2, GETData+'&page='+i, function(results){
+						/*counter++;*/ handleResults(results);
+					});
+					// CRUCIAL DELAY TO PREVENT HITTING SERVER TOO HARD
+					await new Promise(resolve => setTimeout(resolve, delay_in_ms));
+					console.log("::"); // TESTING
+					i++;
+				}
+				
 			}
+			console.log("HERE");
+			if (numOfRequests == counter) {
+				//output = outputArray(finalArrayOfObjects, 1); // 1 = forward (asc), 2 = reverse (desc)
+				output += outputArray(finalArrayOfObjects, order); // 1 = forward (asc), 2 = reverse (desc)
+				// counter = 0;
+				printOutput();
+			}
+			// results are returned via output
+			else {
+				return finalArrayOfObjects;
+			}
+			
 		}
 		//numOfRequests = 0; // NOT REQUIRED
 		//combinedArrayOfMultipleObjects = []; // NOT HERE
@@ -457,16 +583,17 @@ http.createServer(async function (req, res) {
 			//do something with the results
 			finalArrayOfObjects = finalArrayOfObjects.concat(results);
 			//counter++;
-			if (numOfRequests == counter) {
+			//output += outputArray(finalArrayOfObjects, order); // 1 = forward (asc), 2 = reverse (desc)
+			/*if (numOfRequests == counter) {
 				//output = outputArray(finalArrayOfObjects, 1); // 1 = forward (asc), 2 = reverse (desc)
-				output += outputArray(finalArrayOfObjects, order); // 1 = forward (asc), 2 = reverse (desc)
-				/* counter = 0; */
+				//output += outputArray(finalArrayOfObjects, order); // 1 = forward (asc), 2 = reverse (desc)
+				// counter = 0;
 				printOutput();
 			}
 			// results are returned via output
 			else {
 				return finalArrayOfObjects;
-			} 
+			}*/
 		}
 		
 		function printOutput() {
@@ -532,13 +659,16 @@ http.createServer(async function (req, res) {
 		return specialChars.test(str);
 	}
 	function escape(htmlStr) {
-		if (htmlStr) {
-			return htmlStr.replace(/&/g, "&amp;")
-				.replace(/</g, "&lt;")
-				.replace(/>/g, "&gt;")
-				.replace(/"/g, "&quot;")
-				.replace(/'/g, "&#39;");
+		//if (htmlStr) {
+		if (typeof htmlStr !== 'string') { // This deals with null strings
+        return htmlStr; // Return the input as is if it's not a string
 		}
+		return htmlStr.replace(/&/g, "&amp;")
+			.replace(/</g, "&lt;")
+			.replace(/>/g, "&gt;")
+			.replace(/"/g, "&quot;")
+			.replace(/'/g, "&#39;");
+		//}
 
 	}
 	
