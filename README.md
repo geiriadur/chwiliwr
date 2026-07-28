@@ -8,7 +8,7 @@ gan / by Dr Talat Zafar Chaudhri
 
 ### Fersiwn / Version 0.4
 
-### Gweler / See release_notes_v0.4.txt
+### Gweler / See prerelease_notes.txt
 
 ### Dibyniaethau / Dependencies:
 
